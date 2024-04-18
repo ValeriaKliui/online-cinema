@@ -14,6 +14,7 @@ export default defineConfig({
       "@shared": resolve(__dirname, "./src/shared"),
       "@hooks": resolve(__dirname, "./src/hooks"),
       "@store": resolve(__dirname, "./src/store"),
+      "@utils": resolve(__dirname, "./src/utils"),
     },
   },
   plugins: [svgr(), react()],

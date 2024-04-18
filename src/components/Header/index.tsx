@@ -1,20 +1,19 @@
+import { useAppSelector } from "@/store/interfaces/hooks";
+import { selectRandomFilm } from "@/store/selectors/films";
 import { Nav } from "@components/Nav";
-import { HeaderContainer, Logo, User } from "./styled";
-import { useGetPremieresQuery } from "@store/services/filmsApi";
+import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
 
 export const Header = () => {
-  const { data, error, isLoading } = useGetPremieresQuery({
-    year: 2024,
-    month: "APRIL",
-  });
-
-  console.log(data);
+  const randomFilm = useAppSelector(selectRandomFilm)
+  const { posterUrl } = randomFilm ?? {}
 
   return (
-    <HeaderContainer className="wrapper">
-      <Logo height="4em" />
-      <Nav />
-      <User height="2em" width="2em" />
+    <HeaderContainer $posterUrl={posterUrl}>
+      <ContentContainer className="wrapper">
+        <Logo height="4em" />
+        <Nav />
+        <User height="2em" width="2em" />
+      </ContentContainer>
     </HeaderContainer>
   );
 };

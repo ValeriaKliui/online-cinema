@@ -1,12 +1,12 @@
-import { createGlobalStyle } from "styled-components";
-import PoppinsRegularWoff from "@assets/fonts/";
+import { createGlobalStyle } from 'styled-components';
+import PoppinsRegularWoff from '@assets/fonts/Poppins-Regular.woff';
 
 const styled = { createGlobalStyle };
 
 export const GlobalStyles = styled.createGlobalStyle`
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
-    src: url(PoppinsRegularWoff) format("woff");
+    src: url(${PoppinsRegularWoff}) format('woff');
   }
   a {
     color: inherit;
@@ -22,5 +22,6 @@ export const GlobalStyles = styled.createGlobalStyle`
   body {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
     font-size: ${({ theme: { fontSizes } }) => fontSizes.regular};
+    margin: 0;
   }
 `;

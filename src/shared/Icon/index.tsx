@@ -1,6 +1,5 @@
-import { FC } from "react";
 import { css } from "styled-components";
-import { IconProps, SvgStylesProps } from "./interfaces";
+import { SvgStylesProps } from "./interfaces";
 
 export const svgStyles = ({
   height,

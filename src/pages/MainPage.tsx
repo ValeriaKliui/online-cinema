@@ -1,1 +1,3 @@
-export const MainPage = () => <>main peg</>;
+import { MainScreen } from "@/components/MainScreen";
+
+export const MainPage = () => <><MainScreen /></>;
