@@ -1,20 +1,20 @@
-import { Film } from '@/store/services/interfaces';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { FilmsState } from './interfaces';
+import { Premier } from "@/store/services/interfaces";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FilmsState } from "./interfaces";
 
 const initialState: FilmsState = {
-  randomFilm: null,
+  premier: null,
 };
 
 export const filmsSlice = createSlice({
-  name: 'films',
+  name: "films",
   initialState,
   reducers: {
-    setRandomFilm: (state, action: PayloadAction<Film>) => {
-      state.randomFilm = action.payload;
+    setPremier: (state, action: PayloadAction<Premier>) => {
+      state.premier = action.payload;
     },
   },
 });
 
-export const { setRandomFilm } = filmsSlice.actions;
+export const { setPremier } = filmsSlice.actions;
 export default filmsSlice.reducer;

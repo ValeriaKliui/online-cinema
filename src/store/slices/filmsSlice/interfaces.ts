@@ -1,5 +1,5 @@
-import { Film } from '@/store/services/interfaces';
+import { Premier } from "@/store/services/interfaces";
 
 export interface FilmsState {
-  randomFilm: Film | null;
+  premier: Premier | null;
 }

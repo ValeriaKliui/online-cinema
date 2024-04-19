@@ -1,12 +1,12 @@
-export interface Film {
+export interface Premier {
   kinopoiskId: number;
   nameRu: string;
   nameEn: string;
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
-  countries: [];
-  genres: [];
+  countries: { country: string }[];
+  genres: { country: string }[];
   duration: number;
   premiereRu: string;
 }
@@ -15,5 +15,5 @@ export interface PremierParams {
   month: string;
 }
 export interface PremierResponse {
-  items: Film[];
+  items: Premier[];
 }

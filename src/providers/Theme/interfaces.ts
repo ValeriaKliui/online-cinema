@@ -6,9 +6,10 @@ export enum ThemeType {
 }
 
 export interface BaseTheme {
-  colors: { text: string; hoverText: string };
-  fonts: { regular: string };
+  colors: { text: string; hoverText: string; primary: string };
+  fonts: { regular: string; title: string };
   fontSizes: { regular: string };
   type: ThemeType;
+  radiuses: { regular: string };
 }
 export interface ThemeProps extends HTMLAttributes<HTMLDivElement> {}
