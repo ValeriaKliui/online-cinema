@@ -1,7 +1,7 @@
 export interface Premier {
   kinopoiskId: number;
   nameRu: string;
-  nameEn: string;
+  nameEn: string | null;
   year: number;
   posterUrl: string;
   posterUrlPreview: string;
@@ -16,4 +16,8 @@ export interface PremierParams {
 }
 export interface PremierResponse {
   items: Premier[];
+}
+export interface Film extends Premier {
+  description: string;
+  shortDescription: string;
 }

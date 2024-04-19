@@ -1,3 +1,4 @@
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from '..';
 
-export const selectRandomFilm = (state: RootState) => state.films.premier;
+export const selectRandomFilm = (state: RootState) =>
+  state.films.premier;

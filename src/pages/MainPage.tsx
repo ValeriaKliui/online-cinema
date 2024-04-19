@@ -1,3 +1,9 @@
-import { MainScreen } from "@/components/MainScreen";
+import { MainScreen } from '@/components/MainScreen';
+import { Search } from '@/components/Search';
 
-export const MainPage = () => <><MainScreen /></>;
+export const MainPage = () => (
+    <>
+        <MainScreen />
+        <Search />
+    </>
+);

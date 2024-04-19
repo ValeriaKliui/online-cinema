@@ -6,8 +6,8 @@ export const Nav = () => (
   <nav>
     <NavList>
       {NAV_LINKS.map(({ title, path }) => (
-        <li>
-          <NavLink to={path} key={title}>
+        <li key={title}>
+          <NavLink to={path} >
             {title}
           </NavLink>
         </li>

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Theme } from "@providers/Theme/index.tsx";
-import { GlobalStyles } from "./styles.ts";
+import { Theme } from "@providers/Theme/index";
+import { GlobalStyles } from "./styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Layout } from "@shared/Layout/index.tsx";
-import { PATHS } from "@constants/paths.tsx";
+import { Layout } from "@shared/Layout";
+import { PATHS } from "@constants/paths";
 import { Provider } from "react-redux";
 import { store } from "@store/index.ts";
 

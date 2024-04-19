@@ -1,20 +1,24 @@
-import { Premier } from "@/store/services/interfaces";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FilmsState } from "./interfaces";
+import { filmsApi } from '@/store/services/filmsApi';
+import { createSlice } from '@reduxjs/toolkit';
+import { FilmsState } from './interfaces';
 
 const initialState: FilmsState = {
   premier: null,
 };
 
 export const filmsSlice = createSlice({
-  name: "films",
+  name: 'films',
   initialState,
-  reducers: {
-    setPremier: (state, action: PayloadAction<Premier>) => {
-      state.premier = action.payload;
-    },
+  reducers: {},
+  extraReducers(builder) {
+    builder.addMatcher(
+      filmsApi.endpoints.getInfoAboutFilm.matchFulfilled,
+      (state, action) => {
+        state.premier = action.payload;
+      }
+    );
   },
 });
 
-export const { setPremier } = filmsSlice.actions;
+// export const { setPremier } = filmsSlice.actions;
 export default filmsSlice.reducer;
