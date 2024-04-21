@@ -10,12 +10,12 @@ export const Container = styled.div<{
     position: absolute;
     content: url(${({ $icon }) => $icon});
     bottom: 20%;
-    right: 0;
+    right: 2em;
   }
 `;
 export const InputStyled = styled.input<{ $light?: boolean }>`
   border: none;
-  padding: 1em 1em 1em 2em;
+  padding: 1em 2em;
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
   width: 100%;
   background: ${({ $light, theme: { colors } }) =>

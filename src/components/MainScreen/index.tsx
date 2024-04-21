@@ -35,7 +35,7 @@ export const MainScreen = () => {
         <Container $posterUrl={posterUrl}>
             <FilmContainer className="wrapper">
                 <FilmInfo>
-                    <p>{year}</p>
+                    {year && <p>{year}</p>}
                     <h2>{nameRu} </h2>
                     <Description className='medium'>{descriptionCut}</Description>
                 </FilmInfo>

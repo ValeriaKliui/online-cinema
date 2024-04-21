@@ -9,7 +9,11 @@ const initialState: FilmsState = {
 export const filmsSlice = createSlice({
   name: 'films',
   initialState,
-  reducers: {},
+  reducers: {
+    unsetPremier: (state) => {
+      state.premier = null;
+    },
+  },
   extraReducers(builder) {
     builder.addMatcher(
       filmsApi.endpoints.getInfoAboutFilm.matchFulfilled,
@@ -20,5 +24,5 @@ export const filmsSlice = createSlice({
   },
 });
 
-// export const { setPremier } = filmsSlice.actions;
+export const { unsetPremier } = filmsSlice.actions;
 export default filmsSlice.reducer;

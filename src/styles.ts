@@ -13,6 +13,9 @@ export const GlobalStyles = styled.createGlobalStyle`
     font-family: Montserrat;
     src: url(${MontserratRegularWoff}) format('woff');
   }
+  * {
+    box-sizing: border-box;
+  }
   a {
     color: inherit;
     text-decoration: unset;

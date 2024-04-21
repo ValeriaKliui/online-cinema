@@ -13,10 +13,10 @@ export const Footer = () => (
         <FooterConainer>
             <FooterLinks className="wrapper">
                 {FOOTER_LINKS.map(({ title, links }) => (
-                    <LinksContainer>
+                    <LinksContainer key={title}>
                         <p>{title}</p>
                         {links.map(({ link, title }) => (
-                            <Link to={link}>{title}</Link>
+                            <Link to={link} key={title}>{title}</Link>
                         ))}
                     </LinksContainer>
                 ))}
