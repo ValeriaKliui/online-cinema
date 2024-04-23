@@ -1,3 +1,5 @@
+import { AuthState } from '@store/slices/authSlice/interfaces';
+
 export interface Premier {
   kinopoiskId: number;
   nameRu: string;
@@ -48,3 +50,5 @@ export enum CollectionType {
   CATASTROPHE_THEME = 'CATASTROPHE_THEME',
   KIDS_ANIMATION_THEME = 'KIDS_ANIMATION_THEME',
 }
+
+export type AuthorizeResponse = NonNullable<AuthState>;

@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "email": "jesf@gmail.com",
+      "password": "$2a$10$/kUKq8J28fMoOmQqWlQUq.ZEqusqyRWeN8RLBLS5l0rTFx.JHai9S",
+      "id": 1
+    },
+    {
+      "email": "ldkj@gmil.con",
+      "password": "$2a$10$74uO52qIYlukowvU62uFre9R8hhxQi9O1JD72EB7vPsW4k9wZrdPS",
+      "id": 2
+    },
+    {
+      "email": "lk@j.com",
+      "password": "$2a$10$meW87HwuZ3nXVNq2qJUwsOEErBGC2I6NtAJlR11pkvs/JLUO1Fvtu",
+      "id": 3
+    },
+    {
+      "email": "hello@gmal.com",
+      "password": "$2a$10$81B9dtC/s0vz57xG2jynF.MrqBNl7CduiPt4gVcGimNZZSvDwyle2",
+      "id": 4
+    }
+  ]
+}

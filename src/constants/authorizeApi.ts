@@ -1,1 +1,1 @@
-export const AUTHORIZE_URL = 'https://dummyjson.com/auth/login';
+export const AUTHORIZE_URL = ' http://localhost:3000/users';
