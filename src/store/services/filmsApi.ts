@@ -1,27 +1,21 @@
-import {
-  COLLECTION_URL,
-  PREMIERS_URL,
-  SEARCH_URL,
-} from '@constants/filmsApi';
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { dynamicBaseQuery } from '@utils/getBaseQuery';
+import { COLLECTION_URL, PREMIERS_URL, SEARCH_URL } from "@constants/filmsApi";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { dynamicBaseQuery } from "@utils/getBaseQuery";
 import {
   CollectionType,
   Film,
   Premier,
   PremierParams,
   SearchResponse,
-} from './interfaces';
+} from "./interfaces";
 
 export const filmsApi = createApi({
-  reducerPath: 'filmsApi',
+  reducerPath: "filmsApi",
   baseQuery: dynamicBaseQuery,
   endpoints: (builder) => ({
     getPremieres: builder.query<Premier[], PremierParams>({
-      query: ({ year, month }) =>
-        `${PREMIERS_URL}?year=${year}&month=${month}`,
-      transformResponse: (response: { items: Premier[] }) =>
-        response.items,
+      query: ({ year, month }) => `${PREMIERS_URL}?year=${year}&month=${month}`,
+      transformResponse: (response: { items: Premier[] }) => response.items,
     }),
     getInfoAboutFilm: builder.query<Film, number>({
       query: (filmID) => `${filmID}`,

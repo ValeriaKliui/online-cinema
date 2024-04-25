@@ -1,4 +1,4 @@
-import { AuthState } from '@store/slices/authSlice/interfaces';
+import { AuthState } from "@store/slices/authSlice/interfaces";
 
 export interface Premier {
   kinopoiskId: number;
@@ -26,7 +26,7 @@ export interface Film extends Premier {
   shortDescription: string;
 }
 
-export type SearchedFilm = Omit<Film, 'kinopoiskId'> & {
+export type SearchedFilm = Omit<Film, "kinopoiskId"> & {
   filmId: number;
 };
 
@@ -36,19 +36,20 @@ export interface SearchResponse {
   totalPages: number;
 }
 export enum CollectionType {
-  TOP_POPULAR_ALL = 'TOP_POPULAR_ALL',
-  TOP_POPULAR_MOVIES = 'TOP_POPULAR_MOVIES',
-  TOP_250_TV_SHOWS = 'TOP_250_TV_SHOWS',
-  TOP_250_MOVIES = 'TOP_250_MOVIES',
-  VAMPIRE_THEME = 'VAMPIRE_THEME',
-  COMICS_THEME = 'COMICS_THEME',
-  CLOSES_RELEASES = 'CLOSES_RELEASES',
-  FAMILY = 'FAMILY',
-  OSKAR_WINNERS = 'OSKAR_WINNERS_2021',
-  LOVE_THEME = 'LOVE_THEME',
-  ZOMBIE_THEME = 'ZOMBIE_THEME',
-  CATASTROPHE_THEME = 'CATASTROPHE_THEME',
-  KIDS_ANIMATION_THEME = 'KIDS_ANIMATION_THEME',
+  TOP_POPULAR_ALL = "TOP_POPULAR_ALL",
+  TOP_POPULAR_MOVIES = "TOP_POPULAR_MOVIES",
+  TOP_250_TV_SHOWS = "TOP_250_TV_SHOWS",
+  TOP_250_MOVIES = "TOP_250_MOVIES",
+  VAMPIRE_THEME = "VAMPIRE_THEME",
+  COMICS_THEME = "COMICS_THEME",
+  CLOSES_RELEASES = "CLOSES_RELEASES",
+  FAMILY = "FAMILY",
+  OSKAR_WINNERS = "OSKAR_WINNERS_2021",
+  LOVE_THEME = "LOVE_THEME",
+  ZOMBIE_THEME = "ZOMBIE_THEME",
+  CATASTROPHE_THEME = "CATASTROPHE_THEME",
+  KIDS_ANIMATION_THEME = "KIDS_ANIMATION_THEME",
 }
 
 export type AuthorizeResponse = NonNullable<AuthState>;
+export type LoginResponse = Pick<AuthorizeResponse, "accessToken">;

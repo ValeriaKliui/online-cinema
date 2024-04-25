@@ -1,6 +1,6 @@
-import { UserData } from '@components/AuthorizeForm/interfaces';
+import { UserData } from "@components/AuthorizeForm/interfaces";
 
 export interface AuthState {
   accessToken: string | null;
-  user: null | (Pick<UserData, 'email'> & { id: number });
+  user: null | (Pick<UserData, "email"> & { id: number });
 }

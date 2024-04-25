@@ -1,3 +1,7 @@
-import { Authorize } from "@/components/Authorize";
+import { Register } from "@components/Register";
 
-export const AuthorizePage = () => <><Authorize /></>
+export const RegisterPage = () => (
+  <>
+    <Register />
+  </>
+);

@@ -19,6 +19,41 @@
       "email": "hello@gmal.com",
       "password": "$2a$10$81B9dtC/s0vz57xG2jynF.MrqBNl7CduiPt4gVcGimNZZSvDwyle2",
       "id": 4
+    },
+    {
+      "email": "valeria14003@list.ru",
+      "password": "$2a$10$NaGPtgwaBmH9Y7vZIr5BNu.mOc6K0xgDwzxDb5AnR7CfFtMXCG7hS",
+      "id": 5
+    },
+    {
+      "email": "valeriakliui@gmail.com",
+      "password": "$2a$10$HkaH/tPCmcltB1DoXl9B1.vZMQtGycCkpt7MbF8wVFUdEO5V0h56i",
+      "id": 6
+    },
+    {
+      "email": "valeria14003@list.ruas",
+      "password": "$2a$10$L3pHbNY6CAGdWiOPs2KyuOtsyaP/Vomoj86JjO9t3Zg5iO1H2JANW",
+      "id": 7
+    },
+    {
+      "email": "asdad#@safs",
+      "password": "$2a$10$KBv5xe5ZcQO.I/ZP9UY7uuH42D0PiISS50m1PI/SQCoP1uSSL1Vhu",
+      "id": 8
+    },
+    {
+      "email": "valedddddddrida14003@list.ru",
+      "password": "$2a$10$CcrY4d.8wyU1p82VN81yDe45cVSInHsVjXzHAvnFST7PoLn52Yi7S",
+      "id": 9
+    },
+    {
+      "email": "sadsadas@sdfsf",
+      "password": "$2a$10$rL4SPwUP1KoQ9.chnquB7.p1SCMFO.szlz01q3YuifYPiNRLsKWUO",
+      "id": 10
+    },
+    {
+      "email": "ERR_CONNE@sdfdsf",
+      "password": "$2a$10$DXLbjQNH2.A2rxwmWV8wJutyxPCLNPvHwJ2URg8eRoU3EJUoHQLUi",
+      "id": 11
     }
   ]
 }
