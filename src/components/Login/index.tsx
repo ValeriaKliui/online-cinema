@@ -6,11 +6,15 @@ import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [loginUser, { isSuccess }] = useLazyLoginUserQuery();
+  const [loginUser, { isSuccess, data }] = useLazyLoginUserQuery();
+  const { accessToken } = data ?? {};
 
   useEffect(() => {
-    if (isSuccess) navigate(PATHS_LINKS.main);
-  }, [isSuccess, navigate]);
+    if (isSuccess) {
+      navigate(PATHS_LINKS.main);
+      accessToken && localStorage.setItem("accessToken", accessToken);
+    }
+  }, [isSuccess, navigate, accessToken]);
 
   return (
     <>
