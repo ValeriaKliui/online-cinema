@@ -1,13 +1,13 @@
-import { filmsApi } from '@/store/services/filmsApi';
-import { createSlice } from '@reduxjs/toolkit';
-import { FilmsState } from './interfaces';
+import { filmsApi } from "@store/services/filmsApi";
+import { createSlice } from "@reduxjs/toolkit";
+import { FilmsState } from "./interfaces";
 
 const initialState: FilmsState = {
   premier: null,
 };
 
 export const filmsSlice = createSlice({
-  name: 'films',
+  name: "films",
   initialState,
   reducers: {
     unsetPremier: (state) => {
@@ -17,9 +17,9 @@ export const filmsSlice = createSlice({
   extraReducers(builder) {
     builder.addMatcher(
       filmsApi.endpoints.getInfoAboutFilm.matchFulfilled,
-      (state, action) => {
-        state.premier = action.payload;
-      }
+      (state, { payload }) => {
+        state.premier = payload;
+      },
     );
   },
 });

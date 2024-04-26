@@ -54,6 +54,11 @@
       "email": "ERR_CONNE@sdfdsf",
       "password": "$2a$10$DXLbjQNH2.A2rxwmWV8wJutyxPCLNPvHwJ2URg8eRoU3EJUoHQLUi",
       "id": 11
+    },
+    {
+      "email": "valeria@gmail.com",
+      "password": "$2a$10$NA8.qRBwujHySuMn2Trdreu60kGtI22/StgAjwneYNf/2LVRYIFHu",
+      "id": 12
     }
   ]
 }

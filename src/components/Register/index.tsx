@@ -1,4 +1,4 @@
-import { Button } from "@/shared/Button";
+import { Button } from "@shared/Button";
 import { Media, Container, AuthorizeScreen } from "./styled";
 import { AuthorizeForm } from "@components/AuthorizeForm";
 import { useLazyRegisterUserQuery } from "@store/services/authorizeApi";

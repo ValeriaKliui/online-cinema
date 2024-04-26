@@ -1,6 +1,6 @@
-import { PATHS_LINKS } from "@/constants/paths";
-import { useAppSelector } from "@/store/interfaces/hooks";
-import { selectRandomFilm } from "@/store/selectors/films";
+import { PATHS_LINKS } from "@constants/paths";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectRandomFilm } from "@store/selectors/films";
 import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
 import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
@@ -18,7 +18,7 @@ export const Header = () => {
           </NavLink>
         </h1>
         <Nav />
-        <NavLink to={PATHS_LINKS.register}>
+        <NavLink to={PATHS_LINKS.account}>
           <User height="2em" width="2em" />
         </NavLink>
       </ContentContainer>

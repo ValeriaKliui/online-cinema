@@ -1,5 +1,5 @@
-import { Button } from "@/shared/Button";
-import { Input } from "@/shared/Input";
+import { Button } from "@shared/Button";
+import { Input } from "@shared/Input";
 import { ChangeEvent, FC, SyntheticEvent, useState } from "react";
 import { AuthorizeFormProps, UserData } from "./interfaces";
 import { Container, FormContainer } from "./styled";
@@ -7,6 +7,9 @@ import { Networks } from "@components/Register/styled";
 import YtIcon from "@assets/icons/google.svg?react";
 import VkSvg from "@assets/icons/vk.svg?react";
 import InSvg from "@assets/icons/in.svg?react";
+import { selectAuthError } from "@store/selectors/auth";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { getAuthErrorText } from "@utils/getAuthErrorText";
 
 export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   buttonText,
@@ -14,6 +17,8 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   description,
   onSubmit,
 }) => {
+  const authorizeError = useAppSelector(selectAuthError);
+  const authErrorText = getAuthErrorText(authorizeError);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState<UserData>({
     email: "",
@@ -25,6 +30,8 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
     if (!email.includes("@")) setError("Введите корректный email");
     if (password.length < 4)
       setError("Длина пароля должна быть больше 4 символов");
+    if (authErrorText) setError(authErrorText);
+    setError("");
   };
 
   const onFormSubmit = (event: SyntheticEvent) => {
