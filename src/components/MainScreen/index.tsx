@@ -4,10 +4,13 @@ import {
 } from "@store/services/filmsApi";
 import { getRandomFilm } from "@utils/getRandomFilm";
 import { useMemo } from "react";
-import { Container, FilmInfo, FilmContainer, Description } from "./styled";
+import { FilmInfo, FilmContainer, Description } from "./styled";
 import { Button } from "@shared/Button";
 import YoutubeSvg from "@assets/icons/youtube.svg?react";
 import { getDateForPremiers } from "@utils/getDateForPremiers";
+import { Link } from "react-router-dom";
+import { PATHS_LINKS } from "@constants/paths";
+import { FilmBg } from "@shared/FilmBg";
 
 export const MainScreen = () => {
   const { year: premierYear, month } = getDateForPremiers();
@@ -31,17 +34,19 @@ export const MainScreen = () => {
   const descriptionCut = description?.split(".").slice(0, 2).join(".") + ".";
 
   return (
-    <Container $posterUrl={posterUrl}>
+    <FilmBg $posterUrl={posterUrl}>
       <FilmContainer className="wrapper">
         <FilmInfo>
           {year && <p>{year}</p>}
           <h2>{nameRu} </h2>
           <Description className="medium">{descriptionCut}</Description>
         </FilmInfo>
-        <Button>
-          Смотреть <YoutubeSvg />
-        </Button>
+        <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
+          <Button>
+            Смотреть <YoutubeSvg />
+          </Button>
+        </Link>
       </FilmContainer>
-    </Container>
+    </FilmBg>
   );
 };

@@ -1,17 +1,17 @@
-import { createGlobalStyle } from 'styled-components';
-import PoppinsRegularWoff from '@assets/fonts/Poppins-Regular.woff';
-import MontserratRegularWoff from '@assets/fonts/Montserrat-Regular.woff';
+import { createGlobalStyle } from "styled-components";
+import PoppinsRegularWoff from "@assets/fonts/Poppins-Regular.woff";
+import MontserratRegularWoff from "@assets/fonts/Montserrat-Regular.woff";
 
 const styled = { createGlobalStyle };
 
 export const GlobalStyles = styled.createGlobalStyle`
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
-    src: url(${PoppinsRegularWoff}) format('woff');
+    src: url(${PoppinsRegularWoff}) format("woff");
   }
   @font-face {
     font-family: Montserrat;
-    src: url(${MontserratRegularWoff}) format('woff');
+    src: url(${MontserratRegularWoff}) format("woff");
   }
   * {
     box-sizing: border-box;
@@ -26,6 +26,9 @@ export const GlobalStyles = styled.createGlobalStyle`
   body {
     margin: 0;
     background: ${({ theme: { colors } }) => colors.background};
+  }
+  img {
+    width: 100%;
   }
   h1,
   h2,

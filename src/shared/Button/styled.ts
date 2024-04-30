@@ -8,7 +8,7 @@ export const ButtonStyled = styled.button`
   border-radius: ${({ theme: { radiuses } }) => radiuses.regular};
   padding: 1em 2em;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 0.7em;
   cursor: pointer;
 `;

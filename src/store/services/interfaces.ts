@@ -13,6 +13,7 @@ export interface Premier {
   premiereRu: string;
   ratingKinopoisk: number | null;
   ratingImdb: number | null;
+  filmLength: number;
 }
 export interface PremierParams {
   year: number;
@@ -34,6 +35,11 @@ export interface SearchResponse {
   items: SearchedFilm[];
   total: number;
   totalPages: number;
+}
+export interface Video {
+  name: string;
+  site: string;
+  url: string;
 }
 export enum CollectionType {
   TOP_POPULAR_ALL = "TOP_POPULAR_ALL",

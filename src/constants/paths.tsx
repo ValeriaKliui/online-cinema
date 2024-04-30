@@ -4,6 +4,7 @@ import { RegisterPage } from "../pages/RegisterPage";
 import { AccountPage } from "../pages/AccountPage";
 import { PrivateRoute } from "@shared/PrivateRoute";
 import { FilmsPage } from "../pages/FilmsPage";
+import { FilmPage } from "../pages/FilmPage";
 
 export enum PATHS_LINKS {
   main = "/",
@@ -29,6 +30,7 @@ export const PATHS = [
     path: PATHS_LINKS.account,
   },
   { element: <FilmsPage />, path: PATHS_LINKS.films },
+  { element: <FilmPage />, path: PATHS_LINKS.films + "/:filmID" },
 ];
 export const NAV_LINKS = [
   { title: "Главная", path: "/" },

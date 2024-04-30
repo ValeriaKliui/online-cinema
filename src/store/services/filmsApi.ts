@@ -7,6 +7,7 @@ import {
   Premier,
   PremierParams,
   SearchResponse,
+  Video,
 } from "./interfaces";
 
 export const filmsApi = createApi({
@@ -27,6 +28,13 @@ export const filmsApi = createApi({
       query: (collectionType: CollectionType) =>
         `${COLLECTION_URL}?type=${collectionType}`,
     }),
+    getVideos: builder.query<Video[], number>({
+      query: (filmID: number) => `${filmID}/videos`,
+      transformResponse: (response: { items: Video[] }) => response.items,
+    }),
+    getStaffInfo: builder.query<undefined, number>({
+      query: (filmID: number) => `filmID=${filmID}`,
+    }),
   }),
 });
 
@@ -35,4 +43,6 @@ export const {
   useGetInfoAboutFilmQuery,
   useLazySearchByKeywordQuery,
   useLazyGetCollectionByTypeQuery,
+  useGetVideosQuery,
+  // useGe
 } = filmsApi;
