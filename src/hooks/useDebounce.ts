@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useCallback, useState } from "react";
 
-export const useDebounce = ({ value }) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
+export const useDebounce = (func) => {
+  const [timerID, setTimerID] = useState<NodeJS.Timeout | null>(null);
 
-  setTimeout(() => {
-    setDebouncedValue(value);
-  }, 5000);
+  const debouncedFunc = useCallback(
+    (args) => {
+      timerID && clearTimeout(timerID);
+      setTimerID(setTimeout(() => func(args), 1000));
+    },
+    [timerID, func],
+  );
 
-  return debouncedValue;
+  return debouncedFunc;
 };

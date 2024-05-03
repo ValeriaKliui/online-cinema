@@ -1,8 +1,8 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes } from "react";
 
 export enum ThemeType {
-  light = 'light',
-  dark = 'dark',
+  light = "light",
+  dark = "dark",
 }
 
 export interface BaseTheme {
@@ -15,7 +15,13 @@ export interface BaseTheme {
     darkBlock: string;
     brightBlock: string;
   };
-  fonts: { regular: string; title: string };
+  fonts: {
+    medium: string;
+    regular: string;
+    bold: string;
+    smallRegular: string;
+  };
+  fontWeights: { regular: number; medium: number; bold: number };
   fontSizes: { regular: string };
   type: ThemeType;
   radiuses: { regular: string; small: string };

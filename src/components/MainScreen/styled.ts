@@ -7,8 +7,20 @@ export const FilmContainer = styled.div`
 `;
 
 export const FilmInfo = styled.div`
-  ${flexColGap(0.5)}
+  ${flexColGap(1)}
 `;
 export const Description = styled.p`
   max-width: 70%;
+`;
+export const SubText = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+
+  &::before {
+    content: "";
+    width: 4em;
+    height: 1px;
+    background-color: ${({ theme: { colors } }) => colors.subtext};
+  }
 `;

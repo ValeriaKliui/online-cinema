@@ -34,8 +34,9 @@ export const PATHS = [
 ];
 export const NAV_LINKS = [
   { title: "Главная", path: "/" },
-  { title: "f", path: "ва" },
-  { title: "блабла", path: "/ыва" },
+  { title: "Фильмы", path: "ва" },
+  { title: "Сериалы", path: "/ыва" },
+  { title: "Мультфильмы", path: "/ss" },
 ];
 
 export const FOOTER_LINKS = [

@@ -27,12 +27,8 @@ export interface Film extends Premier {
   shortDescription: string;
 }
 
-export type SearchedFilm = Omit<Film, "kinopoiskId"> & {
-  filmId: number;
-};
-
 export interface SearchResponse {
-  items: SearchedFilm[];
+  items: Film[];
   total: number;
   totalPages: number;
 }
@@ -59,3 +55,72 @@ export enum CollectionType {
 
 export type AuthorizeResponse = NonNullable<AuthState>;
 export type LoginResponse = Pick<AuthorizeResponse, "accessToken">;
+
+export interface StaffPerson {
+  staffId: number;
+  nameRu: string;
+  description: string;
+  posterUrl: string;
+  professionKey: PROFESSIONS;
+}
+export enum PROFESSIONS {
+  DIRECTOR = "Режиссер",
+  ACTOR = "Актер",
+  PRODUCER = "Продюсер",
+  WRITER = "Сценарист",
+  OPERATOR = "Оператор",
+  COMPOSER = "Композитор",
+  DESIGN = "Художник",
+}
+export interface ReviewsResponse {
+  total: number;
+  totalPages: number;
+  totalPositiveReviews: number;
+  totalNegativeReviews: number;
+  totalNeutralReviews: number;
+  items: [
+    {
+      kinopoiskId: number;
+      date: string;
+      positiveRating: number;
+      negativeRating: number;
+      author: string;
+      title: string;
+      description: string;
+    },
+  ];
+}
+export interface ImagesResponse {
+  total: number;
+  totalPages: number;
+  items: { imageUrl: string; previewUrl: string }[];
+}
+export interface SimilarFilmsResponse {
+  total: number;
+  items: { filmId: number; nameRu: string; posterUrlPreview: number }[];
+}
+
+export enum GENRES {
+  THRILLER = 1,
+  DRAMA = 2,
+  CRIME = 3,
+  MELODRAMA = 4,
+  DETECTIVE = 5,
+  FANTASTIC = 6,
+  ADVENTURE = 7,
+  WESTERN = 10,
+  COMEDY = 13,
+  HORROR = 17,
+}
+export enum GENRES_NAMES {
+  THRILLER = "триллер",
+  DRAMA = "драма",
+  CRIME = "криминал",
+  MELODRAMA = "мелодрама",
+  DETECTIVE = "детектив",
+  FANTASTIC = "фантастика",
+  ADVENTURE = "приключения",
+  WESTERN = "вестерн",
+  COMEDY = "комедия",
+  HORROR = "ужасы",
+}

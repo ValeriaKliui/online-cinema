@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div<{
   $icon?: string;
   $block?: boolean;
 }>`
   position: relative;
-  width: ${({ $block }) => ($block ? '100%' : 'inherit')};
+  width: ${({ $block }) => ($block ? "100%" : "inherit")};
   &::after {
     position: absolute;
     content: url(${({ $icon }) => $icon});
@@ -21,7 +21,10 @@ export const InputStyled = styled.input<{ $light?: boolean }>`
   background: ${({ $light, theme: { colors } }) =>
     $light ? colors.brightBlock : colors.darkBlock};
   color: ${({ theme: { colors } }) => colors.text};
+  font-family: ${({ theme: { fonts } }) => fonts.regular};
+  font-size: 0.875em;
+
   &::placeholder {
-    color: ${({ theme: { colors } }) => colors.text};
+    color: ${({ theme: { colors } }) => colors.subtext};
   }
 `;

@@ -4,16 +4,22 @@ import SearchIcon from "@assets/icons/search.svg";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
 import { ChangeEvent, useState } from "react";
 import { SearchBlock } from "./SearchBlock";
-// import { useDebounce } from '@hooks/useDebounce';
+import { useDebounce } from "@hooks/useDebounce";
+import { Genres } from "@components/Genres";
+import { useClickOutside } from "@hooks/useClickOutside";
 
 export const Search = () => {
   const [searchValue, setSearchValue] = useState("");
-  // const debouncedValue = useDebounce({ value: searchValue })
   const [searchByKeyword, { data }] = useLazySearchByKeywordQuery();
+  const searchRef = useClickOutside();
+
+  const debouncedSearch = useDebounce((e: ChangeEvent<HTMLInputElement>) =>
+    searchByKeyword(e.target.value),
+  );
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
-    searchByKeyword(e.target.value);
+    debouncedSearch(e);
   };
 
   const { films, searchFilmsCountResult } = data ?? {};
@@ -26,7 +32,7 @@ export const Search = () => {
           На нашем сайте вы найдете подходящие вам фильмы и сериалы
         </Text>
       </TextContainer>
-      <SearchContainer>
+      <SearchContainer ref={searchRef}>
         <Input
           placeholder="Поиск..."
           icon={SearchIcon}
@@ -38,6 +44,7 @@ export const Search = () => {
           searchFilmsCountResult={searchFilmsCountResult}
         />
       </SearchContainer>
+      <Genres />
     </Container>
   );
 };

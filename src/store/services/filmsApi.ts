@@ -6,8 +6,12 @@ import {
   Film,
   Premier,
   PremierParams,
+  ReviewsResponse,
   SearchResponse,
+  StaffPerson,
   Video,
+  ImagesResponse,
+  SimilarFilmsResponse,
 } from "./interfaces";
 
 export const filmsApi = createApi({
@@ -32,8 +36,17 @@ export const filmsApi = createApi({
       query: (filmID: number) => `${filmID}/videos`,
       transformResponse: (response: { items: Video[] }) => response.items,
     }),
-    getStaffInfo: builder.query<undefined, number>({
-      query: (filmID: number) => `filmID=${filmID}`,
+    getStaffInfo: builder.query<StaffPerson[], number>({
+      query: (filmID: number) => `?filmId=${filmID}`,
+    }),
+    getReviews: builder.query<ReviewsResponse, number>({
+      query: (filmID: number) => `${filmID}/reviews?page=1&order=DATE_DESC`,
+    }),
+    getImages: builder.query<ImagesResponse, number>({
+      query: (filmID: number) => `${filmID}/images`,
+    }),
+    getSimilarFilms: builder.query<SimilarFilmsResponse, number>({
+      query: (filmID: number) => `${filmID}/similars`,
     }),
   }),
 });
@@ -44,5 +57,8 @@ export const {
   useLazySearchByKeywordQuery,
   useLazyGetCollectionByTypeQuery,
   useGetVideosQuery,
-  // useGe
+  useGetStaffInfoQuery,
+  useGetReviewsQuery,
+  useGetImagesQuery,
+  useGetSimilarFilmsQuery,
 } = filmsApi;

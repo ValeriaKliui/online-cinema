@@ -1,18 +1,29 @@
 import { createGlobalStyle } from "styled-components";
-import PoppinsRegularWoff from "@assets/fonts/Poppins-Regular.woff";
+import MontserratMediumWoff from "@assets/fonts/Montserrat-Medium.woff";
 import MontserratRegularWoff from "@assets/fonts/Montserrat-Regular.woff";
+import MontserratBoldWoff from "@assets/fonts/Montserrat-SemiBold.woff";
+import PoppinsWoff from "@assets/fonts/Poppins-Regular.woff";
 
 const styled = { createGlobalStyle };
 
 export const GlobalStyles = styled.createGlobalStyle`
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
-    src: url(${PoppinsRegularWoff}) format("woff");
-  }
-  @font-face {
-    font-family: Montserrat;
     src: url(${MontserratRegularWoff}) format("woff");
   }
+  @font-face {
+    font-family: ${({ theme: { fonts } }) => fonts.medium};
+    src: url(${MontserratMediumWoff}) format("woff");
+  }
+  @font-face {
+    font-family: ${({ theme: { fonts } }) => fonts.bold};
+    src: url(${MontserratBoldWoff}) format("woff");
+  }
+  @font-face {
+    font-family: ${({ theme: { fonts } }) => fonts.smallRegular};
+    src: url(${PoppinsWoff}) format("woff");
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -35,8 +46,8 @@ export const GlobalStyles = styled.createGlobalStyle`
   h3,
   h4,
   h5 {
-    font-family: ${({ theme: { fonts } }) => fonts.title};
     margin: 0;
+    font-family: ${({ theme: { fonts } }) => fonts.bold};
   }
   h2 {
     font-size: 2.5em;
@@ -49,6 +60,9 @@ export const GlobalStyles = styled.createGlobalStyle`
   }
   h5 {
     font-size: 1.5em;
+  }
+  h6 {
+    font-size: 1.125em;
   }
   p {
     line-height: 160%;
@@ -63,13 +77,40 @@ export const GlobalStyles = styled.createGlobalStyle`
   body,
   button {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
-    font-size: ${({ theme: { fontSizes } }) => fontSizes.regular};
+    font-size: 16px;
     color: ${({ theme: { colors } }) => colors.text};
   }
-  .medium {
+  .xl,
+  .l,
+  .m,
+  .s,
+  .xs {
+    font-family: ${({ theme: { fonts } }) => fonts.medium};
+  }
+  .xl {
+    font-size: 1.5em;
+  }
+  .l {
+    font-size: 1.25em;
+  }
+  .m {
     font-size: 1.125em;
+  }
+  .s {
+    font-size: 1em;
+  }
+  .xs {
+    font-size: 0.75em;
+  }
+  .small-text,
+  a {
+    font-family: ${({ theme: { fonts } }) => fonts.smallRegular};
   }
   .subtext {
     color: ${({ theme: { colors } }) => colors.subtext};
+  }
+  .centered-flex {
+    align-self: center;
+    justify-self: center;
   }
 `;

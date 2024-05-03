@@ -1,4 +1,8 @@
 import { FilmCard } from "@components/FilmCard";
+import { Gallery } from "@components/Gallery";
+import { Reviews } from "@components/Reviews";
+import { SimilarFilms } from "@components/SimilarFilms";
+import { Staff } from "@components/Staff";
 import { FilmBg } from "@shared/FilmBg";
 import {
   useGetInfoAboutFilmQuery,
@@ -20,7 +24,6 @@ export const FilmPage = () => {
   } = filmInfo ?? {};
 
   const { data: videos } = useGetVideosQuery(filmID);
-  console.log(videos);
 
   return (
     <div>
@@ -37,10 +40,10 @@ export const FilmPage = () => {
       </FilmBg>
       <div className="wrapper">
         <div>
-          {" "}
+          <p>трейлеры</p>
           {videos &&
             videos.map(({ url, name }) => (
-              <div>
+              <div key={url}>
                 <p>{name}</p>
                 <iframe
                   width="320"
@@ -51,6 +54,10 @@ export const FilmPage = () => {
               </div>
             ))}
         </div>
+        <Staff filmID={filmID} />
+        <Reviews filmID={filmID} />
+        <Gallery filmID={filmID} />
+        <SimilarFilms filmID={filmID} />
       </div>
     </div>
   );
