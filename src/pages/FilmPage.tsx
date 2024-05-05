@@ -7,8 +7,8 @@ import {
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
-  const { filmID } = useParams();
-  const { data: filmInfo } = useGetInfoAboutFilmQuery(filmID);
+  const { kinopoiskId } = useParams();
+  const { data: filmInfo } = useGetInfoAboutFilmQuery(kinopoiskId);
   const {
     nameRu,
     year,
@@ -19,8 +19,7 @@ export const FilmPage = () => {
     posterUrl,
   } = filmInfo ?? {};
 
-  const { data: videos } = useGetVideosQuery(filmID);
-  console.log(videos);
+  const { data: videos } = useGetVideosQuery(kinopoiskId);
 
   return (
     <div>
@@ -33,6 +32,7 @@ export const FilmPage = () => {
           genres={genres}
           description={description}
           posterUrl={posterUrl}
+          kinopoiskId={kinopoiskId}
         />
       </FilmBg>
       <div className="wrapper">

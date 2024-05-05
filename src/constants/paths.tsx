@@ -5,6 +5,7 @@ import { AccountPage } from "../pages/AccountPage";
 import { PrivateRoute } from "@shared/PrivateRoute";
 import { FilmsPage } from "../pages/FilmsPage";
 import { FilmPage } from "../pages/FilmPage";
+import { FavouritePage } from "../pages/FavouritePage";
 
 export enum PATHS_LINKS {
   main = "/",
@@ -12,6 +13,7 @@ export enum PATHS_LINKS {
   register = "/register",
   account = "/account",
   films = "/films",
+  favourite = "favourite",
 }
 
 export const PATHS = [
@@ -22,15 +24,28 @@ export const PATHS = [
   { element: <RegisterPage />, path: PATHS_LINKS.register },
   { element: <LoginPage />, path: PATHS_LINKS.login },
   {
-    element: (
-      <PrivateRoute>
-        <AccountPage />
-      </PrivateRoute>
-    ),
     path: PATHS_LINKS.account,
+    children: [
+      {
+        element: (
+          <PrivateRoute>
+            <AccountPage />
+          </PrivateRoute>
+        ),
+        index: true,
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <FavouritePage />
+          </PrivateRoute>
+        ),
+        path: PATHS_LINKS.favourite,
+      },
+    ],
   },
   { element: <FilmsPage />, path: PATHS_LINKS.films },
-  { element: <FilmPage />, path: PATHS_LINKS.films + "/:filmID" },
+  { element: <FilmPage />, path: PATHS_LINKS.films + "/:kinopoiskId" },
 ];
 export const NAV_LINKS = [
   { title: "Главная", path: "/" },

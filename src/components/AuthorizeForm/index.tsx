@@ -7,7 +7,7 @@ import { Networks } from "@components/Register/styled";
 import YtIcon from "@assets/icons/google.svg?react";
 import VkSvg from "@assets/icons/vk.svg?react";
 import InSvg from "@assets/icons/in.svg?react";
-import { selectAuthError } from "@store/selectors/auth";
+import { selectAuthError } from "@store/selectors/user";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { getAuthErrorText } from "@utils/getAuthErrorText";
 

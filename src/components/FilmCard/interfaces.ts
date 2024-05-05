@@ -9,4 +9,5 @@ export type FilmCardProps = Pick<
   | "genres"
   | "description"
   | "posterUrl"
+  | "kinopoiskId"
 >;

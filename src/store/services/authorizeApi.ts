@@ -1,7 +1,12 @@
 import { UserData } from "@components/AuthorizeForm/interfaces";
 import { AUTHORIZE_URL, LOGIN_URL } from "@constants/authorizeApi";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { AuthorizeResponse, LoginResponse } from "./interfaces";
+import {
+  AuthorizeResponse,
+  FavouriteFilmsParams,
+  LoginResponse,
+  UserInfoResponse,
+} from "./interfaces";
 
 export const authorizeApi = createApi({
   reducerPath: "authorizeApi",
@@ -21,7 +26,25 @@ export const authorizeApi = createApi({
         body: userData,
       }),
     }),
+    getUserInfo: builder.query<UserInfoResponse, number>({
+      query: (userID) => ({
+        url: `${AUTHORIZE_URL}/${userID}`,
+        method: "GET",
+      }),
+    }),
+    saveFavouriteFilms: builder.query<undefined, FavouriteFilmsParams>({
+      query: ({ id, favouriteFilmsIDs }) => ({
+        url: `${AUTHORIZE_URL}/${id}`,
+        method: "PATCH",
+        body: { favouriteFilmsIDs },
+      }),
+    }),
   }),
 });
 
-export const { useLazyRegisterUserQuery, useLazyLoginUserQuery } = authorizeApi;
+export const {
+  useLazyRegisterUserQuery,
+  useLazyLoginUserQuery,
+  useLazySaveFavouriteFilmsQuery,
+  useGetUserInfoQuery,
+} = authorizeApi;

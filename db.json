@@ -23,7 +23,8 @@
     {
       "email": "valeria14003@list.ru",
       "password": "$2a$10$NaGPtgwaBmH9Y7vZIr5BNu.mOc6K0xgDwzxDb5AnR7CfFtMXCG7hS",
-      "id": 5
+      "id": 5,
+      "favouriteFilmsIDs": [2043491, 16015, 5261025]
     },
     {
       "email": "valeriakliui@gmail.com",
@@ -59,6 +60,16 @@
       "email": "valeria@gmail.com",
       "password": "$2a$10$NA8.qRBwujHySuMn2Trdreu60kGtI22/StgAjwneYNf/2LVRYIFHu",
       "id": 12
+    },
+    {
+      "email": "hello@gmail.com",
+      "password": "$2a$10$p5J2Q/ALkHRFjxYoXZwRMOaWP0/.1ZxwNpLxlx2PX9lo7tugIpbKq",
+      "id": 13
+    },
+    {
+      "email": "valeria14002@yandex.by",
+      "password": "$2a$10$FQUTGhWAo73MS9Xn.Kfbbeg4izm/dhVRIHt4Lr9zNLa/D5w1VZ0Fm",
+      "id": 14
     }
   ]
 }
