@@ -1,4 +1,4 @@
-import { AuthState } from "@store/slices/authSlice/interfaces";
+import { User, UserState } from "@store/slices/userSlice/interfaces";
 
 export interface Premier {
   kinopoiskId: number;
@@ -52,8 +52,12 @@ export enum CollectionType {
   CATASTROPHE_THEME = "CATASTROPHE_THEME",
   KIDS_ANIMATION_THEME = "KIDS_ANIMATION_THEME",
 }
+export type UserInfoResponse = Pick<User, "id"> &
+  Pick<UserState, "favouriteFilmsIDs">;
 
-export type AuthorizeResponse = NonNullable<AuthState>;
+export type AuthorizeResponse = Pick<UserState, "user">;
+export type FavouriteFilmsParams = Pick<UserState, "favouriteFilmsIDs"> &
+  Pick<User, "id">;
 export type LoginResponse = Pick<AuthorizeResponse, "accessToken">;
 
 export interface StaffPerson {

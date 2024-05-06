@@ -11,8 +11,8 @@ import {
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
-  const { filmID } = useParams();
-  const { data: filmInfo } = useGetInfoAboutFilmQuery(filmID);
+  const { kinopoiskId: filmId } = useParams();
+  const { data: filmInfo } = useGetInfoAboutFilmQuery(filmId);
   const {
     nameRu,
     year,
@@ -23,7 +23,7 @@ export const FilmPage = () => {
     posterUrl,
   } = filmInfo ?? {};
 
-  const { data: videos } = useGetVideosQuery(filmID);
+  const { data: videos } = useGetVideosQuery(filmId);
 
   return (
     <div>
@@ -36,6 +36,7 @@ export const FilmPage = () => {
           genres={genres}
           description={description}
           posterUrl={posterUrl}
+          kinopoiskId={filmId}
         />
       </FilmBg>
       <div className="wrapper">
@@ -54,10 +55,10 @@ export const FilmPage = () => {
               </div>
             ))}
         </div>
-        <Staff filmID={filmID} />
-        <Reviews filmID={filmID} />
-        <Gallery filmID={filmID} />
-        <SimilarFilms filmID={filmID} />
+        <Staff filmID={filmId} />
+        <Reviews filmID={filmId} />
+        <Gallery filmID={filmId} />
+        <SimilarFilms filmID={filmId} />
       </div>
     </div>
   );

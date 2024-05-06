@@ -1,6 +1,7 @@
 import { COLLECTION_URL, PREMIERS_URL, SEARCH_URL } from "@constants/filmsApi";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { dynamicBaseQuery } from "@utils/getBaseQuery";
+import { fetchInfoAboutFilms } from "./fetchInfoAboutFilms";
 import {
   CollectionType,
   Film,
@@ -24,6 +25,16 @@ export const filmsApi = createApi({
     }),
     getInfoAboutFilm: builder.query<Film, number>({
       query: (filmID) => `${filmID}`,
+    }),
+    getInfoAboutFilms: builder.query<undefined, number[]>({
+      queryFn: (ids) => {
+        const promises = ids.map((id) => {
+          return fetchInfoAboutFilms(id);
+        });
+        return Promise.all(promises).then((results) => {
+          return { data: results };
+        });
+      },
     }),
     searchByKeyword: builder.query<SearchResponse, string>({
       query: (keyword: string) => `${SEARCH_URL}?keyword=${keyword}`,
