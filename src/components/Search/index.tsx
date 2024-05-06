@@ -2,24 +2,27 @@ import { Input } from "@shared/Input";
 import { Container, SearchContainer, Text, TextContainer } from "./styled";
 import SearchIcon from "@assets/icons/search.svg";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { SearchBlock } from "./SearchBlock";
 import { useDebounce } from "@hooks/useDebounce";
 import { Genres } from "@components/Genres";
-import { useClickOutside } from "@hooks/useClickOutside";
 
 export const Search = () => {
+  const [isOpened, setIsOpened] = useState(false);
+  const searchRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
-  const [searchByKeyword, { data }] = useLazySearchByKeywordQuery();
-  const searchRef = useClickOutside();
+  const [searchByKeyword, { data, isLoading, isUninitialized }] =
+    useLazySearchByKeywordQuery();
 
-  const debouncedSearch = useDebounce((e: ChangeEvent<HTMLInputElement>) =>
-    searchByKeyword(e.target.value),
+  const debouncedSearch = useDebounce(
+    (e: ChangeEvent<HTMLInputElement>) =>
+      e.target.value.length > 0 && searchByKeyword(e.target.value),
   );
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     debouncedSearch(e);
+    setIsOpened(true);
   };
 
   const { films, searchFilmsCountResult } = data ?? {};
@@ -42,6 +45,10 @@ export const Search = () => {
         <SearchBlock
           films={films}
           searchFilmsCountResult={searchFilmsCountResult}
+          isOpened={isOpened}
+          isLoading={isLoading || isUninitialized}
+          setIsOpened={setIsOpened}
+          searchRef={searchRef}
         />
       </SearchContainer>
       <Genres />

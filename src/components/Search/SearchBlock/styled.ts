@@ -1,7 +1,8 @@
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{ $isOpened: boolean }>`
+  ${flexColGap(2)};
   background-color: ${({ theme: { colors } }) => colors.brightBlock};
   max-height: 20em;
   overflow-y: scroll;
@@ -10,7 +11,7 @@ export const Container = styled.div`
   margin-top: 1em;
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
   padding: 2em;
-  ${flexColGap(2)};
+  display: ${({ $isOpened }) => ($isOpened ? "flex" : "none")};
 
   &::-webkit-scrollbar {
     width: 0.5em;
