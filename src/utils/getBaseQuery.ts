@@ -17,7 +17,10 @@ const defineUrl = (api: BaseQueryApi) => {
   if (api.endpoint === filmsApi.endpoints.searchByKeyword.name)
     return FILMS_URL_V1;
   if (api.endpoint === filmsApi.endpoints.getStaffInfo.name) return STAFF_URL;
-  return FILMS_BASE_URL;
+  return (
+    FILMS_BASE_URL +
+    (api.endpoint === filmsApi.endpoints.getFilmsByFilters.name ? "" : "/")
+  );
 };
 
 export const rawBaseQuery = fetchBaseQuery({

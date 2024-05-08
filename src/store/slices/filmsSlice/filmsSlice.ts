@@ -4,6 +4,7 @@ import { FilmsState } from "./interfaces";
 
 const initialState: FilmsState = {
   premier: null,
+  searchedFilms: [],
 };
 
 export const filmsSlice = createSlice({
@@ -21,6 +22,18 @@ export const filmsSlice = createSlice({
         state.premier = payload;
       },
     );
+    // builder.addMatcher(
+    //   filmsApi.endpoints.searchByKeyword.matchFulfilled,
+    //   (state, { payload }) => {
+    //     state.searchedFilms = payload.films;
+    //   }
+    // );
+    // builder.addMatcher(
+    //   filmsApi.endpoints.getFilmsByFilters.matchFulfilled,
+    //   (state, { payload }) => {
+    //     state.searchedFilms = payload.items;
+    //   }
+    // );
   },
 });
 

@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Container, Poster, SearchItem, PosterImg } from "./styled";
+import { Container, Poster, SearchItem, PosterImg, SearchInfo } from "./styled";
 import { SearchBlockProps } from "./interfaces";
 import { formatArrayToStrings } from "@utils/formatArrayToStrings";
 import { Button } from "@shared/Button";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useClickOutside } from "@hooks/useClickOutside";
+import { Spinner } from "@shared/Spinner";
 
 export const SearchBlock: FC<SearchBlockProps> = ({
   films,
@@ -17,10 +18,10 @@ export const SearchBlock: FC<SearchBlockProps> = ({
 }) => {
   const isMoreFilms = searchFilmsCountResult > 20;
   const isFilmsFound = films && films.length > 0;
-  const handleClickOutside = () => {
+  const handleClose = () => {
     setIsOpened(false);
   };
-  useClickOutside(searchRef, handleClickOutside);
+  useClickOutside(searchRef, handleClose);
 
   return (
     <Container $isOpened={isOpened}>
@@ -45,9 +46,15 @@ export const SearchBlock: FC<SearchBlockProps> = ({
           ),
         )
       ) : (
-        <div>{isLoading ? "loading" : <p>Фильм не найден</p>}</div>
+        <SearchInfo>
+          {isLoading ? <Spinner /> : <p>Фильм не найден</p>}
+        </SearchInfo>
       )}
-      {isMoreFilms && <Button className="centered-flex">Показать все</Button>}
+      {isMoreFilms && (
+        <Link to={PATHS_LINKS.films} className="centered-flex">
+          <Button onClick={handleClose}>Показать все</Button>
+        </Link>
+      )}
     </Container>
   );
 };

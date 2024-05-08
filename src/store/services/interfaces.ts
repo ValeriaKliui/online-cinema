@@ -128,3 +128,8 @@ export enum GENRES_NAMES {
   COMEDY = "комедия",
   HORROR = "ужасы",
 }
+export interface FilterParams {
+  genres?: GENRES;
+  page?: number;
+  keyword?: string;
+}

@@ -8,7 +8,7 @@ export const FavouritePage = () => {
   const { favouriteFilmsIDs } = useFavouriteFilms();
 
   const { data: favouriteFilms } = useGetInfoAboutFilmsQuery(favouriteFilmsIDs);
-  console.log(favouriteFilms);
+  // console.log(favouriteFilms);
 
   return (
     <div>

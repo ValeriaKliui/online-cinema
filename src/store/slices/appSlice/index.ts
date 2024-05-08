@@ -7,12 +7,17 @@ import { authorizeApi } from "@store/services/authorizeApi";
 const initialState: AppState = {
   isFilmsError: false,
   authorizationError: null,
+  searchKeyword: "",
 };
 
 export const appSlice = createSlice({
   name: "app",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchKeyword: (state, action: PayloadAction<string>) => {
+      state.searchKeyword = action.payload;
+    },
+  },
   extraReducers(builder) {
     getRejectedExtraReducers(
       builder,
@@ -30,5 +35,7 @@ export const appSlice = createSlice({
     );
   },
 });
+
+export const { setSearchKeyword } = appSlice.actions;
 
 export default appSlice.reducer;

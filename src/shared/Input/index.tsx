@@ -1,9 +1,20 @@
-import { FC } from 'react';
-import { InputProps } from './interfaces';
-import { InputStyled, Container } from './styled';
+import { FC } from "react";
+import { InputProps } from "./interfaces";
+import { InputStyled, Container, IconStyled } from "./styled";
 
-export const Input: FC<InputProps> = ({ icon, light, block, ...props }) => (
-    <Container $icon={icon} $block={block}>
-        <InputStyled $light={light} {...props} />
-    </Container>
+export const Input: FC<InputProps> = ({
+  Icon,
+  light,
+  block,
+  onIconClick,
+  ...props
+}) => (
+  <Container $block={block}>
+    <InputStyled $light={light} {...props} />
+    {Icon && (
+      <IconStyled onClick={onIconClick}>
+        <Icon />
+      </IconStyled>
+    )}
+  </Container>
 );

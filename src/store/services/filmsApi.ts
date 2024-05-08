@@ -13,7 +13,9 @@ import {
   Video,
   ImagesResponse,
   SimilarFilmsResponse,
+  FilterParams,
 } from "./interfaces";
+import { getFiltersUrl } from "@utils/getFiltersUrl";
 
 export const filmsApi = createApi({
   reducerPath: "filmsApi",
@@ -59,6 +61,9 @@ export const filmsApi = createApi({
     getSimilarFilms: builder.query<SimilarFilmsResponse, number>({
       query: (filmID: number) => `${filmID}/similars`,
     }),
+    getFilmsByFilters: builder.query<undefined, FilterParams>({
+      query: (options: FilterParams) => `${getFiltersUrl(options)}`,
+    }),
   }),
 });
 
@@ -72,4 +77,6 @@ export const {
   useGetReviewsQuery,
   useGetImagesQuery,
   useGetSimilarFilmsQuery,
+  useGetInfoAboutFilmsQuery,
+  useLazyGetFilmsByFiltersQuery,
 } = filmsApi;

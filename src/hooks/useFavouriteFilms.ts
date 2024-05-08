@@ -10,6 +10,14 @@ export const useFavouriteFilms = () => {
   const userID = useAppSelector(selectUserId);
   const [saveToFavourite] = useLazySaveFavouriteFilmsQuery();
 
+  const removeFromFavourite = useCallback(
+    (kinopoiskId: string | number) => {
+      const ID = Number(kinopoiskId);
+      dispatch(removeFromFavourites(ID));
+    },
+    [dispatch],
+  );
+
   const addToFavourite = useCallback(
     (kinopoiskId: string) => {
       const ID = Number(kinopoiskId);
@@ -22,13 +30,6 @@ export const useFavouriteFilms = () => {
       });
     },
     [favouriteFilmsIDs, dispatch, removeFromFavourite, saveToFavourite, userID],
-  );
-  const removeFromFavourite = useCallback(
-    (kinopoiskId: string | number) => {
-      const ID = Number(kinopoiskId);
-      dispatch(removeFromFavourites(ID));
-    },
-    [dispatch],
   );
 
   return { addToFavourite, removeFromFavourite, favouriteFilmsIDs };

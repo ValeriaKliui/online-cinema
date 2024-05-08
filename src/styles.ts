@@ -113,4 +113,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     align-self: center;
     justify-self: center;
   }
+  .primary-text {
+    color: ${({ theme: { colors } }) => colors.primary};
+  }
 `;

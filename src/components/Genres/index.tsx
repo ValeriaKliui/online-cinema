@@ -1,8 +1,16 @@
 import { Text, TextContainer } from "@components/Search/styled";
-import { GENRES_NAMES } from "@store/services/interfaces";
+import { Genre } from "./Genre";
+import { GENRES_ALL } from "@constants/filmsApi";
+import { GenresContainer } from "./styled";
+import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi";
+import { GENRES } from "@store/services/interfaces";
 
 export const Genres = () => {
-  const genres = Object.values(GENRES_NAMES);
+  const [getByGenre] = useLazyGetFilmsByFiltersQuery();
+
+  const onGenreClick = (genres: GENRES) => {
+    getByGenre({ genres });
+  };
 
   return (
     <div>
@@ -12,11 +20,17 @@ export const Genres = () => {
           На нашем сайте вы найдете подходящие вам фильмы и сериалы
         </Text>
       </TextContainer>
-      <div>
-        {genres.map((name) => (
-          <p key={name}>{name}</p>
+      <GenresContainer>
+        {GENRES_ALL.map(({ genreName, Icon, amount, genre }) => (
+          <Genre
+            genreName={genreName}
+            Icon={Icon}
+            amount={amount}
+            genre={genre}
+            onClick={onGenreClick}
+          />
         ))}
-      </div>
+      </GenresContainer>
     </div>
   );
 };

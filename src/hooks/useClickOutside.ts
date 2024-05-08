@@ -1,15 +1,14 @@
-// import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect } from "react";
 
-export const useClickOutside = () =>
-  // ref, handleClickOutside
-  {
-    // const elemRef = useRef();
-    //
-    // const onClick = (e) =>
-    //   elemRef.current.contains(e.target) && setIsOpened(false);
-    // console.log(isOpened);
-    // useEffect(() => {
-    //   document.addEventListener("click", onClick);
-    // }, []);
-    // return elemRef;
-  };
+export const useClickOutside = (ref, handleClickOutside) => {
+  const onClick = useCallback(
+    (e) => {
+      if (!ref?.current?.contains(e.target)) handleClickOutside();
+    },
+    [handleClickOutside, ref],
+  );
+
+  useEffect(() => {
+    document.addEventListener("click", onClick);
+  }, [onClick]);
+};

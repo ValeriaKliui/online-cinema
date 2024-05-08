@@ -42,3 +42,6 @@ export const Poster = styled.div`
 export const PosterImg = styled.img`
   width: 100%;
 `;
+export const SearchInfo = styled.div`
+  align-self: center;
+`;
