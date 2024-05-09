@@ -1,5 +1,5 @@
-import { flexColGap } from "@utils/mixins/mixins";
-import styled from "styled-components";
+import { flexColGap } from '@utils/mixins/mixins';
+import styled from 'styled-components';
 
 export const FooterConainer = styled.div`
   background: ${({ theme: { colors } }) => colors.darkBlock};
@@ -18,4 +18,7 @@ export const SubInfo = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1em 0;
+`;
+export const SupportContainer = styled.div`
+  ${flexColGap(2)}
 `;

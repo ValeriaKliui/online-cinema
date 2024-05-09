@@ -66,7 +66,6 @@ export const Search = () => {
           searchRef={searchRef}
         />
       </SearchContainer>
-      <Genres />
     </Container>
   );
 };

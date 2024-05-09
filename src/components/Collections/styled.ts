@@ -1,8 +1,9 @@
+import { flexColGap } from '@utils/mixins/mixins';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   background-color: ${({ theme: { colors } }) => colors.darkBlock};
-  border-radius: ${({ theme: { radiuses } }) => radiuses.small};
+  ${flexColGap(2)}
 `;
 export const Tabs = styled.div`
   display: flex;
@@ -21,8 +22,4 @@ export const Films = styled.div`
   display: flex;
   gap: 2em;
   overflow: hidden;
-`;
-
-export const FilmImg = styled.img`
-  border-radius: ${({ theme: { radiuses } }) => radiuses.small};
 `;

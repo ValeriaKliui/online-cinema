@@ -1,25 +1,18 @@
-import { flexColGap } from "@utils/mixins/mixins";
-import styled from "styled-components";
+import { flexColGap } from '@utils/mixins/mixins';
+import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 8em;
-  align-items: center;
-  padding: 5em 0;
+  ${flexColGap(1)}
 `;
-export const Poster = styled.div`
-  flex-basis: 160%;
+export const ImgContainer = styled.div`
+  height: 300px;
 `;
-export const FilmInfo = styled.div`
-  ${flexColGap(2)}
+export const FilmImg = styled.img`
+  border-radius: ${({ theme: { radiuses } }) => radiuses.small};
+  height: 100%;
+  display: block;
+  object-fit: cover;
 `;
-export const FilmProperties = styled.div`
-  display: flex;
-  gap: 0.5em 1.5em;
-  flex-wrap: wrap;
-`;
-export const Buttons = styled.div`
-  display: flex;
-  gap: 2em;
+export const Description = styled.div`
+  ${flexColGap(0.5)}
 `;

@@ -1,32 +1,34 @@
+import { FilmCard } from "@components/FilmCard";
+import { Search } from "@components/Search";
+import { Spinner } from "@shared/Spinner";
 import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi";
 import { useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const FilmsPage = () => {
   const [searchParams] = useSearchParams();
-  const [getFilmsByParams, { data }] = useLazyGetFilmsByFiltersQuery();
-  const FILM_FILTERS = ["keyword", "page"];
+  const [getFilmsByParams, { data, isLoading }] = useLazyGetFilmsByFiltersQuery();
+  const FILM_FILTERS = ["keyword", "page", 'genres'];
 
-  // const filmParams = {};
-  const filmParams = useMemo(() => ({}), []);
-
-  FILM_FILTERS.map((filter) => (filmParams[filter] = searchParams.get(filter)));
+  const filmParams = {};
+  FILM_FILTERS.map((filter) => {
+    const searchParam = searchParams.get(filter);
+    if (searchParam) filmParams[filter] = searchParam
+  });
 
   const { items: films } = data ?? {};
-
-  console.log(films);
 
   //в депенелис нужно убрать filmParams
 
   useEffect(() => {
     getFilmsByParams(filmParams);
-  }, [getFilmsByParams, filmParams]);
+  }, [getFilmsByParams]);
 
   return (
     <div className="wrapper">
-      {films && films.length > 0 && films.map(({ nameRu }) => <p>{nameRu}</p>)}
-      {/* <Search />
-       */}
+      <Search />
+      {isLoading && <Spinner />}
+      {films && films.length > 0 && films.map(({ nameRu, posterUrlPreview }) => <FilmCard nameRu={nameRu} posterUrlPreview={posterUrlPreview} />)}
     </div>
   );
 };

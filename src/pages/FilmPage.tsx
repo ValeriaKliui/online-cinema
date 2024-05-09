@@ -1,4 +1,4 @@
-import { FilmCard } from "@components/FilmCard";
+import { FilmBlock } from "@components/FilmBlock";
 import { Gallery } from "@components/Gallery";
 import { Reviews } from "@components/Reviews";
 import { SimilarFilms } from "@components/SimilarFilms";
@@ -28,7 +28,7 @@ export const FilmPage = () => {
   return (
     <div>
       <FilmBg $posterUrl={posterUrl}>
-        <FilmCard
+        <FilmBlock
           nameRu={nameRu}
           year={year}
           filmLength={filmLength}

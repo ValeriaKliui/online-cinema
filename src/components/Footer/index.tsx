@@ -1,10 +1,10 @@
 import { FOOTER_LINKS } from "@constants/paths";
 import { Button } from "@shared/Button";
 import { Link } from "react-router-dom";
-import { FooterConainer, SubInfo, LinksContainer, FooterLinks } from "./styled";
+import { FooterConainer, SubInfo, LinksContainer, FooterLinks, SupportContainer } from "./styled";
 
 export const Footer = () => (
-  <>
+  <footer>
     <FooterConainer>
       <FooterLinks className="wrapper">
         {FOOTER_LINKS.map(({ title, links }) => (
@@ -17,16 +17,16 @@ export const Footer = () => (
             ))}
           </LinksContainer>
         ))}
-        <div>
+        <SupportContainer>
           <p>Поддержка</p>
           <p>Мы всегда готовы вам помочь. Наши операторы онлайн 24/7</p>
           <Button>Написать в чате</Button>
-        </div>
+        </SupportContainer>
       </FooterLinks>
     </FooterConainer>
     <SubInfo className="wrapper">
       <p>© 2015-2023 Illuminous</p>
       <p>Пользовательские соглашения</p>
     </SubInfo>
-  </>
+  </footer>
 );

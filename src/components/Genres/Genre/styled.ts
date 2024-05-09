@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   path {
@@ -13,6 +13,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: ${({ theme: { radiuses } }) => radiuses.small};
 `;
 export const IconContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.background};

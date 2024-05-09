@@ -48,8 +48,8 @@ export const PATHS = [
   { element: <FilmPage />, path: PATHS_LINKS.films + "/:kinopoiskId" },
 ];
 export const NAV_LINKS = [
-  { title: "Главная", path: "/" },
-  { title: "Фильмы", path: "ва" },
+  { title: "Главная", path: PATHS_LINKS.main },
+  { title: "Фильмы", path: PATHS_LINKS.films },
   { title: "Сериалы", path: "/ыва" },
   { title: "Мультфильмы", path: "/ss" },
 ];
