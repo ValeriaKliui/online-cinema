@@ -10,7 +10,7 @@ import { Spinner } from "@shared/Spinner";
 
 export const SearchBlock: FC<SearchBlockProps> = ({
   films,
-  searchFilmsCountResult,
+  searchFilmsCountResult = 0,
   searchRef,
   isOpened,
   setIsOpened,
@@ -27,23 +27,30 @@ export const SearchBlock: FC<SearchBlockProps> = ({
     <Container $isOpened={isOpened}>
       {isFilmsFound ? (
         films.map(
-          ({ nameRu, posterUrlPreview, year, countries, genres, filmId }) => (
-            <SearchItem key={filmId}>
+          ({
+            nameRu,
+            posterUrlPreview,
+            year,
+            countries,
+            genres,
+            kinopoiskId,
+          }) => (
+            <SearchItem key={kinopoiskId}>
               <Poster>
-                <Link to={PATHS_LINKS.films + "/" + filmId}>
+                <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
                   <PosterImg src={posterUrlPreview} />
                 </Link>
               </Poster>
 
               <div>
-                <Link to={PATHS_LINKS.films + "/" + filmId}>
+                <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
                   <h4>{nameRu}</h4> {year && <p>{year}</p>}
                   <p>{formatArrayToStrings(countries)}</p>
-                  <p>{formatArrayToStrings(genres)}</p>{" "}
+                  <p>{formatArrayToStrings(genres)}</p>
                 </Link>
               </div>
             </SearchItem>
-          ),
+          )
         )
       ) : (
         <SearchInfo>

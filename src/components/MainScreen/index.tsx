@@ -21,9 +21,9 @@ export const MainScreen = () => {
 
   const premier = useMemo(
     () => premieres && getRandomFilm(premieres),
-    [premieres],
+    [premieres]
   );
-  const { kinopoiskId } = premier ?? {};
+  const kinopoiskId = Number(premier?.kinopoiskId);
 
   const { data: premierInfo } = useGetInfoAboutFilmQuery(kinopoiskId, {
     skip: !kinopoiskId,

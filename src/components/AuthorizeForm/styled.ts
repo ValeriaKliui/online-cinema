@@ -6,8 +6,8 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.form<{ $block?: boolean }>`
   ${flexColGap(1)};
   align-items: center;
-  width: 100%;
+  width: ${({ $block }) => ($block ? "100%" : "fit-content")};
 `;

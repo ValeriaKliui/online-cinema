@@ -5,7 +5,6 @@ import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { SearchBlock } from "./SearchBlock";
 import { useDebounce } from "@hooks/useDebounce";
-import { Genres } from "@components/Genres";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
 import { setSearchKeyword } from "@store/slices/appSlice";
 import { selectSearchKeyword } from "@store/selectors/app";
@@ -21,9 +20,9 @@ export const Search = () => {
     useLazySearchByKeywordQuery();
   const [isOpened, setIsOpened] = useState(false);
 
-  const debouncedSearch = useDebounce(
+  const debouncedSearch = useDebounce<string>(
     (searchString: string) =>
-      searchString.length > 0 && searchByKeyword(searchString),
+      searchString.length > 0 && searchByKeyword(searchString)
   );
   const initialSerchWasMade = useRef(true);
 

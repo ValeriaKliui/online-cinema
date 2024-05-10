@@ -1,6 +1,11 @@
-import { SearchedFilm } from '@store/services/interfaces';
+import { Film } from "@store/services/interfaces";
+import { RefObject } from "react";
 
 export interface SearchBlockProps {
-  films?: SearchedFilm[];
+  films?: Film[];
   searchFilmsCountResult?: number;
+  isLoading: boolean;
+  setIsOpened: (isOpened: boolean) => void;
+  isOpened: boolean;
+  searchRef: RefObject<HTMLDivElement>;
 }

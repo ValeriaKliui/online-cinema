@@ -1,11 +1,13 @@
 import { useGetSimilarFilmsQuery } from "@store/services/filmsApi";
+import { FC } from "react";
+import { SimilarFilmsProps } from "./interfaces";
 
-export const SimilarFilms = ({ filmID }) => {
-  const { data: similarFilms } = useGetSimilarFilmsQuery(filmID);
+export const SimilarFilms: FC<SimilarFilmsProps> = ({ kinopoiskId }) => {
+  const { data: similarFilms } = useGetSimilarFilmsQuery(kinopoiskId);
   return (
     <div>
       {similarFilms?.items.map(({ nameRu }) => (
-        <div key={filmID}>
+        <div key={kinopoiskId}>
           <p>{nameRu}</p>
         </div>
       ))}

@@ -16,6 +16,7 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   title,
   description,
   onSubmit,
+  block,
 }) => {
   const authorizeError = useAppSelector(selectAuthError);
   const authErrorText = getAuthErrorText(authorizeError);
@@ -40,7 +41,7 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
     onSubmit(userData);
   };
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLFormElement>) => {
     const {
       target: { name, value },
     } = event;
@@ -50,14 +51,14 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
 
   return (
     <Container>
-      <p>{title}</p>
+      <p className="xl">{title}</p>
       <Networks>
         <YtIcon />
         <VkSvg />
         <InSvg />
       </Networks>
       <p>{description}</p>
-      <FormContainer onSubmit={onFormSubmit} onChange={onChange}>
+      <FormContainer onSubmit={onFormSubmit} onChange={onChange} $block={block}>
         <Input placeholder="Логин" light block name="email" />
         <Input placeholder="Пароль" light block name="password" />
         {error && <p>{error}</p>}

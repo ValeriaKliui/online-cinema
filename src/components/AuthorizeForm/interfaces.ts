@@ -7,4 +7,5 @@ export interface AuthorizeFormProps {
   title: string;
   description: string;
   onSubmit: (userData: UserData) => void;
+  block?: boolean;
 }

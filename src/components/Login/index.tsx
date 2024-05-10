@@ -13,9 +13,9 @@ export const Login = () => {
     if (isSuccess) {
       navigate(PATHS_LINKS.main);
       accessToken && localStorage.setItem("accessToken", accessToken);
-      user.id && localStorage.setItem("userId", user.id);
+      user?.id && localStorage.setItem("userId", String(user.id));
     }
-  }, [isSuccess, navigate, accessToken, user.id]);
+  }, [isSuccess, navigate, accessToken, user?.id]);
 
   return (
     <>

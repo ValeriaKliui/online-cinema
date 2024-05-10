@@ -11,8 +11,8 @@ import {
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
-  const { kinopoiskId: filmId } = useParams();
-  const { data: filmInfo } = useGetInfoAboutFilmQuery(filmId);
+  const kinopoiskId = Number(useParams().kinopoiskId);
+  const { data: filmInfo } = useGetInfoAboutFilmQuery(kinopoiskId);
   const {
     nameRu,
     year,
@@ -23,10 +23,10 @@ export const FilmPage = () => {
     posterUrl,
   } = filmInfo ?? {};
 
-  const { data: videos } = useGetVideosQuery(filmId);
+  const { data: videos } = useGetVideosQuery(kinopoiskId);
 
   return (
-    <div>
+    <>
       <FilmBg $posterUrl={posterUrl}>
         <FilmBlock
           nameRu={nameRu}
@@ -36,30 +36,25 @@ export const FilmPage = () => {
           genres={genres}
           description={description}
           posterUrl={posterUrl}
-          kinopoiskId={filmId}
+          kinopoiskId={kinopoiskId}
         />
       </FilmBg>
-      <div className="wrapper">
-        <div>
-          <p>трейлеры</p>
+      <div>
+        <div className="wrapper">
+          <h5>Трейлеры</h5>
           {videos &&
             videos.map(({ url, name }) => (
               <div key={url}>
                 <p>{name}</p>
-                <iframe
-                  width="320"
-                  height="240"
-                  src={url}
-                  is="x-frame-bypass"
-                />
+                <iframe width="320" height="240" src={url} />
               </div>
             ))}
         </div>
-        <Staff filmID={filmId} />
-        <Reviews filmID={filmId} />
-        <Gallery filmID={filmId} />
-        <SimilarFilms filmID={filmId} />
+        <Staff kinopoiskId={kinopoiskId} />
+        <Reviews kinopoiskId={kinopoiskId} />
+        <Gallery kinopoiskId={kinopoiskId} />
+        <SimilarFilms kinopoiskId={kinopoiskId} />
       </div>
-    </div>
+    </>
   );
 };

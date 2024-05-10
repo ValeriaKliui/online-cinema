@@ -2,18 +2,18 @@ import { User, UserState } from "@store/slices/userSlice/interfaces";
 
 export interface Premier {
   kinopoiskId: number;
-  nameRu: string;
+  nameRu?: string;
   nameEn: string | null;
-  year: number | null;
-  posterUrl: string;
+  year?: number | null;
+  posterUrl?: string;
   posterUrlPreview: string;
-  countries: { country: string }[];
-  genres: { country: string }[];
+  countries?: { country: string }[];
+  genres?: { country: string }[];
   duration: number;
   premiereRu: string;
   ratingKinopoisk: number | null;
   ratingImdb: number | null;
-  filmLength: number;
+  filmLength?: number;
 }
 export interface PremierParams {
   year: number;
@@ -23,15 +23,20 @@ export interface PremierResponse {
   items: Premier[];
 }
 export interface Film extends Premier {
-  description: string;
+  description?: string;
   shortDescription: string;
 }
 
 export interface SearchResponse {
-  items: Film[];
+  films: Film[];
   total: number;
   totalPages: number;
+  searchFilmsCountResult: number;
 }
+
+export type CollectionResponse = Omit<SearchResponse, "films"> & {
+  items: Film[];
+};
 export interface Video {
   name: string;
   site: string;
@@ -55,10 +60,10 @@ export enum CollectionType {
 export type UserInfoResponse = Pick<User, "id"> &
   Pick<UserState, "favouriteFilmsIDs">;
 
-export type AuthorizeResponse = Pick<UserState, "user">;
+export type AuthorizeResponse = UserState;
 export type FavouriteFilmsParams = Pick<UserState, "favouriteFilmsIDs"> &
   Pick<User, "id">;
-export type LoginResponse = Pick<AuthorizeResponse, "accessToken">;
+export type LoginResponse = UserState;
 
 export interface StaffPerson {
   staffId: number;
@@ -132,4 +137,7 @@ export interface FilterParams {
   genres?: GENRES;
   page?: number;
   keyword?: string;
+}
+export interface FilmInfoResponse {
+  films: Film[];
 }

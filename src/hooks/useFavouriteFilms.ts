@@ -15,21 +15,21 @@ export const useFavouriteFilms = () => {
       const ID = Number(kinopoiskId);
       dispatch(removeFromFavourites(ID));
     },
-    [dispatch],
+    [dispatch]
   );
 
   const addToFavourite = useCallback(
-    (kinopoiskId: string) => {
-      const ID = Number(kinopoiskId);
-      !favouriteFilmsIDs.includes(ID)
-        ? dispatch(addToFavourites(ID))
-        : removeFromFavourite(ID);
-      saveToFavourite({
-        id: userID,
-        favouriteFilmsIDs: [...favouriteFilmsIDs, ID],
-      });
+    (kinopoiskId: number) => {
+      !favouriteFilmsIDs.includes(kinopoiskId)
+        ? dispatch(addToFavourites(kinopoiskId))
+        : removeFromFavourite(kinopoiskId);
+      userID &&
+        saveToFavourite({
+          id: userID,
+          favouriteFilmsIDs: [...favouriteFilmsIDs, kinopoiskId],
+        });
     },
-    [favouriteFilmsIDs, dispatch, removeFromFavourite, saveToFavourite, userID],
+    [favouriteFilmsIDs, dispatch, removeFromFavourite, saveToFavourite, userID]
   );
 
   return { addToFavourite, removeFromFavourite, favouriteFilmsIDs };

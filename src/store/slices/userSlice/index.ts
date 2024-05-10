@@ -17,7 +17,7 @@ export const UserSlice = createSlice({
     },
     removeFromFavourites: (state, action: PayloadAction<number>) => {
       state.favouriteFilmsIDs = state.favouriteFilmsIDs.filter(
-        (id) => id !== action.payload,
+        (id) => id !== action.payload
       );
     },
   },
@@ -25,21 +25,22 @@ export const UserSlice = createSlice({
     builder.addMatcher(
       authorizeApi.endpoints.registerUser.matchFulfilled,
       (state, { payload }) => {
+        console.log(payload);
         state.accessToken = payload.accessToken;
-      },
+      }
     );
     builder.addMatcher(
       authorizeApi.endpoints.loginUser.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
-      },
+      }
     );
     builder.addMatcher(
       authorizeApi.endpoints.getUserInfo.matchFulfilled,
       (state, { payload }) => {
         state.user = { ...state.user, id: payload.id };
         state.favouriteFilmsIDs = payload.favouriteFilmsIDs;
-      },
+      }
     );
   },
 });

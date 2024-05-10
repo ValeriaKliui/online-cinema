@@ -28,10 +28,11 @@ export const Register = () => {
       </Media>
       <AuthorizeScreen>
         <AuthorizeForm
-          title="ИЗМЕНИТЬ Создать аккаунт"
+          title="Создать аккаунт"
           buttonText="Зарегистрироваться"
           description="или введите email для регистрации"
           onSubmit={registerUser}
+          block
         />
       </AuthorizeScreen>
     </Container>

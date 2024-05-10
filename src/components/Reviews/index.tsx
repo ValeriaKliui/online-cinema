@@ -1,9 +1,11 @@
 import { useGetReviewsQuery } from "@store/services/filmsApi";
+import { FC } from "react";
+import { ReviewsProps } from "./interfaces";
 
-export const Reviews = ({ filmID }) => {
-  const { data: reviews } = useGetReviewsQuery(filmID);
+export const Reviews: FC<ReviewsProps> = ({ kinopoiskId }) => {
+  const { data: reviews } = useGetReviewsQuery(kinopoiskId);
   return (
-    <div>
+    <div className="wrapper">
       {reviews?.items?.map(({ author, title, description, kinopoiskId }) => (
         <div key={kinopoiskId}>
           <p>{author}</p>

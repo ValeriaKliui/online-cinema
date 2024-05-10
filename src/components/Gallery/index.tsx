@@ -1,8 +1,12 @@
 import { useGetImagesQuery } from "@store/services/filmsApi";
+import { FC } from "react";
+import { GalleryProps } from "./interfaces";
 
-export const Gallery = ({ filmID }) => {
-  const { data: images } = useGetImagesQuery(filmID);
+export const Gallery: FC<GalleryProps> = ({ kinopoiskId }) => {
+  const { data: images } = useGetImagesQuery(kinopoiskId);
   return (
-    <div>{images?.items.map(({ imageUrl }) => <img src={imageUrl} />)}</div>
+    <div className="wrapper">
+      {images?.items.map(({ imageUrl }) => <img src={imageUrl} />)}
+    </div>
   );
 };

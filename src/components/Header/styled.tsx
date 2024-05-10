@@ -3,7 +3,7 @@ import { svgStyles } from "@shared/Icon";
 import LogoIcon from "@assets/icons/logo.svg?react";
 import UserIcon from "@assets/icons/user.svg?react";
 
-export const HeaderContainer = styled.header<{ $posterUrl: string }>`
+export const HeaderContainer = styled.header<{ $posterUrl?: string }>`
   background: ${({ $posterUrl }) =>
     $posterUrl
       ? `linear-gradient(

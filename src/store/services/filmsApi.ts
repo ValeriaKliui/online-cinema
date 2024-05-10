@@ -14,6 +14,8 @@ import {
   ImagesResponse,
   SimilarFilmsResponse,
   FilterParams,
+  FilmInfoResponse,
+  CollectionResponse,
 } from "./interfaces";
 import { getFiltersUrl } from "@utils/getFiltersUrl";
 
@@ -28,7 +30,7 @@ export const filmsApi = createApi({
     getInfoAboutFilm: builder.query<Film, number>({
       query: (filmID) => `${filmID}`,
     }),
-    getInfoAboutFilms: builder.query<undefined, number[]>({
+    getInfoAboutFilms: builder.query<FilmInfoResponse, number[]>({
       queryFn: (ids) => {
         const promises = ids.map((id) => {
           return fetchInfoAboutFilms(id);
@@ -41,7 +43,7 @@ export const filmsApi = createApi({
     searchByKeyword: builder.query<SearchResponse, string>({
       query: (keyword: string) => `${SEARCH_URL}?keyword=${keyword}`,
     }),
-    getCollectionByType: builder.query<SearchResponse, string>({
+    getCollectionByType: builder.query<CollectionResponse, string>({
       query: (collectionType: CollectionType) =>
         `${COLLECTION_URL}?type=${collectionType}`,
     }),
