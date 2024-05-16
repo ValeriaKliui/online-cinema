@@ -24,6 +24,6 @@ export interface BaseTheme {
   fontWeights: { regular: number; medium: number; bold: number };
   fontSizes: { regular: string };
   type: ThemeType;
-  radiuses: { regular: string; small: string };
+  radiuses: { regular: string; small: string; xs: string };
 }
 export interface ThemeProps extends HTMLAttributes<HTMLDivElement> {}

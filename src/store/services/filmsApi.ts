@@ -16,6 +16,7 @@ import {
   FilterParams,
   FilmInfoResponse,
   CollectionResponse,
+  FilmsByFilterResponse,
 } from "./interfaces";
 import { getFiltersUrl } from "@utils/getFiltersUrl";
 
@@ -63,7 +64,7 @@ export const filmsApi = createApi({
     getSimilarFilms: builder.query<SimilarFilmsResponse, number>({
       query: (filmID: number) => `${filmID}/similars`,
     }),
-    getFilmsByFilters: builder.query<undefined, FilterParams>({
+    getFilmsByFilters: builder.query<FilmsByFilterResponse, FilterParams>({
       query: (options: FilterParams) => `${getFiltersUrl(options)}`,
     }),
   }),

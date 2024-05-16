@@ -3,7 +3,8 @@ import { User, UserState } from "@store/slices/userSlice/interfaces";
 export interface Premier {
   kinopoiskId: number;
   nameRu?: string;
-  nameEn: string | null;
+  nameEn?: string | null;
+  nameOriginal?: string | null;
   year?: number | null;
   posterUrl?: string;
   posterUrlPreview: string;
@@ -140,4 +141,9 @@ export interface FilterParams {
 }
 export interface FilmInfoResponse {
   films: Film[];
+}
+export interface FilmsByFilterResponse {
+  total: string;
+  totalPages: string;
+  items: Film[];
 }

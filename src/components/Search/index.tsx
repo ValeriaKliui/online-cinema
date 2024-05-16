@@ -2,7 +2,13 @@ import { Input } from "@shared/Input";
 import { Container, SearchContainer } from "./styled";
 import SearchIcon from "@assets/icons/search.svg?react";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { SearchBlock } from "./SearchBlock";
 import { useDebounce } from "@hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
@@ -22,7 +28,7 @@ export const Search = () => {
 
   const debouncedSearch = useDebounce<string>(
     (searchString: string) =>
-      searchString.length > 0 && searchByKeyword(searchString)
+      searchString.length > 0 && searchByKeyword(searchString),
   );
   const initialSerchWasMade = useRef(true);
 
@@ -42,20 +48,25 @@ export const Search = () => {
       searchKeyword.length > 0 && searchByKeyword(searchKeyword);
   }, [searchKeyword, searchByKeyword]);
 
-  const onIconClick = () =>
+  const onSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
     navigate(PATHS_LINKS.films + `?keyword=${searchKeyword}&page=1`);
+    setIsOpened(false);
+  };
 
   return (
     <Container className="wrapper">
       <SearchContainer ref={searchRef}>
-        <Input
-          placeholder="Поиск..."
-          Icon={SearchIcon}
-          onChange={onChange}
-          value={searchKeyword}
-          onClick={onClick}
-          onIconClick={onIconClick}
-        />
+        <form onSubmit={onSubmit}>
+          <Input
+            placeholder="Поиск..."
+            Icon={SearchIcon}
+            onChange={onChange}
+            value={searchKeyword}
+            onClick={onClick}
+            onIconClick={onSubmit}
+          />
+        </form>
         <SearchBlock
           films={films}
           searchFilmsCountResult={searchFilmsCountResult}

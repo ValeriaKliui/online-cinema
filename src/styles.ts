@@ -1,27 +1,27 @@
-import { createGlobalStyle } from 'styled-components';
-import MontserratMediumWoff from '@assets/fonts/Montserrat-Medium.woff';
-import MontserratRegularWoff from '@assets/fonts/Montserrat-Regular.woff';
-import MontserratBoldWoff from '@assets/fonts/Montserrat-SemiBold.woff';
-import PoppinsWoff from '@assets/fonts/Poppins-Regular.woff';
+import { createGlobalStyle } from "styled-components";
+import MontserratMediumWoff from "@assets/fonts/Montserrat-Medium.woff";
+import MontserratRegularWoff from "@assets/fonts/Montserrat-Regular.woff";
+import MontserratBoldWoff from "@assets/fonts/Montserrat-SemiBold.woff";
+import PoppinsWoff from "@assets/fonts/Poppins-Regular.woff";
 
 const styled = { createGlobalStyle };
 
 export const GlobalStyles = styled.createGlobalStyle`
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.regular};
-    src: url(${MontserratRegularWoff}) format('woff');
+    src: url(${MontserratRegularWoff}) format("woff");
   }
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.medium};
-    src: url(${MontserratMediumWoff}) format('woff');
+    src: url(${MontserratMediumWoff}) format("woff");
   }
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.bold};
-    src: url(${MontserratBoldWoff}) format('woff');
+    src: url(${MontserratBoldWoff}) format("woff");
   }
   @font-face {
     font-family: ${({ theme: { fonts } }) => fonts.smallRegular};
-    src: url(${PoppinsWoff}) format('woff');
+    src: url(${PoppinsWoff}) format("woff");
   }
   * {
     box-sizing: border-box;
@@ -99,6 +99,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   }
   .m {
     font-size: 1.125em;
+    line-height: 130%;
   }
   .s {
     font-size: 1em;

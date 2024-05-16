@@ -1,4 +1,5 @@
 import { AuthorizeForm } from "@components/AuthorizeForm";
+import { ACCESS_TOKEN } from "@constants/authorizeApi";
 import { PATHS_LINKS } from "@constants/paths";
 import { useLazyLoginUserQuery } from "@store/services/authorizeApi";
 import { useEffect } from "react";
@@ -12,7 +13,7 @@ export const Login = () => {
   useEffect(() => {
     if (isSuccess) {
       navigate(PATHS_LINKS.main);
-      accessToken && localStorage.setItem("accessToken", accessToken);
+      accessToken && localStorage.setItem(ACCESS_TOKEN, accessToken);
       user?.id && localStorage.setItem("userId", String(user.id));
     }
   }, [isSuccess, navigate, accessToken, user?.id]);

@@ -19,5 +19,5 @@ export const lightTheme: BaseTheme = {
   },
   fontWeights: { regular: 400, medium: 500, bold: 700 },
   fontSizes: { regular: "16px" },
-  radiuses: { regular: "2em", small: "1em" },
+  radiuses: { regular: "2em", small: "1em", xs: ".5em" },
 };

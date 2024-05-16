@@ -1,6 +1,12 @@
 import { FC } from "react";
 import { FilmCardProps } from "./interfaces";
-import { Container, Description, FilmImg, ImgContainer } from "./styled";
+import {
+  Container,
+  Description,
+  FilmImg,
+  ImgContainer,
+  Rating,
+} from "./styled";
 
 export const FilmCard: FC<FilmCardProps> = ({
   kinopoiskId,
@@ -9,15 +15,22 @@ export const FilmCard: FC<FilmCardProps> = ({
   year,
   ratingImdb,
   ratingKinopoisk,
-}) => (
-  <Container key={kinopoiskId}>
-    <ImgContainer>
-      <FilmImg src={posterUrlPreview} />
-    </ImgContainer>
-    <Description>
-      <p>{nameRu}</p>
-      {year && <p>{year}</p>}
-      <p>{ratingImdb ?? ratingKinopoisk}</p>
-    </Description>
-  </Container>
-);
+  expanded,
+  nameEn,
+  nameOriginal,
+}) => {
+  const rating = (ratingImdb ?? ratingKinopoisk)?.toFixed(1);
+
+  return (
+    <Container key={kinopoiskId} $expanded={expanded}>
+      <ImgContainer>
+        <FilmImg src={posterUrlPreview} />
+      </ImgContainer>
+      <Description>
+        <p className="m">{nameRu || nameEn || nameOriginal}</p>
+        {year && <p>{year}</p>}
+        {rating && <Rating>{rating}</Rating>}
+      </Description>
+    </Container>
+  );
+};

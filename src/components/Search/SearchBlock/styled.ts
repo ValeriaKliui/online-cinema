@@ -12,6 +12,7 @@ export const Container = styled.div<{ $isOpened: boolean }>`
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
   padding: 2em;
   display: ${({ $isOpened }) => ($isOpened ? "flex" : "none")};
+  z-index: 1000;
 
   &::-webkit-scrollbar {
     width: 0.5em;

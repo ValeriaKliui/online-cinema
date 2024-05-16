@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authorizeApi } from "@store/services/authorizeApi";
 import { UserState } from "./interfaces";
+import { ACCESS_TOKEN } from "@constants/authorizeApi";
 
 const initialState: UserState = {
   user: null,
-  accessToken: null,
+  accessToken: localStorage.getItem(ACCESS_TOKEN) || null,
   favouriteFilmsIDs: [],
 };
 
@@ -17,8 +18,12 @@ export const UserSlice = createSlice({
     },
     removeFromFavourites: (state, action: PayloadAction<number>) => {
       state.favouriteFilmsIDs = state.favouriteFilmsIDs.filter(
-        (id) => id !== action.payload
+        (id) => id !== action.payload,
       );
+    },
+    logoutUser: (state) => {
+      state.user = null;
+      state.favouriteFilmsIDs = [];
     },
   },
   extraReducers(builder) {
@@ -27,24 +32,25 @@ export const UserSlice = createSlice({
       (state, { payload }) => {
         console.log(payload);
         state.accessToken = payload.accessToken;
-      }
+      },
     );
     builder.addMatcher(
       authorizeApi.endpoints.loginUser.matchFulfilled,
       (state, { payload }) => {
         state.user = payload.user;
-      }
+      },
     );
     builder.addMatcher(
       authorizeApi.endpoints.getUserInfo.matchFulfilled,
       (state, { payload }) => {
-        state.user = { ...state.user, id: payload.id };
+        state.user = { ...state.user, ...payload };
         state.favouriteFilmsIDs = payload.favouriteFilmsIDs;
-      }
+      },
     );
   },
 });
 
-export const { addToFavourites, removeFromFavourites } = UserSlice.actions;
+export const { addToFavourites, removeFromFavourites, logoutUser } =
+  UserSlice.actions;
 
 export default UserSlice.reducer;
