@@ -14,13 +14,16 @@ import { useDebounce } from "@hooks/useDebounce";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
 import { setSearchKeyword } from "@store/slices/appSlice";
 import { selectSearchKeyword } from "@store/selectors/app";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 
 export const Search = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const searchKeyword = useAppSelector(selectSearchKeyword);
+  const [urlSearchParams] = useSearchParams();
+  const urlSearchValue = urlSearchParams.get("search_by_keyword") || "";
+  const searchKeyword = useAppSelector(selectSearchKeyword) || urlSearchValue;
+
   const searchRef = useRef(null);
   const [searchByKeyword, { data, isLoading, isUninitialized }] =
     useLazySearchByKeywordQuery();
@@ -50,7 +53,7 @@ export const Search = () => {
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    navigate(PATHS_LINKS.films + `?keyword=${searchKeyword}&page=1`);
+    navigate(PATHS_LINKS.search + `?search_by_keyword=${searchKeyword}&page=1`);
     setIsOpened(false);
   };
 

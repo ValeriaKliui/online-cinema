@@ -42,7 +42,7 @@ export const filmsApi = createApi({
       },
     }),
     searchByKeyword: builder.query<SearchResponse, string>({
-      query: (keyword: string) => `${SEARCH_URL}?keyword=${keyword}`,
+      query: (keyword: string) => `${SEARCH_URL}?keyword=${keyword}&page=1`,
     }),
     getCollectionByType: builder.query<CollectionResponse, string>({
       query: (collectionType: CollectionType) =>
@@ -82,4 +82,5 @@ export const {
   useGetSimilarFilmsQuery,
   useGetInfoAboutFilmsQuery,
   useLazyGetFilmsByFiltersQuery,
+  useSearchByKeywordQuery,
 } = filmsApi;

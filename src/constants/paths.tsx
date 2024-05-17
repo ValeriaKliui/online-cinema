@@ -6,6 +6,8 @@ import { PrivateRoute } from "@shared/PrivateRoute";
 import { FilmsPage } from "../pages/FilmsPage";
 import { FilmPage } from "../pages/FilmPage";
 import { FavouritePage } from "../pages/FavouritePage";
+import { SearchPage } from "../pages/SearchPage";
+import { GENRES } from "@store/services/interfaces";
 
 export enum PATHS_LINKS {
   main = "/",
@@ -14,6 +16,7 @@ export enum PATHS_LINKS {
   account = "/account",
   films = "/films",
   favourite = "favourite",
+  search = "/search",
 }
 
 export const PATHS = [
@@ -45,13 +48,17 @@ export const PATHS = [
     ],
   },
   { element: <FilmsPage />, path: PATHS_LINKS.films },
+  { element: <SearchPage />, path: PATHS_LINKS.search },
   { element: <FilmPage />, path: PATHS_LINKS.films + "/:kinopoiskId" },
 ];
 export const NAV_LINKS = [
   { title: "Главная", path: PATHS_LINKS.main },
   { title: "Фильмы", path: PATHS_LINKS.films },
-  { title: "Сериалы", path: "/ыва" },
-  { title: "Мультфильмы", path: "/ss" },
+  { title: "Сериалы", path: PATHS_LINKS.films + "?type=TV_SERIES&page=1" },
+  {
+    title: "Мультфильмы",
+    path: PATHS_LINKS.films + `?genres=${GENRES.CARTOONS}&page=1`,
+  },
 ];
 
 export const FOOTER_LINKS = [

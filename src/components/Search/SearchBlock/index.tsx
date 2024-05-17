@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useClickOutside } from "@hooks/useClickOutside";
 import { Spinner } from "@shared/Spinner";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectSearchKeyword } from "@store/selectors/app";
 
 export const SearchBlock: FC<SearchBlockProps> = ({
   films,
@@ -22,6 +24,7 @@ export const SearchBlock: FC<SearchBlockProps> = ({
     setIsOpened(false);
   };
   useClickOutside(searchRef, handleClose);
+  const searchKeyword = useAppSelector(selectSearchKeyword);
 
   return (
     <Container $isOpened={isOpened}>
@@ -50,7 +53,7 @@ export const SearchBlock: FC<SearchBlockProps> = ({
                 </Link>
               </div>
             </SearchItem>
-          )
+          ),
         )
       ) : (
         <SearchInfo>
@@ -58,7 +61,10 @@ export const SearchBlock: FC<SearchBlockProps> = ({
         </SearchInfo>
       )}
       {isMoreFilms && (
-        <Link to={PATHS_LINKS.films} className="centered-flex">
+        <Link
+          to={PATHS_LINKS.search + `?search_by_keyword=${searchKeyword}&page=1`}
+          className="centered-flex"
+        >
           <Button onClick={handleClose}>Показать все</Button>
         </Link>
       )}

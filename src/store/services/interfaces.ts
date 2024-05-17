@@ -31,7 +31,7 @@ export interface Film extends Premier {
 export interface SearchResponse {
   films: Film[];
   total: number;
-  totalPages: number;
+  pagesCount: number;
   searchFilmsCountResult: number;
 }
 
@@ -121,6 +121,7 @@ export enum GENRES {
   WESTERN = 10,
   COMEDY = 13,
   HORROR = 17,
+  CARTOONS = 18,
 }
 export enum GENRES_NAMES {
   THRILLER = "триллер",
