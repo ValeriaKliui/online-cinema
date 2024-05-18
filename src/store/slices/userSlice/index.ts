@@ -30,7 +30,6 @@ export const UserSlice = createSlice({
     builder.addMatcher(
       authorizeApi.endpoints.registerUser.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
         state.accessToken = payload.accessToken;
       },
     );

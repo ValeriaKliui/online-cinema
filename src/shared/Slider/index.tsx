@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Arrow, LeftArrow, Container, Item } from "./styled";
 import { SliderProps } from "./interfaces";
 
@@ -22,25 +22,18 @@ export const Slider = <T,>({
 
   const isEnd = currentIndex + itemsAmount >= items.length;
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const itemWidth = containerRef.current
-    ? containerRef.current?.getBoundingClientRect().width / itemsAmount
-    : 0;
-
   useEffect(() => {
     if (shouldBeReset) {
-      setShouldBeReset(false);
+      setShouldBeReset?.(false);
       setCurrentIndex(0);
     }
   }, [shouldBeReset, setShouldBeReset]);
 
-  console.log(shouldBeReset);
-
   return (
-    <Container ref={containerRef}>
+    <Container>
       {currentIndex != 0 && <LeftArrow onClick={onLeftClick} />}
       {items.slice(currentIndex, currentIndex + itemsAmount).map((item) => (
-        <Item $itemWidth={itemWidth}>{renderItem(item)}</Item>
+        <Item>{renderItem(item)}</Item>
       ))}
       {!isEnd && <Arrow onClick={onRightClick} />}
     </Container>

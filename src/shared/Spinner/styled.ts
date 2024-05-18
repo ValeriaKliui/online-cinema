@@ -6,7 +6,8 @@ export const SpinnerStyled = styled.div`
   border: 5px solid #fff;
   border-bottom-color: ${({ theme: { colors } }) => colors.primary};
   border-radius: 50%;
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
   box-sizing: border-box;
   animation: rotation 1s linear infinite;
 

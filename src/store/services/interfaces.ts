@@ -148,3 +148,7 @@ export interface FilmsByFilterResponse {
   totalPages: string;
   items: Film[];
 }
+export interface SearchParams {
+  page?: number;
+  keyword: string;
+}

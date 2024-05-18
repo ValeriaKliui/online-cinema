@@ -7,9 +7,7 @@ export const Nav = () => (
     <NavList>
       {NAV_LINKS.map(({ title, path }) => (
         <li key={title}>
-          <NavLink to={path} >
-            {title}
-          </NavLink>
+          <NavLink to={path}>{title}</NavLink>
         </li>
       ))}
     </NavList>

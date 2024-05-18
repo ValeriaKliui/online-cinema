@@ -21,7 +21,7 @@ export const Search = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [urlSearchParams] = useSearchParams();
-  const urlSearchValue = urlSearchParams.get("search_by_keyword") || "";
+  const urlSearchValue = urlSearchParams.get("keyword") || "";
   const searchKeyword = useAppSelector(selectSearchKeyword) || urlSearchValue;
 
   const searchRef = useRef(null);
@@ -31,7 +31,7 @@ export const Search = () => {
 
   const debouncedSearch = useDebounce<string>(
     (searchString: string) =>
-      searchString.length > 0 && searchByKeyword(searchString),
+      searchString.length > 0 && searchByKeyword({ keyword: searchString }),
   );
   const initialSerchWasMade = useRef(true);
 
@@ -48,12 +48,14 @@ export const Search = () => {
 
   useEffect(() => {
     if (initialSerchWasMade.current)
-      searchKeyword.length > 0 && searchByKeyword(searchKeyword);
+      searchKeyword.length > 0 && searchByKeyword({ keyword: searchKeyword });
   }, [searchKeyword, searchByKeyword]);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    navigate(PATHS_LINKS.search + `?search_by_keyword=${searchKeyword}&page=1`);
+    films &&
+      films?.length > 0 &&
+      navigate(PATHS_LINKS.search + `?keyword=${searchKeyword}&page=1`);
     setIsOpened(false);
   };
 

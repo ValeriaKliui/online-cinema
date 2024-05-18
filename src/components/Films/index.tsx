@@ -27,7 +27,10 @@ export const Films: FC<FilmsProps> = ({ films, isFetching }) => {
               nameEn,
               nameOriginal,
             }) => (
-              <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
+              <Link
+                to={PATHS_LINKS.films + "/" + kinopoiskId}
+                key={kinopoiskId}
+              >
                 <FilmCard
                   kinopoiskId={kinopoiskId}
                   nameRu={nameRu}

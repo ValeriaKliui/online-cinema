@@ -62,7 +62,7 @@ export const SearchBlock: FC<SearchBlockProps> = ({
       )}
       {isMoreFilms && (
         <Link
-          to={PATHS_LINKS.search + `?search_by_keyword=${searchKeyword}&page=1`}
+          to={PATHS_LINKS.search + `?keyword=${searchKeyword}&page=1`}
           className="centered-flex"
         >
           <Button onClick={handleClose}>Показать все</Button>

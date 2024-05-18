@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   gap: 2em;
+  align-items: center;
 `;
 export const Page = styled.div<{ $choosen: boolean }>`
   width: 2.5em;
@@ -21,4 +22,9 @@ export const Page = styled.div<{ $choosen: boolean }>`
     background-color: ${({ theme: { colors } }) => colors.hoverText};
     color: ${({ theme: { colors } }) => colors.primary};
   }
+`;
+export const TextButton = styled.p<{ $isAvailable: boolean }>`
+  cursor: ${({ $isAvailable }) => ($isAvailable ? "pointer" : "inherit")};
+  color: ${({ $isAvailable, theme: { colors } }) =>
+    $isAvailable ? colors.text : colors.subtext};
 `;

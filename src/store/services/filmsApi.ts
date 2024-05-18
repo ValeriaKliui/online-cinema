@@ -17,6 +17,7 @@ import {
   FilmInfoResponse,
   CollectionResponse,
   FilmsByFilterResponse,
+  SearchParams,
 } from "./interfaces";
 import { getFiltersUrl } from "@utils/getFiltersUrl";
 
@@ -41,8 +42,9 @@ export const filmsApi = createApi({
         });
       },
     }),
-    searchByKeyword: builder.query<SearchResponse, string>({
-      query: (keyword: string) => `${SEARCH_URL}?keyword=${keyword}&page=1`,
+    searchByKeyword: builder.query<SearchResponse, SearchParams>({
+      query: ({ keyword, page = 1 }: SearchParams) =>
+        `${SEARCH_URL}?keyword=${keyword}&page=${page}`,
     }),
     getCollectionByType: builder.query<CollectionResponse, string>({
       query: (collectionType: CollectionType) =>

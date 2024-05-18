@@ -17,6 +17,6 @@ export const Container = styled.div`
   display: flex;
   gap: 1em;
 `;
-export const Item = styled.div<{ $itemWidth: number }>`
-  flex: 0 1 ${({ $itemWidth = "100%" }) => $itemWidth}px;
+export const Item = styled.div`
+  flex: 0 1 100%;
 `;

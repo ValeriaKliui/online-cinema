@@ -2,29 +2,33 @@ import { Films } from "@components/Films";
 import { Pages } from "@components/Pages";
 import { Search } from "@components/Search";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
+import { SearchParams } from "@store/services/interfaces";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export const SearchPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchByKeyword, { data, isFetching }] = useLazySearchByKeywordQuery();
   const filmsParams = useMemo(
     () => Object.fromEntries([...searchParams]),
     [searchParams],
-  );
+  ) as unknown as SearchParams;
 
   useEffect(() => {
-    searchByKeyword(filmsParams["search_by_keyword"]);
+    const initialPageFromUrl = searchParams.get("page");
+    if (initialPageFromUrl) setCurrentPage(Number(initialPageFromUrl));
+  }, [searchParams]);
+
+  useEffect(() => {
+    searchByKeyword(filmsParams);
   }, [searchByKeyword, filmsParams]);
 
   const { films, pagesCount = 0 } = data ?? {};
 
-  console.log(searchParams.get("search_by_keyword"));
-
   const choosePage = (pageNum: number) => {
     setCurrentPage(pageNum);
-    // setSearchParams({ ...searchParams, page: String(pageNum) });
+    setSearchParams({ ...filmsParams, page: String(pageNum) });
   };
 
   return (
