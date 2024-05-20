@@ -1,10 +1,8 @@
 import { useFavouriteFilms } from "@hooks/useFavouriteFilms";
-import { useGetUserInfoQuery } from "@store/services/authorizeApi";
 import { useGetInfoAboutFilmsQuery } from "@store/services/filmsApi";
 
 export const FavouritePage = () => {
-  const userID = Number(localStorage.getItem("userId"));
-  useGetUserInfoQuery(userID, { skip: !userID });
+  // const userID = Number(localStorage.getItem("userId"));
   const { favouriteFilmsIDs } = useFavouriteFilms();
 
   const { data: favouriteFilms } = useGetInfoAboutFilmsQuery(favouriteFilmsIDs);

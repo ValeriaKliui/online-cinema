@@ -5,6 +5,8 @@ import { CollectionType, Film } from "@store/services/interfaces";
 import { useEffect, useState } from "react";
 import { Container, TabType, Tabs } from "./styled";
 import { Slider } from "@shared/Slider";
+import { PATHS_LINKS } from "@constants/paths";
+import { Link } from "react-router-dom";
 
 export const Collections = () => {
   const [shouldBeReset, setShouldBeReset] = useState(false);
@@ -33,15 +35,17 @@ export const Collections = () => {
     ratingKinopoisk,
     nameEn,
   }: Film) => (
-    <FilmCard
-      kinopoiskId={kinopoiskId}
-      nameRu={nameRu}
-      posterUrlPreview={posterUrlPreview}
-      year={year}
-      ratingImdb={ratingImdb}
-      ratingKinopoisk={ratingKinopoisk}
-      nameEn={nameEn}
-    />
+    <Link to={PATHS_LINKS.films + "/" + kinopoiskId} key={kinopoiskId}>
+      <FilmCard
+        kinopoiskId={kinopoiskId}
+        nameRu={nameRu}
+        posterUrlPreview={posterUrlPreview}
+        year={year}
+        ratingImdb={ratingImdb}
+        ratingKinopoisk={ratingKinopoisk}
+        nameEn={nameEn}
+      />
+    </Link>
   );
 
   return (

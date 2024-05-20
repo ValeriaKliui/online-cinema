@@ -4,7 +4,7 @@ import { UserState } from "./interfaces";
 import { ACCESS_TOKEN } from "@constants/authorizeApi";
 
 const initialState: UserState = {
-  user: null,
+  user: { id: Number(localStorage.getItem("userId")), email: "" },
   accessToken: localStorage.getItem(ACCESS_TOKEN) || null,
   favouriteFilmsIDs: [],
 };
