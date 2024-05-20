@@ -3,7 +3,7 @@ import { PATHS_LINKS } from "@constants/paths";
 import { Button } from "@shared/Button";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
 import { selectUserEmail } from "@store/selectors/user";
-import { useGetUserInfoQuery } from "@store/services/authorizeApi";
+import { useGetUserInfoQuery } from "@store/services/userApi";
 import { logoutUser } from "@store/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 

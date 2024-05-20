@@ -6,7 +6,9 @@ export const Gallery: FC<GalleryProps> = ({ kinopoiskId }) => {
   const { data: images } = useGetImagesQuery(kinopoiskId);
   return (
     <div className="wrapper">
-      {images?.items.map(({ imageUrl }) => <img src={imageUrl} />)}
+      {images?.items.map(({ imageUrl }) => (
+        <img src={imageUrl} key={imageUrl} />
+      ))}
     </div>
   );
 };

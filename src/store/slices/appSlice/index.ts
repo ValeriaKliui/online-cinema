@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState, Errors } from "./interfaces";
 import { getRejectedExtraReducers } from "@utils/getRejectedExtraReducers";
 import { filmsApi } from "@store/services/filmsApi";
-import { authorizeApi } from "@store/services/authorizeApi";
+import { authApi } from "@store/services/authApi";
 
 const initialState: AppState = {
   isFilmsError: false,
@@ -28,7 +28,7 @@ export const appSlice = createSlice({
     );
     getRejectedExtraReducers(
       builder,
-      authorizeApi,
+      authApi,
       (state: AppState, { payload }: PayloadAction<Errors>) => {
         state.authorizationError = payload.data;
       },

@@ -1,7 +1,7 @@
 import { AuthorizeForm } from "@components/AuthorizeForm";
 import { ACCESS_TOKEN } from "@constants/authorizeApi";
 import { PATHS_LINKS } from "@constants/paths";
-import { useLazyLoginUserQuery } from "@store/services/authorizeApi";
+import { useLazyLoginUserQuery } from "@store/services/authApi";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

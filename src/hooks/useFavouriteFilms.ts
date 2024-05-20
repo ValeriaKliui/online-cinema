@@ -1,45 +1,69 @@
-import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
+import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUserId } from "@store/selectors/user";
 import {
   useGetUserInfoQuery,
-  useLazySaveFavouriteFilmsQuery,
-} from "@store/services/authorizeApi";
-import { addToFavourites, removeFromFavourites } from "@store/slices/userSlice";
+  useSaveFavouriteFilmsMutation,
+} from "@store/services/userApi";
 import { useCallback } from "react";
 
 export const useFavouriteFilms = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const userID = useAppSelector(selectUserId);
-  const [saveToFavourite] = useLazySaveFavouriteFilmsQuery();
 
-  const { favouriteFilmsIDs } = useGetUserInfoQuery(userID, { skip: !userID });
+  const { data } = useGetUserInfoQuery(userID, {
+    skip: !userID,
+  });
 
-  const removeFromFavourite = useCallback(
-    (kinopoiskId: string | number) => {
-      const ID = Number(kinopoiskId);
-      dispatch(removeFromFavourites(ID));
-    },
-    [dispatch],
-  );
+  const [
+    saveToFavourite,
+    // , result
+  ] = useSaveFavouriteFilmsMutation();
+
+  // const [saveToFavourite] = useLazySaveFavouriteFilmsQuery();
+
+  // const removeFromFavourite = useCallback(
+  //   (kinopoiskId: string | number) => {
+  //     const ID = Number(kinopoiskId);
+  //     dispatch(removeFromFavourites(ID));
+  //   },
+  //   [dispatch]
+  // );
 
   const addToFavourite = useCallback(
     (kinopoiskId: number) => {
-      const isntAdded = !favouriteFilmsIDs.includes(kinopoiskId);
+      const { favouriteFilmsIDs } = data ?? {};
 
-      console.log(userID, isntAdded);
-
-      isntAdded
-        ? dispatch(addToFavourites(kinopoiskId))
-        : removeFromFavourite(kinopoiskId);
-
-      if (userID && isntAdded)
-        saveToFavourite({
-          id: userID,
-          favouriteFilmsIDs: [...favouriteFilmsIDs, kinopoiskId],
-        });
+      const newFavIDs = [...favouriteFilmsIDs, kinopoiskId];
+      console.log(newFavIDs);
+      saveToFavourite({
+        id: userID,
+        favouriteFilmsIDs: newFavIDs,
+      });
+      // const isntAdded = !favouriteFilmsIDs.includes(kinopoiskId);
+      // console.log(userID, isntAdded);
+      // isntAdded
+      //   ? dispatch(addToFavourites(kinopoiskId))
+      //   : removeFromFavourite(kinopoiskId);
+      // if (userID && isntAdded)
+      //   saveToFavourite({
+      //     id: userID,
+      //     favouriteFilmsIDs: [...favouriteFilmsIDs, kinopoiskId],
+      //   });
     },
-    [favouriteFilmsIDs, dispatch, removeFromFavourite, saveToFavourite, userID],
+    [
+      data,
+      saveToFavourite,
+      userID,
+      // favouriteFilmsIDs,
+      // dispatch,
+      // removeFromFavourite,
+      // saveToFavourite,
+      // userID,
+    ],
   );
 
-  return { addToFavourite, removeFromFavourite, favouriteFilmsIDs };
+  return {
+    addToFavourite,
+    // removeFromFavourite, favouriteFilmsIDs
+  };
 };

@@ -1,10 +1,10 @@
 import { Button } from "@shared/Button";
 import { Media, Container, AuthorizeScreen } from "./styled";
 import { AuthorizeForm } from "@components/AuthorizeForm";
-import { useLazyRegisterUserQuery } from "@store/services/authorizeApi";
 import { NavLink, useNavigate } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useEffect } from "react";
+import { useLazyRegisterUserQuery } from "@store/services/authApi";
 
 export const Register = () => {
   const navigate = useNavigate();

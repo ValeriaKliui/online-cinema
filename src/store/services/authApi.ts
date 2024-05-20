@@ -8,8 +8,8 @@ import {
   UserInfoResponse,
 } from "./interfaces";
 
-export const authorizeApi = createApi({
-  reducerPath: "authorizeApi",
+export const authApi = createApi({
+  reducerPath: "authApi",
   baseQuery: fetchBaseQuery({ baseUrl: AUTHORIZE_URL }),
   endpoints: (builder) => ({
     registerUser: builder.query<AuthorizeResponse, UserData>({
@@ -32,19 +32,15 @@ export const authorizeApi = createApi({
         method: "GET",
       }),
     }),
-    saveFavouriteFilms: builder.query<undefined, FavouriteFilmsParams>({
+    saveFavouriteFilms: builder.mutation<undefined, FavouriteFilmsParams>({
       query: ({ id, favouriteFilmsIDs }) => ({
         url: `${AUTHORIZE_URL}/${id}`,
         method: "PATCH",
         body: { favouriteFilmsIDs },
+        //   invalidatesTags: (post) => [{ type: 'Posts', id: post?.id }],
       }),
     }),
   }),
 });
 
-export const {
-  useLazyRegisterUserQuery,
-  useLazyLoginUserQuery,
-  useLazySaveFavouriteFilmsQuery,
-  useGetUserInfoQuery,
-} = authorizeApi;
+export const { useLazyRegisterUserQuery, useLazyLoginUserQuery } = authApi;

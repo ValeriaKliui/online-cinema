@@ -11,8 +11,8 @@ export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
     <div className="wrapper">
       <p>Актеры и создатели</p>
       <StaffContainer>
-        {staffInfo?.map(({ posterUrl, professionKey, nameRu }) => (
-          <div>
+        {staffInfo?.map(({ posterUrl, professionKey, nameRu, staffId }) => (
+          <div key={staffId + professionKey}>
             <img src={posterUrl} />
             <p>{nameRu}</p>
             <p>
