@@ -4,11 +4,14 @@ import { AuthorizeForm } from "@components/AuthorizeForm";
 import { NavLink, useNavigate } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useEffect } from "react";
-import { useLazyRegisterUserQuery } from "@store/services/authApi";
+import { useRegisterMutation } from "@store/services/userApi";
+import { useError } from "@hooks/useError";
 
 export const Register = () => {
   const navigate = useNavigate();
-  const [registerUser, { isSuccess }] = useLazyRegisterUserQuery();
+  const [registerUser, { isSuccess, error }] = useRegisterMutation();
+
+  const errorText = useError(error);
 
   useEffect(() => {
     if (isSuccess) navigate(PATHS_LINKS.login);
@@ -32,6 +35,7 @@ export const Register = () => {
           buttonText="Зарегистрироваться"
           description="или введите email для регистрации"
           onSubmit={registerUser}
+          errorText={errorText}
           block
         />
       </AuthorizeScreen>

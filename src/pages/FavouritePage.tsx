@@ -5,6 +5,8 @@ export const FavouritePage = () => {
   // const { data: favouriteFilms } = useGetInfoAboutFilmsQuery(favouriteFilmsIDs);
   // // console.log(favouriteFilms);
 
+  // const { data } = useGetUserInfoQuery(5);
+
   return (
     <div>
       {/* ИЗБРАННОЕ

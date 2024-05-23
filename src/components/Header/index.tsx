@@ -4,10 +4,20 @@ import { selectRandomFilm } from "@store/selectors/films";
 import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
 import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
+import { useGetUserInfoQuery } from "@store/services/userApi";
+import { ACCESS_TOKEN, USER_ID } from "@constants/authorizeApi";
 
 export const Header = () => {
   const randomFilm = useAppSelector(selectRandomFilm);
   const { posterUrl } = randomFilm ?? {};
+
+  const savedAccessToken = localStorage.getItem(ACCESS_TOKEN);
+  const savedUserID = localStorage.getItem(USER_ID) || "";
+
+  useGetUserInfoQuery(savedUserID, {
+    skip: !savedAccessToken,
+    pollingInterval: 900000,
+  });
 
   return (
     <HeaderContainer $posterUrl={posterUrl}>
