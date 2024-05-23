@@ -1,22 +1,36 @@
 import { AuthorizeForm } from "@components/AuthorizeForm";
-import { ACCESS_TOKEN } from "@constants/authorizeApi";
+import { ACCESS_TOKEN, USER_ID } from "@constants/authorizeApi";
 import { PATHS_LINKS } from "@constants/paths";
-import { useLazyLoginUserQuery } from "@store/services/authApi";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectUser } from "@store/selectors/user";
+import { useLoginMutation } from "@store/services/userApi";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const [loginUser, { isSuccess, data }] = useLazyLoginUserQuery();
-  const { accessToken, user } = data ?? {};
+  // const [loginUser, { isSuccess, data }] = useLazyLoginUserQuery();
+  // const { accessToken, user } = data ?? {};
+  const [login, { isSuccess, data }] = useLoginMutation();
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     if (isSuccess) {
+      const {
+        accessToken,
+        user: { id },
+      } = data;
       navigate(PATHS_LINKS.main);
-      accessToken && localStorage.setItem(ACCESS_TOKEN, accessToken);
-      user?.id && localStorage.setItem("userId", String(user.id));
+      localStorage.setItem(ACCESS_TOKEN, accessToken);
+      localStorage.setItem(USER_ID, String(id));
     }
-  }, [isSuccess, navigate, accessToken, user?.id]);
+  }, [data, navigate, isSuccess]);
+
+  useEffect(() => {
+    if (user) {
+      navigate(PATHS_LINKS.account);
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -24,7 +38,7 @@ export const Login = () => {
         title="Логин"
         buttonText="Войти"
         description="Введите свои данные, чтобы  войти в аккаунт"
-        onSubmit={loginUser}
+        onSubmit={login}
       />
     </>
   );

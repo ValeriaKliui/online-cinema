@@ -58,13 +58,16 @@ export enum CollectionType {
   CATASTROPHE_THEME = "CATASTROPHE_THEME",
   KIDS_ANIMATION_THEME = "KIDS_ANIMATION_THEME",
 }
-export type UserInfoResponse = Pick<User, "id"> &
-  Pick<UserState, "favouriteFilmsIDs">;
+export type UserInfoResponse = User;
 
 export type AuthorizeResponse = UserState;
 export type FavouriteFilmsParams = Pick<UserState, "favouriteFilmsIDs"> &
   Pick<User, "id">;
-export type LoginResponse = UserState;
+
+export interface LoginResponse {
+  user: User;
+  accessToken: string;
+}
 
 export interface StaffPerson {
   staffId: number;

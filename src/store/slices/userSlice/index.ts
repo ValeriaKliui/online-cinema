@@ -1,53 +1,66 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authApi } from "@store/services/authApi";
+import { createSlice } from "@reduxjs/toolkit";
 import { UserState } from "./interfaces";
+import { userApi } from "@store/services/userApi";
 import { ACCESS_TOKEN } from "@constants/authorizeApi";
 
+const accessToken = localStorage.getItem(ACCESS_TOKEN);
+
 const initialState: UserState = {
-  user: { id: Number(localStorage.getItem("userId")), email: "" },
-  accessToken: localStorage.getItem(ACCESS_TOKEN) || null,
+  user: null,
+  accessToken,
 };
 
 export const UserSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // addToFavourites: (state, action: PayloadAction<number>) => {
-    //   state.favouriteFilmsIDs = [...state.favouriteFilmsIDs, action.payload];
-    // },
-    removeFromFavourites: (state, action: PayloadAction<number>) => {
-      state.favouriteFilmsIDs = state.favouriteFilmsIDs.filter(
-        (id) => id !== action.payload,
-      );
-    },
-    logoutUser: (state) => {
-      state.user = null;
-      state.favouriteFilmsIDs = [];
-    },
+    logout: () => initialState,
   },
-  extraReducers(builder) {
-    builder.addMatcher(
-      authApi.endpoints.registerUser.matchFulfilled,
-      (state, { payload }) => {
-        state.accessToken = payload.accessToken;
-      },
-    );
-    builder.addMatcher(
-      authApi.endpoints.loginUser.matchFulfilled,
-      (state, { payload }) => {
-        state.user = payload.user;
-      },
-    );
-    // builder.addMatcher(
-    //   userApi.endpoints.getUserInfo.matchFulfilled,
-    //   (state, { payload }) => {
-    //     state.user = { ...state.user, ...payload };
-    //     state.favouriteFilmsIDs = payload.favouriteFilmsIDs;
-    //   }
-    // );
+  extraReducers: (builder) => {
+    builder
+      .addMatcher(userApi.endpoints.register.matchPending, () => {
+        console.log("register pending");
+      })
+      .addMatcher(
+        userApi.endpoints.register.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload.user;
+          state.accessToken = payload.accessToken;
+        },
+      )
+      .addMatcher(userApi.endpoints.register.matchRejected, () => {
+        console.log("register rejected");
+      });
+    builder
+      .addMatcher(userApi.endpoints.login.matchPending, () => {
+        console.log("login pending");
+      })
+      .addMatcher(
+        userApi.endpoints.login.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload.user;
+          state.accessToken = payload.accessToken;
+        },
+      )
+      .addMatcher(userApi.endpoints.login.matchRejected, () => {
+        console.log("login rejected");
+      });
+    builder
+      .addMatcher(userApi.endpoints.getUserInfo.matchPending, () => {
+        console.log("info pending");
+      })
+      .addMatcher(
+        userApi.endpoints.getUserInfo.matchFulfilled,
+        (state, { payload }) => {
+          state.user = payload;
+        },
+      )
+      .addMatcher(userApi.endpoints.getUserInfo.matchRejected, () => {
+        console.log("info rejected");
+      });
   },
 });
 
-export const { removeFromFavourites, logoutUser } = UserSlice.actions;
+export const { logout } = UserSlice.actions;
 
 export default UserSlice.reducer;

@@ -4,23 +4,18 @@ import { filmsApi } from "./services/filmsApi";
 import filmsReducer from "./slices/filmsSlice/filmsSlice";
 import userReducer from "./slices/userSlice";
 import appReducer from "./slices/appSlice";
-import { authApi } from "./services/authApi";
-import { userApi } from "./services/userApi";
+import { api } from "./services/api";
 
 export const store = configureStore({
   reducer: {
     films: filmsReducer,
     user: userReducer,
     app: appReducer,
+    [api.reducerPath]: api.reducer,
     [filmsApi.reducerPath]: filmsApi.reducer,
-    [authApi.reducerPath]: authApi.reducer,
-    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(filmsApi.middleware)
-      .concat(authApi.middleware)
-      .concat(userApi.middleware),
+    getDefaultMiddleware().concat(api.middleware).concat(filmsApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

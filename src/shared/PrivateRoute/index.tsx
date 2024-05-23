@@ -1,15 +1,17 @@
 import { PATHS_LINKS } from "@constants/paths";
 import { FC } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { PrivateRouteProps } from "./styled";
-import { ACCESS_TOKEN } from "@constants/authorizeApi";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectUser } from "@store/selectors/user";
 
 export const PrivateRoute: FC<PrivateRouteProps> = ({ children }) => {
-  const accessToken = localStorage.getItem(ACCESS_TOKEN);
+  const user = useAppSelector(selectUser);
+  const location = useLocation();
 
-  return !accessToken ? (
-    <Navigate to={PATHS_LINKS.register} />
-  ) : (
+  return user ? (
     <> {children}</>
+  ) : (
+    <Navigate to={PATHS_LINKS.register} state={{ from: location }} />
   );
 };
