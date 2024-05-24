@@ -17,5 +17,6 @@ export const useError = (
       } else setErrorText(error.message);
     }
   }, [error]);
-  return errorText;
+
+  return { error: errorText };
 };

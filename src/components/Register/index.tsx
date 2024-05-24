@@ -11,7 +11,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const [registerUser, { isSuccess, error }] = useRegisterMutation();
 
-  const errorText = useError(error);
+  const authError = useError(error);
 
   useEffect(() => {
     if (isSuccess) navigate(PATHS_LINKS.login);
@@ -35,7 +35,7 @@ export const Register = () => {
           buttonText="Зарегистрироваться"
           description="или введите email для регистрации"
           onSubmit={registerUser}
-          errorText={errorText}
+          authError={authError}
           block
         />
       </AuthorizeScreen>

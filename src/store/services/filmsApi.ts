@@ -37,9 +37,17 @@ export const filmsApi = createApi({
         const promises = ids.map((id) => {
           return fetchInfoAboutFilms(id);
         });
-        return Promise.all(promises).then((results) => {
-          return { data: results };
-        });
+
+        return (
+          Promise.allSettled(promises)
+            // .then((results) => {
+            //   console.log("results", results);
+            //   return results;
+            // })
+            .then((results) => results.filter((result) => result.value))
+            .then((results) => results.map((result) => result.value))
+            .then((values) => ({ data: values }))
+        );
       },
     }),
     searchByKeyword: builder.query<SearchResponse, SearchParams>({

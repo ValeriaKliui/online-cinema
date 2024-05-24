@@ -1,6 +1,7 @@
 import { AuthorizeForm } from "@components/AuthorizeForm";
 import { ACCESS_TOKEN, USER_ID } from "@constants/authorizeApi";
 import { PATHS_LINKS } from "@constants/paths";
+import { useError } from "@hooks/useError";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUser } from "@store/selectors/user";
 import { useLoginMutation } from "@store/services/userApi";
@@ -11,8 +12,9 @@ export const Login = () => {
   const navigate = useNavigate();
   // const [loginUser, { isSuccess, data }] = useLazyLoginUserQuery();
   // const { accessToken, user } = data ?? {};
-  const [login, { isSuccess, data }] = useLoginMutation();
+  const [login, { isSuccess, data, error }] = useLoginMutation();
   const user = useAppSelector(selectUser);
+  const authError = useError(error);
 
   useEffect(() => {
     if (isSuccess) {
@@ -39,6 +41,7 @@ export const Login = () => {
         buttonText="Войти"
         description="Введите свои данные, чтобы  войти в аккаунт"
         onSubmit={login}
+        authError={authError}
       />
     </>
   );

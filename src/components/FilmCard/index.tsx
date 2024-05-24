@@ -7,6 +7,7 @@ import {
   ImgContainer,
   Rating,
 } from "./styled";
+import { formatArrayToStrings } from "@utils/formatArrayToStrings";
 
 export const FilmCard: FC<FilmCardProps> = ({
   kinopoiskId,
@@ -18,6 +19,8 @@ export const FilmCard: FC<FilmCardProps> = ({
   expanded,
   nameEn,
   nameOriginal,
+  genres,
+  countries,
 }) => {
   const rating = (ratingImdb ?? ratingKinopoisk)?.toFixed(1);
 
@@ -30,6 +33,8 @@ export const FilmCard: FC<FilmCardProps> = ({
         <p className="m">{nameRu || nameEn || nameOriginal}</p>
         {year && <p>{year}</p>}
         {rating && <Rating>{rating}</Rating>}
+        <p>{formatArrayToStrings(countries)}</p>
+        <p>{formatArrayToStrings(genres)}</p>
       </Description>
     </Container>
   );

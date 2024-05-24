@@ -8,9 +8,11 @@ export interface AuthorizeFormProps {
   description: string;
   onSubmit: (userData: UserData) => void;
   block?: boolean;
-  errorText?: string | null;
+  authError?: { error?: string | null };
 }
 export enum AuthorizationErrors {
   EMAIL_EXISTS = "Email already exists",
   BAD_EMAIL = "Email format is invalid",
+  NO_USER = "Cannot find user",
+  WRONG_PASSWORD = "Incorrect password",
 }

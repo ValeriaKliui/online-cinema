@@ -1,6 +1,6 @@
 import { Button } from "@shared/Button";
 import { Input } from "@shared/Input";
-import { ChangeEvent, FC, SyntheticEvent, useState } from "react";
+import { ChangeEvent, FC, SyntheticEvent, useEffect, useState } from "react";
 import { AuthorizeFormProps, UserData } from "./interfaces";
 import { Container, FormContainer } from "./styled";
 import { Networks } from "@components/Register/styled";
@@ -8,6 +8,7 @@ import YtIcon from "@assets/icons/google.svg?react";
 import VkSvg from "@assets/icons/vk.svg?react";
 import InSvg from "@assets/icons/in.svg?react";
 import { getAuthErrorText } from "@utils/getAuthErrorText";
+import { getAuthErrors } from "@utils/getAuthErrors";
 
 export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   buttonText,
@@ -15,44 +16,37 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   description,
   onSubmit,
   block,
-  errorText,
+  authError,
 }) => {
   const [userData, setUserData] = useState<UserData>({
     email: "",
     password: "",
   });
 
-  const [errorFinal, setErrorFinal] = useState<null | string>(null);
-
-  const authErrorText = getAuthErrorText(errorText);
+  const [error, setError] = useState<null | string>(null);
+  const isSubmitAvailable =
+    error === null && userData.email !== "" && userData.password !== "";
 
   const onChange = (event: ChangeEvent<HTMLFormElement>) => {
     const {
       target: { name, value },
     } = event;
     setUserData((prevData) => ({ ...prevData, [name]: value }));
-    setErrorFinal(null);
+    setError(null);
   };
 
   const onFormSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    const error = getErrors();
-    setErrorFinal(error);
+    const error = getAuthErrors(userData);
+    setError(error);
 
     !error && onSubmit(userData);
   };
 
-  const getErrors = () => {
-    let error: null | string = null;
-    const { email, password } = userData;
-
-    if (!email || !password) error = "Введите email и пароль";
-    else if (!email.includes("@")) error = "Введите корректный email";
-    else if (authErrorText) error = authErrorText;
-    else error = null;
-
-    return error;
-  };
+  useEffect(() => {
+    const authErrorText = getAuthErrorText(authError?.error);
+    if (authError) setError(authErrorText);
+  }, [authError]);
 
   return (
     <Container>
@@ -66,8 +60,8 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
       <FormContainer onSubmit={onFormSubmit} onChange={onChange} $block={block}>
         <Input placeholder="Email" light block name="email" />
         <Input placeholder="Пароль" light block name="password" />
-        {errorFinal && <p>{errorFinal}</p>}
-        <Button> {buttonText}</Button>
+        {error && <p>{error}</p>}
+        <Button disabled={!isSubmitAvailable}> {buttonText}</Button>
       </FormContainer>
     </Container>
   );

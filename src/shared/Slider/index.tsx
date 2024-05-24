@@ -32,9 +32,11 @@ export const Slider = <T,>({
   return (
     <Container>
       {currentIndex != 0 && <LeftArrow onClick={onLeftClick} />}
-      {items.slice(currentIndex, currentIndex + itemsAmount).map((item) => (
-        <Item>{renderItem(item)}</Item>
-      ))}
+      {items
+        .slice(currentIndex, currentIndex + itemsAmount)
+        .map((item, index) => (
+          <Item key={index}>{renderItem(item)}</Item>
+        ))}
       {!isEnd && <Arrow onClick={onRightClick} />}
     </Container>
   );

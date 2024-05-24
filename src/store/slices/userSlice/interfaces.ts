@@ -6,5 +6,4 @@ export interface UserState {
 export interface User {
   email: string;
   id: number;
-  favouriteFilmsIDs: number[];
 }

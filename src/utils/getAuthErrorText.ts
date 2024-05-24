@@ -10,6 +10,12 @@ export const getAuthErrorText = (errorEngText?: string | null) => {
     case AuthorizationErrors.BAD_EMAIL:
       errorText = "Некорректный email";
       break;
+    case AuthorizationErrors.NO_USER:
+      errorText = "Пользователь с таким email не найден";
+      break;
+    case AuthorizationErrors.WRONG_PASSWORD:
+      errorText = "Неправильный пароль";
+      break;
     default:
       break;
   }

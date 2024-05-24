@@ -5,7 +5,12 @@ import { FilmBlockProps } from "./interfaces";
 import YoutubeSvg from "@assets/icons/youtube.svg?react";
 import SaveSvg from "@assets/icons/save.svg?react";
 import { Container, Poster, FilmProperties, FilmInfo, Buttons } from "./styled";
-import { useFavouriteFilms } from "@hooks/useFavouriteFilms";
+import {
+  useGetFavoriteFilmsIDsQuery,
+  useUpdateUserFavouriteFilmsMutation,
+} from "@store/services/userApi";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectUser } from "@store/selectors/user";
 
 export const FilmBlock: FC<FilmBlockProps> = ({
   nameRu,
@@ -17,7 +22,30 @@ export const FilmBlock: FC<FilmBlockProps> = ({
   posterUrl,
   kinopoiskId,
 }) => {
-  const { addToFavourite } = useFavouriteFilms();
+  const user = useAppSelector(selectUser);
+  const { id = 0 } = user ?? {};
+  const { data } = useGetFavoriteFilmsIDsQuery(id, { skip: id === 0 });
+  const { favouriteFilmsIDs } = data ?? {};
+
+  const isInFav = favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
+
+  const [updateFavFilmsIDs] = useUpdateUserFavouriteFilmsMutation();
+
+  const updateFavIDs = () => {
+    if (!isInFav) {
+      updateFavFilmsIDs({
+        id,
+        favouriteFilmsIDs: [...favouriteFilmsIDs, kinopoiskId],
+      });
+    } else {
+      updateFavFilmsIDs({
+        id,
+        favouriteFilmsIDs: favouriteFilmsIDs.filter(
+          (filmID) => filmID !== kinopoiskId,
+        ),
+      });
+    }
+  };
 
   return (
     <Container className="wrapper">
@@ -37,8 +65,9 @@ export const FilmBlock: FC<FilmBlockProps> = ({
           <Button>
             Смотреть по подписке <YoutubeSvg />
           </Button>
-          <Button onClick={() => addToFavourite(kinopoiskId)}>
-            В избранное <SaveSvg />
+          <Button onClick={updateFavIDs}>
+            {isInFav ? " В избранном" : "В избранное"}
+            <SaveSvg />
           </Button>
         </Buttons>
       </FilmInfo>

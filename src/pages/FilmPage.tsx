@@ -40,23 +40,20 @@ export const FilmPage = () => {
         />
       </FilmBg>
       <div>
-        {" "}
         <div className="wrapper">
-          {" "}
-          <h5>Трейлеры</h5>{" "}
+          <h5>Трейлеры</h5>
           {videos &&
             videos.map(({ url, name }) => (
               <div key={url}>
-                {" "}
-                <p>{name}</p> <iframe width="320" height="240" src={url} />{" "}
+                <p>{name}</p> <iframe width="320" height="240" src={url} />
               </div>
-            ))}{" "}
-        </div>{" "}
-        <Staff kinopoiskId={kinopoiskId} />{" "}
-        <Reviews kinopoiskId={kinopoiskId} />{" "}
-        <Gallery kinopoiskId={kinopoiskId} />{" "}
-        <SimilarFilms kinopoiskId={kinopoiskId} />{" "}
-      </div>{" "}
+            ))}
+        </div>
+        <Staff kinopoiskId={kinopoiskId} />
+        <Reviews kinopoiskId={kinopoiskId} />
+        <Gallery kinopoiskId={kinopoiskId} />
+        <SimilarFilms kinopoiskId={kinopoiskId} />
+      </div>
     </>
   );
 };

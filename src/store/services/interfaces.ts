@@ -143,9 +143,7 @@ export interface FilterParams {
   page?: number;
   keyword?: string;
 }
-export interface FilmInfoResponse {
-  films: Film[];
-}
+export type FilmInfoResponse = Film[];
 export interface FilmsByFilterResponse {
   total: string;
   totalPages: string;
@@ -155,3 +153,9 @@ export interface SearchParams {
   page?: number;
   keyword: string;
 }
+export interface FavouriteFilmsResponse {
+  id: number[];
+}
+export type RemoveFromFavouriteParams = Pick<User, "id"> & {
+  favouriteFilmsIDs: number[];
+};

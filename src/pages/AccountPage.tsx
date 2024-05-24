@@ -20,7 +20,7 @@ export const AccountPage = () => {
   return (
     <div className="wrapper">
       <h4> {userEmail}</h4>
-      <Link to={PATHS_LINKS.favourite}>изрбраоон</Link>
+      <Link to={PATHS_LINKS.favourite}>Избранное</Link>
       <Button onClick={onLogout}>Выйти</Button>
     </div>
   );

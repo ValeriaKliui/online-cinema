@@ -1,6 +1,14 @@
-import { AUTHORIZE_URL, LOGIN_URL } from "@constants/authorizeApi";
+import {
+  AUTHORIZE_URL,
+  FAVOURITE_FILMS_URL,
+  LOGIN_URL,
+} from "@constants/authorizeApi";
 import { api } from "./api";
-import { LoginResponse, UserInfoResponse } from "./interfaces";
+import {
+  LoginResponse,
+  RemoveFromFavouriteParams,
+  UserInfoResponse,
+} from "./interfaces";
 import { UserData } from "@components/AuthorizeForm/interfaces";
 
 export const userApi = api.injectEndpoints({
@@ -25,6 +33,21 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
+    getFavoriteFilmsIDs: build.query<number[], number>({
+      query: (userID) => ({
+        url: `${FAVOURITE_FILMS_URL}/${userID}`,
+        method: "GET",
+        providesTags: ["FavouriteFilmsIDs"],
+      }),
+    }),
+    updateUserFavouriteFilms: build.mutation<void, RemoveFromFavouriteParams>({
+      query: ({ id, favouriteFilmsIDs }) => ({
+        url: `${FAVOURITE_FILMS_URL}/${id}`,
+        method: "PATCH",
+        body: { favouriteFilmsIDs },
+        providesTags: ["FavouriteFilmsIDs"],
+      }),
+    }),
   }),
 });
 
@@ -33,6 +56,8 @@ export const {
   useRegisterMutation,
   useGetUserInfoQuery,
   useLazyGetUserInfoQuery,
+  useGetFavoriteFilmsIDsQuery,
+  useUpdateUserFavouriteFilmsMutation,
 } = userApi;
 
 // import { AUTHORIZE_URL } from "@constants/authorizeApi";
