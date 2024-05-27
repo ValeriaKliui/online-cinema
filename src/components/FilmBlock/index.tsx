@@ -23,28 +23,23 @@ export const FilmBlock: FC<FilmBlockProps> = ({
   kinopoiskId,
 }) => {
   const user = useAppSelector(selectUser);
-  const { id = 0 } = user ?? {};
-  const { data } = useGetFavoriteFilmsIDsQuery(id, { skip: id === 0 });
-  const { favouriteFilmsIDs } = data ?? {};
+  const { id } = user ?? {};
+  const { data, error } = useGetFavoriteFilmsIDsQuery(id, { skip: !id });
+  const { favouriteFilmsIDs = [] } = data ?? {};
 
   const isInFav = favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
 
   const [updateFavFilmsIDs] = useUpdateUserFavouriteFilmsMutation();
 
   const updateFavIDs = () => {
-    if (!isInFav) {
-      updateFavFilmsIDs({
-        id,
-        favouriteFilmsIDs: [...favouriteFilmsIDs, kinopoiskId],
-      });
-    } else {
-      updateFavFilmsIDs({
-        id,
-        favouriteFilmsIDs: favouriteFilmsIDs.filter(
-          (filmID) => filmID !== kinopoiskId,
-        ),
-      });
-    }
+    const isInFav = favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
+    const noFavFilmsYet = !error && error?.status !== 404;
+    const updatedFavFilmsIDs = !isInFav ? [...favouriteFilmsIDs, kinopoiskId] :
+      favouriteFilmsIDs.filter(
+        (filmID) => filmID !== kinopoiskId,
+      )
+
+    updateFavFilmsIDs({ id, favouriteFilmsIDs: updatedFavFilmsIDs, userExists: noFavFilmsYet })
   };
 
   return (

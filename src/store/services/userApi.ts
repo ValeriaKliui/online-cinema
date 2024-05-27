@@ -2,51 +2,71 @@ import {
   AUTHORIZE_URL,
   FAVOURITE_FILMS_URL,
   LOGIN_URL,
-} from "@constants/authorizeApi";
-import { api } from "./api";
+} from '@constants/authorizeApi';
+import { api } from './api';
 import {
   LoginResponse,
   RemoveFromFavouriteParams,
   UserInfoResponse,
-} from "./interfaces";
-import { UserData } from "@components/AuthorizeForm/interfaces";
+} from './interfaces';
+import { UserData } from '@components/AuthorizeForm/interfaces';
+import { checkIfUserFavFilmsExists } from './apiUtils';
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     register: build.mutation({
       query: (userData) => ({
         url: AUTHORIZE_URL,
-        method: "POST",
+        method: 'POST',
         body: userData,
       }),
     }),
     login: build.mutation<LoginResponse, UserData>({
       query: (userData) => ({
         url: LOGIN_URL,
-        method: "POST",
+        method: 'POST',
         body: userData,
       }),
     }),
     getUserInfo: build.query<UserInfoResponse, number | string>({
       query: (userID) => ({
         url: `${AUTHORIZE_URL}/${userID}`,
-        method: "GET",
+        method: 'GET',
       }),
     }),
     getFavoriteFilmsIDs: build.query<number[], number>({
       query: (userID) => ({
         url: `${FAVOURITE_FILMS_URL}/${userID}`,
-        method: "GET",
-        providesTags: ["FavouriteFilmsIDs"],
+        method: 'GET',
+        providesTags: ['FavouriteFilmsIDs'],
       }),
     }),
-    updateUserFavouriteFilms: build.mutation<void, RemoveFromFavouriteParams>({
-      query: ({ id, favouriteFilmsIDs }) => ({
-        url: `${FAVOURITE_FILMS_URL}/${id}`,
-        method: "PATCH",
-        body: { favouriteFilmsIDs },
-        providesTags: ["FavouriteFilmsIDs"],
-      }),
+    updateUserFavouriteFilms: build.mutation<
+      void,
+      RemoveFromFavouriteParams
+    >({
+      async queryFn({ id, favouriteFilmsIDs, userExists }) {
+        const baseData = {
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+          },
+        };
+
+        if (userExists)
+          fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
+            ...baseData,
+            method: 'PATCH',
+            body: JSON.stringify({ favouriteFilmsIDs }),
+          });
+        else {
+          fetch(`${FAVOURITE_FILMS_URL}`, {
+            ...baseData,
+            method: 'POST',
+            body: JSON.stringify({ id, favouriteFilmsIDs }),
+          });
+        }
+      },
+      invalidatesTags: ['FavouriteFilmsIDs'],
     }),
   }),
 });

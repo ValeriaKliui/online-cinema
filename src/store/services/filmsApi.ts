@@ -1,33 +1,41 @@
-import { COLLECTION_URL, PREMIERS_URL, SEARCH_URL } from "@constants/filmsApi";
-import { createApi } from "@reduxjs/toolkit/query/react";
-import { dynamicBaseQuery } from "@utils/getBaseQuery";
-import { fetchInfoAboutFilms } from "./fetchInfoAboutFilms";
 import {
+  API_KEY,
+  COLLECTION_URL,
+  PREMIERS_URL,
+  SEARCH_URL,
+} from '@constants/filmsApi';
+import { getFiltersUrl } from '@utils/getFiltersUrl';
+import { api } from './api';
+import { fetchInfoAboutFilms } from './apiUtils';
+import {
+  CollectionResponse,
   CollectionType,
   Film,
+  FilmInfoResponse,
+  FilmsByFilterResponse,
+  FilterParams,
+  ImagesResponse,
   Premier,
   PremierParams,
   ReviewsResponse,
+  SearchParams,
   SearchResponse,
+  SimilarFilmsResponse,
   StaffPerson,
   Video,
-  ImagesResponse,
-  SimilarFilmsResponse,
-  FilterParams,
-  FilmInfoResponse,
-  CollectionResponse,
-  FilmsByFilterResponse,
-  SearchParams,
-} from "./interfaces";
-import { getFiltersUrl } from "@utils/getFiltersUrl";
+} from './interfaces';
 
-export const filmsApi = createApi({
-  reducerPath: "filmsApi",
-  baseQuery: dynamicBaseQuery,
+export const filmsApi = api.injectEndpoints({
+  // ,
   endpoints: (builder) => ({
     getPremieres: builder.query<Premier[], PremierParams>({
-      query: ({ year, month }) => `${PREMIERS_URL}?year=${year}&month=${month}`,
-      transformResponse: (response: { items: Premier[] }) => response.items,
+      query: ({ year, month }) => ({
+        url: `${PREMIERS_URL}?year=${year}&month=${month}`,
+        prepareHeaders: (headers) =>
+          headers.set('x-api-key', API_KEY),
+      }),
+      transformResponse: (response: { items: Premier[] }) =>
+        response.items,
     }),
     getInfoAboutFilm: builder.query<Film, number>({
       query: (filmID) => `${filmID}`,
@@ -38,16 +46,11 @@ export const filmsApi = createApi({
           return fetchInfoAboutFilms(id);
         });
 
-        return (
-          Promise.allSettled(promises)
-            // .then((results) => {
-            //   console.log("results", results);
-            //   return results;
-            // })
-            .then((results) => results.filter((result) => result.value))
-            .then((results) => results.map((result) => result.value))
-            .then((values) => ({ data: values }))
-        );
+        return Promise.allSettled(promises)
+
+          .then((results) => results.filter((result) => result.value))
+          .then((results) => results.map((result) => result.value))
+          .then((values) => ({ data: values }));
       },
     }),
     searchByKeyword: builder.query<SearchResponse, SearchParams>({
@@ -60,13 +63,15 @@ export const filmsApi = createApi({
     }),
     getVideos: builder.query<Video[], number>({
       query: (filmID: number) => `${filmID}/videos`,
-      transformResponse: (response: { items: Video[] }) => response.items,
+      transformResponse: (response: { items: Video[] }) =>
+        response.items,
     }),
     getStaffInfo: builder.query<StaffPerson[], number>({
       query: (filmID: number) => `?filmId=${filmID}`,
     }),
     getReviews: builder.query<ReviewsResponse, number>({
-      query: (filmID: number) => `${filmID}/reviews?page=1&order=DATE_DESC`,
+      query: (filmID: number) =>
+        `${filmID}/reviews?page=1&order=DATE_DESC`,
     }),
     getImages: builder.query<ImagesResponse, number>({
       query: (filmID: number) => `${filmID}/images`,
@@ -74,7 +79,10 @@ export const filmsApi = createApi({
     getSimilarFilms: builder.query<SimilarFilmsResponse, number>({
       query: (filmID: number) => `${filmID}/similars`,
     }),
-    getFilmsByFilters: builder.query<FilmsByFilterResponse, FilterParams>({
+    getFilmsByFilters: builder.query<
+      FilmsByFilterResponse,
+      FilterParams
+    >({
       query: (options: FilterParams) => `${getFiltersUrl(options)}`,
     }),
   }),

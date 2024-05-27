@@ -16,8 +16,8 @@ export const FavouritePage = () => {
   );
 
   const deleteFilmFromFavs = (kinopoiskId: number) => {
-    console.log(favouriteFilmsIDs);
-    console.log(kinopoiskId);
+    // console.log(favouriteFilmsIDs);
+    // console.log(kinopoiskId);
   };
 
   return (

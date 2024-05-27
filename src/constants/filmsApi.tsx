@@ -17,7 +17,7 @@ export const API_KEY = "311f6ed2-2da0-4a4e-bda9-3c31df66674a";
 
 export const FILMS_BASE_URL =
   "https://kinopoiskapiunofficial.tech/api/v2.2/films";
-export const PREMIERS_URL = "premieres";
+export const PREMIERS_URL = FILMS_BASE_URL + "premieres";
 export const SEARCH_URL = "search-by-keyword";
 export const STAFF_URL = "https://kinopoiskapiunofficial.tech/api/v1/staff";
 
