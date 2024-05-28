@@ -2,8 +2,8 @@ import styled from "styled-components";
 import ArrowSvg from "@assets/icons/arrow.svg?react";
 
 export const Arrow = styled(ArrowSvg)`
-  width: 2em;
-  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
   padding: 0.5em;
   background-color: ${({ theme: { colors } }) => colors.primary};
   border-radius: ${({ theme: { radiuses } }) => radiuses.regular};
@@ -17,6 +17,8 @@ export const Container = styled.div`
   display: flex;
   gap: 1em;
 `;
-export const Item = styled.div`
+export const Item = styled.div<{ $maxWidth: number }>`
   flex: 0 1 100%;
+  max-width: ${({ $maxWidth }) =>
+    $maxWidth === 0 ? "unset" : $maxWidth + "px"};
 `;

@@ -1,29 +1,31 @@
 import { useGetStaffInfoQuery } from "@store/services/filmsApi";
-import { StaffContainer } from "./styled";
-import { PROFESSIONS } from "@store/services/interfaces";
+import { StaffContainer, StaffItem, StaffImg } from "./styled";
+import { PROFESSIONS, StaffPerson } from "@store/services/interfaces";
 import { FC } from "react";
 import { StaffProps } from "./interfaces";
+import { Slider } from "@shared/Slider";
 
 export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
-  const { data: staffInfo } = useGetStaffInfoQuery(kinopoiskId);
+  const { data: staffInfo = [] } = useGetStaffInfoQuery(kinopoiskId);
+
+  const renderStaff = ({
+    posterUrl,
+    professionKey,
+    nameRu,
+    staffId,
+  }: StaffPerson) => (
+    <StaffItem key={staffId + professionKey}>
+      <StaffImg src={posterUrl} />
+      <h6>{nameRu}</h6>
+      <p>{PROFESSIONS[professionKey as unknown as keyof typeof PROFESSIONS]}</p>
+    </StaffItem>
+  );
 
   return (
     <div className="wrapper">
-      <p>Актеры и создатели</p>
+      <h5>Актеры и создатели</h5>
       <StaffContainer>
-        {staffInfo?.map(({ posterUrl, professionKey, nameRu, staffId }) => (
-          <div key={staffId + professionKey}>
-            <img src={posterUrl} />
-            <p>{nameRu}</p>
-            <p>
-              {
-                PROFESSIONS[
-                  professionKey as unknown as keyof typeof PROFESSIONS
-                ]
-              }
-            </p>
-          </div>
-        ))}
+        <Slider itemsAmount={4} items={staffInfo} renderItem={renderStaff} />
       </StaffContainer>
     </div>
   );

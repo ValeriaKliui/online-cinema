@@ -11,6 +11,8 @@ import {
 } from "@store/services/userApi";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUser } from "@store/selectors/user";
+import { useNavigate } from "react-router-dom";
+import { PATHS_LINKS } from "@constants/paths";
 
 export const FilmBlock: FC<FilmBlockProps> = ({
   nameRu,
@@ -22,6 +24,7 @@ export const FilmBlock: FC<FilmBlockProps> = ({
   posterUrl,
   kinopoiskId,
 }) => {
+  const navigate = useNavigate();
   const user = useAppSelector(selectUser);
   const { id } = user ?? {};
   const { data, error } = useGetFavoriteFilmsIDsQuery(id, { skip: !id });
@@ -32,14 +35,20 @@ export const FilmBlock: FC<FilmBlockProps> = ({
   const [updateFavFilmsIDs] = useUpdateUserFavouriteFilmsMutation();
 
   const updateFavIDs = () => {
-    const isInFav = favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
-    const noFavFilmsYet = !error && error?.status !== 404;
-    const updatedFavFilmsIDs = !isInFav ? [...favouriteFilmsIDs, kinopoiskId] :
-      favouriteFilmsIDs.filter(
-        (filmID) => filmID !== kinopoiskId,
-      )
+    if (!user) navigate(PATHS_LINKS.register);
 
-    updateFavFilmsIDs({ id, favouriteFilmsIDs: updatedFavFilmsIDs, userExists: noFavFilmsYet })
+    const isInFav =
+      favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
+    const noFavFilmsYet = !error && error?.status !== 404;
+    const updatedFavFilmsIDs = !isInFav
+      ? [...favouriteFilmsIDs, kinopoiskId]
+      : favouriteFilmsIDs.filter((filmID) => filmID !== kinopoiskId);
+
+    updateFavFilmsIDs({
+      id,
+      favouriteFilmsIDs: updatedFavFilmsIDs,
+      userExists: noFavFilmsYet,
+    });
   };
 
   return (

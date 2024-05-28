@@ -17,13 +17,14 @@ export const API_KEY = "311f6ed2-2da0-4a4e-bda9-3c31df66674a";
 
 export const FILMS_BASE_URL =
   "https://kinopoiskapiunofficial.tech/api/v2.2/films";
-export const PREMIERS_URL = FILMS_BASE_URL + "premieres";
-export const SEARCH_URL = "search-by-keyword";
-export const STAFF_URL = "https://kinopoiskapiunofficial.tech/api/v1/staff";
-
 export const FILMS_URL_V1 =
   "https://kinopoiskapiunofficial.tech/api/v2.1/films/";
-export const COLLECTION_URL = "collections";
+
+export const PREMIERS_URL = FILMS_BASE_URL + "/premieres";
+export const SEARCH_URL = FILMS_URL_V1 + "/search-by-keyword";
+export const STAFF_URL = "https://kinopoiskapiunofficial.tech/api/v1/staff";
+
+export const COLLECTION_URL = FILMS_BASE_URL + "/collections";
 
 export const collectionTabs = [
   { tab: "Новинки", type: CollectionType.CLOSES_RELEASES },

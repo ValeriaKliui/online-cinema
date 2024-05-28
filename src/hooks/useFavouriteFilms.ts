@@ -1,18 +1,18 @@
-import { useAppSelector } from '@store/interfaces/hooks';
-import { selectUser } from '@store/selectors/user';
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectUser } from "@store/selectors/user";
 import {
   useGetFavoriteFilmsIDsQuery,
   // useUpdateUserFavouriteFilmsMutation, // useGetUserInfoQuery,
   // useSaveFavouriteFilmsMutation,
-} from '@store/services/userApi';
-import { useCallback } from 'react';
+} from "@store/services/userApi";
+import { useCallback } from "react";
 
 export const useFavouriteFilms = () => {
   const { id = 0 } = useAppSelector(selectUser) ?? {};
 
   const updateFavFilmsIDs = useCallback(() => {
     // console.log(id);
-  }, [id]);
+  }, []);
 
   // const [saveToFav] = useUpdateUserFavouriteFilmsMutation();
   const { data } = useGetFavoriteFilmsIDsQuery(id);

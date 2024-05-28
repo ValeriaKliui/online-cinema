@@ -15,10 +15,12 @@ export const FavouritePage = () => {
     { skip: !favouriteFilmsIDs || id === 0 },
   );
 
-  const deleteFilmFromFavs = (kinopoiskId: number) => {
-    // console.log(favouriteFilmsIDs);
-    // console.log(kinopoiskId);
-  };
+  const deleteFilmFromFavs = () =>
+    // kinopoiskId: number
+    {
+      // console.log(favouriteFilmsIDs);
+      // console.log(kinopoiskId);
+    };
 
   return (
     <div>

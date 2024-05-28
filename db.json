@@ -44,21 +44,29 @@
       "email": "valeria14003@list.r",
       "password": "$2a$10$x488SFzdGv/2lzQqXgE1Q.m/EEv9kO4yUPDvrfrAQ6ibfoGxqdrw6",
       "id": 9
+    },
+    {
+      "email": "assa@gsdf.c",
+      "password": "$2a$10$kR9m2hCzwoUf1iE6GIieu.EyP/73zkY6rAuuIBfkBjzIc57kdGbsC",
+      "id": 10
+    },
+    {
+      "email": "valeria14003@list.ruasd",
+      "password": "$2a$10$LHAXk/8xWjPvj/DaN2TvB.UjX678NjqNkvVXrnW5PS/YYRFXVziHm",
+      "id": 11
     }
   ],
   "favouriteFilms": [
     {
-      "id": 1
+      "id": 1,
+      "favouriteFilmsIDs": [4369032, 5493676]
     },
     {
       "id": 2
     },
     {
       "id": 8,
-      "favouriteFilmsIDs": [
-        5493676,
-        45319
-      ]
+      "favouriteFilmsIDs": [5493676, 45319]
     }
   ]
 }

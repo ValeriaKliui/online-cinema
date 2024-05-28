@@ -4,10 +4,7 @@ import { Reviews } from "@components/Reviews";
 import { SimilarFilms } from "@components/SimilarFilms";
 import { Staff } from "@components/Staff";
 import { FilmBg } from "@shared/FilmBg";
-import {
-  useGetInfoAboutFilmQuery,
-  useGetVideosQuery,
-} from "@store/services/filmsApi";
+import { useGetInfoAboutFilmQuery } from "@store/services/filmsApi";
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
@@ -23,8 +20,6 @@ export const FilmPage = () => {
     posterUrl,
   } = filmInfo ?? {};
 
-  const { data: videos } = useGetVideosQuery(kinopoiskId);
-
   return (
     <>
       <FilmBg $posterUrl={posterUrl}>
@@ -39,21 +34,12 @@ export const FilmPage = () => {
           kinopoiskId={kinopoiskId}
         />
       </FilmBg>
-      <div>
-        <div className="wrapper">
-          <h5>Трейлеры</h5>
-          {videos &&
-            videos.map(({ url, name }) => (
-              <div key={url}>
-                <p>{name}</p> <iframe width="320" height="240" src={url} />
-              </div>
-            ))}
-        </div>
+      <>
         <Staff kinopoiskId={kinopoiskId} />
         <Reviews kinopoiskId={kinopoiskId} />
         <Gallery kinopoiskId={kinopoiskId} />
         <SimilarFilms kinopoiskId={kinopoiskId} />
-      </div>
+      </>
     </>
   );
 };

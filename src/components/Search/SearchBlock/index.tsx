@@ -30,23 +30,16 @@ export const SearchBlock: FC<SearchBlockProps> = ({
     <Container $isOpened={isOpened}>
       {isFilmsFound ? (
         films.map(
-          ({
-            nameRu,
-            posterUrlPreview,
-            year,
-            countries,
-            genres,
-            kinopoiskId,
-          }) => (
-            <SearchItem key={kinopoiskId}>
+          ({ nameRu, posterUrlPreview, year, countries, genres, filmId }) => (
+            <SearchItem key={filmId}>
               <Poster>
-                <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
+                <Link to={PATHS_LINKS.films + "/" + filmId}>
                   <PosterImg src={posterUrlPreview} />
                 </Link>
               </Poster>
 
               <div>
-                <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
+                <Link to={PATHS_LINKS.films + "/" + filmId}>
                   <h4>{nameRu}</h4> {year && <p>{year}</p>}
                   <p>{formatArrayToStrings(countries)}</p>
                   <p>{formatArrayToStrings(genres)}</p>

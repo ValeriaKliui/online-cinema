@@ -2,71 +2,73 @@ import {
   AUTHORIZE_URL,
   FAVOURITE_FILMS_URL,
   LOGIN_URL,
-} from '@constants/authorizeApi';
-import { api } from './api';
+} from "@constants/authorizeApi";
+import { api } from "./api";
 import {
   LoginResponse,
   RemoveFromFavouriteParams,
   UserInfoResponse,
-} from './interfaces';
-import { UserData } from '@components/AuthorizeForm/interfaces';
-import { checkIfUserFavFilmsExists } from './apiUtils';
+} from "./interfaces";
+import { UserData } from "@components/AuthorizeForm/interfaces";
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
     register: build.mutation({
       query: (userData) => ({
         url: AUTHORIZE_URL,
-        method: 'POST',
+        method: "POST",
         body: userData,
       }),
     }),
     login: build.mutation<LoginResponse, UserData>({
       query: (userData) => ({
         url: LOGIN_URL,
-        method: 'POST',
+        method: "POST",
         body: userData,
       }),
     }),
     getUserInfo: build.query<UserInfoResponse, number | string>({
       query: (userID) => ({
         url: `${AUTHORIZE_URL}/${userID}`,
-        method: 'GET',
+        method: "GET",
       }),
     }),
     getFavoriteFilmsIDs: build.query<number[], number>({
       query: (userID) => ({
         url: `${FAVOURITE_FILMS_URL}/${userID}`,
-        method: 'GET',
-        providesTags: ['FavouriteFilmsIDs'],
+        method: "GET",
+        providesTags: (result = []) => [
+          ...result.map(
+            ({ id }) => ({ type: "FavouriteFilmsIDs", id }) as const,
+          ),
+          { type: "FavouriteFilmsIDs" as const, id: "LIST" },
+        ],
       }),
     }),
-    updateUserFavouriteFilms: build.mutation<
-      void,
-      RemoveFromFavouriteParams
-    >({
+    updateUserFavouriteFilms: build.mutation<void, RemoveFromFavouriteParams>({
       async queryFn({ id, favouriteFilmsIDs, userExists }) {
         const baseData = {
           headers: {
-            'Content-Type': 'application/json;charset=utf-8',
+            "Content-Type": "application/json;charset=utf-8",
           },
+          invalidatesTags: [{ type: "FavouriteFilmsIDs", id: "LIST" }],
         };
 
         if (userExists)
           fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
             ...baseData,
-            method: 'PATCH',
+            method: "PATCH",
             body: JSON.stringify({ favouriteFilmsIDs }),
           });
         else {
           fetch(`${FAVOURITE_FILMS_URL}`, {
             ...baseData,
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify({ id, favouriteFilmsIDs }),
           });
         }
       },
-      invalidatesTags: ['FavouriteFilmsIDs'],
+      invalidatesTags: [{ type: "FavouriteFilmsIDs", id: "LIST" }],
     }),
   }),
 });

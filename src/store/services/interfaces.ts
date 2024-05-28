@@ -1,4 +1,4 @@
-import { User, UserState } from '@store/slices/userSlice/interfaces';
+import { User, UserState } from "@store/slices/userSlice/interfaces";
 
 export interface Premier {
   kinopoiskId: number;
@@ -35,7 +35,7 @@ export interface SearchResponse {
   searchFilmsCountResult: number;
 }
 
-export type CollectionResponse = Omit<SearchResponse, 'films'> & {
+export type CollectionResponse = Omit<SearchResponse, "films"> & {
   items: Film[];
 };
 export interface Video {
@@ -44,28 +44,25 @@ export interface Video {
   url: string;
 }
 export enum CollectionType {
-  TOP_POPULAR_ALL = 'TOP_POPULAR_ALL',
-  TOP_POPULAR_MOVIES = 'TOP_POPULAR_MOVIES',
-  TOP_250_TV_SHOWS = 'TOP_250_TV_SHOWS',
-  TOP_250_MOVIES = 'TOP_250_MOVIES',
-  VAMPIRE_THEME = 'VAMPIRE_THEME',
-  COMICS_THEME = 'COMICS_THEME',
-  CLOSES_RELEASES = 'CLOSES_RELEASES',
-  FAMILY = 'FAMILY',
-  OSKAR_WINNERS = 'OSKAR_WINNERS_2021',
-  LOVE_THEME = 'LOVE_THEME',
-  ZOMBIE_THEME = 'ZOMBIE_THEME',
-  CATASTROPHE_THEME = 'CATASTROPHE_THEME',
-  KIDS_ANIMATION_THEME = 'KIDS_ANIMATION_THEME',
+  TOP_POPULAR_ALL = "TOP_POPULAR_ALL",
+  TOP_POPULAR_MOVIES = "TOP_POPULAR_MOVIES",
+  TOP_250_TV_SHOWS = "TOP_250_TV_SHOWS",
+  TOP_250_MOVIES = "TOP_250_MOVIES",
+  VAMPIRE_THEME = "VAMPIRE_THEME",
+  COMICS_THEME = "COMICS_THEME",
+  CLOSES_RELEASES = "CLOSES_RELEASES",
+  FAMILY = "FAMILY",
+  OSKAR_WINNERS = "OSKAR_WINNERS_2021",
+  LOVE_THEME = "LOVE_THEME",
+  ZOMBIE_THEME = "ZOMBIE_THEME",
+  CATASTROPHE_THEME = "CATASTROPHE_THEME",
+  KIDS_ANIMATION_THEME = "KIDS_ANIMATION_THEME",
 }
 export type UserInfoResponse = User;
 
 export type AuthorizeResponse = UserState;
-export type FavouriteFilmsParams = Pick<
-  UserState,
-  'favouriteFilmsIDs'
-> &
-  Pick<User, 'id'>;
+export type FavouriteFilmsParams = Pick<UserState, "favouriteFilmsIDs"> &
+  Pick<User, "id">;
 
 export interface LoginResponse {
   user: User;
@@ -80,13 +77,22 @@ export interface StaffPerson {
   professionKey: PROFESSIONS;
 }
 export enum PROFESSIONS {
-  DIRECTOR = 'Режиссер',
-  ACTOR = 'Актер',
-  PRODUCER = 'Продюсер',
-  WRITER = 'Сценарист',
-  OPERATOR = 'Оператор',
-  COMPOSER = 'Композитор',
-  DESIGN = 'Художник',
+  DIRECTOR = "Режиссер",
+  ACTOR = "Актер",
+  PRODUCER = "Продюсер",
+  WRITER = "Сценарист",
+  OPERATOR = "Оператор",
+  COMPOSER = "Композитор",
+  DESIGN = "Художник",
+}
+export interface Review {
+  kinopoiskId: number;
+  date: string;
+  positiveRating: number;
+  negativeRating: number;
+  author: string;
+  title: string;
+  description: string;
 }
 export interface ReviewsResponse {
   total: number;
@@ -94,30 +100,24 @@ export interface ReviewsResponse {
   totalPositiveReviews: number;
   totalNegativeReviews: number;
   totalNeutralReviews: number;
-  items: [
-    {
-      kinopoiskId: number;
-      date: string;
-      positiveRating: number;
-      negativeRating: number;
-      author: string;
-      title: string;
-      description: string;
-    },
-  ];
+  items: Review[];
 }
 export interface ImagesResponse {
   total: number;
   totalPages: number;
   items: { imageUrl: string; previewUrl: string }[];
 }
+
+export interface SimilarFilm {
+  filmId: number;
+  nameRu: string;
+  nameEn: string;
+  posterUrlPreview: string;
+}
+
 export interface SimilarFilmsResponse {
   total: number;
-  items: {
-    filmId: number;
-    nameRu: string;
-    posterUrlPreview: number;
-  }[];
+  items: SimilarFilm[];
 }
 
 export enum GENRES {
@@ -134,16 +134,16 @@ export enum GENRES {
   CARTOONS = 18,
 }
 export enum GENRES_NAMES {
-  THRILLER = 'триллер',
-  DRAMA = 'драма',
-  CRIME = 'криминал',
-  MELODRAMA = 'мелодрама',
-  DETECTIVE = 'детектив',
-  FANTASTIC = 'фантастика',
-  ADVENTURE = 'приключения',
-  WESTERN = 'вестерн',
-  COMEDY = 'комедия',
-  HORROR = 'ужасы',
+  THRILLER = "триллер",
+  DRAMA = "драма",
+  CRIME = "криминал",
+  MELODRAMA = "мелодрама",
+  DETECTIVE = "детектив",
+  FANTASTIC = "фантастика",
+  ADVENTURE = "приключения",
+  WESTERN = "вестерн",
+  COMEDY = "комедия",
+  HORROR = "ужасы",
 }
 export interface FilterParams {
   genres?: GENRES;
@@ -163,7 +163,7 @@ export interface SearchParams {
 export interface FavouriteFilmsResponse {
   id: number[];
 }
-export type RemoveFromFavouriteParams = Pick<User, 'id'> & {
+export type RemoveFromFavouriteParams = Pick<User, "id"> & {
   favouriteFilmsIDs: number[];
   userExists: boolean;
 };
