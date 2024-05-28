@@ -1,12 +1,11 @@
 import { UserInfo } from "@components/UserInfo";
-import { PATHS_LINKS } from "@constants/paths";
-import { Link } from "react-router-dom";
+import { UserOptions } from "@components/UserOptions";
 
 export const AccountPage = () => {
   return (
-    <div className="wrapper">
+    <>
       <UserInfo />
-      <Link to={PATHS_LINKS.favourite}>Избранное</Link>
-    </div>
+      <UserOptions />
+    </>
   );
 };

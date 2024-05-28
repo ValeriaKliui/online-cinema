@@ -8,6 +8,8 @@ import { FilmPage } from "../pages/FilmPage";
 import { FavouritePage } from "../pages/FavouritePage";
 import { SearchPage } from "../pages/SearchPage";
 import { GENRES } from "@store/services/interfaces";
+import HeartIcon from "@assets/icons/heart.svg?react";
+import CartIcon from "@assets/icons/shopping-cart.svg?react";
 
 export enum PATHS_LINKS {
   main = "/",
@@ -16,6 +18,7 @@ export enum PATHS_LINKS {
   account = "/account",
   films = "/films",
   favourite = "favourite",
+  subscriptions = "subscriptions",
   search = "/search",
 }
 
@@ -80,4 +83,9 @@ export const FOOTER_LINKS = [
       { title: "Контакты", link: "#" },
     ],
   },
+];
+
+export const USER_OPTIONS = [
+  { Icon: CartIcon, option: "Мои подписки", link: PATHS_LINKS.account },
+  { Icon: HeartIcon, option: "Избранное", link: PATHS_LINKS.favourite },
 ];

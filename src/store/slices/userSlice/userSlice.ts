@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserState } from "./interfaces";
 import { userApi } from "@store/services/userApi";
-import { ACCESS_TOKEN } from "@constants/authorizeApi";
+import { ACCESS_TOKEN } from "@constants/user";
 
 const accessToken = localStorage.getItem(ACCESS_TOKEN);
 
@@ -54,6 +54,25 @@ export const UserSlice = createSlice({
       .addMatcher(userApi.endpoints.getUserInfo.matchRejected, () => {
         console.log("info rejected");
       });
+    builder
+      .addMatcher(
+        userApi.endpoints.updateUserFavouriteFilms.matchPending,
+        (state, action) => {
+          console.log(action);
+        },
+      )
+      .addMatcher(
+        userApi.endpoints.updateUserFavouriteFilms.matchFulfilled,
+        (state, action) => {
+          console.log(action);
+        },
+      )
+      .addMatcher(
+        userApi.endpoints.updateUserFavouriteFilms.matchRejected,
+        (state, action) => {
+          console.log(action);
+        },
+      );
   },
 });
 

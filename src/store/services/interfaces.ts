@@ -165,5 +165,5 @@ export interface FavouriteFilmsResponse {
 }
 export type RemoveFromFavouriteParams = Pick<User, "id"> & {
   favouriteFilmsIDs: number[];
-  userExists: boolean;
+  userExists?: boolean;
 };

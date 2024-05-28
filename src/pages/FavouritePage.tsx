@@ -1,8 +1,14 @@
 import { FilmCard } from "@components/FilmCard";
+import { PATHS_LINKS } from "@constants/paths";
+import { Button } from "@shared/Button";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUser } from "@store/selectors/user";
 import { useGetInfoAboutFilmsQuery } from "@store/services/filmsApi";
-import { useGetFavoriteFilmsIDsQuery } from "@store/services/userApi";
+import {
+  useGetFavoriteFilmsIDsQuery,
+  useUpdateUserFavouriteFilmsMutation,
+} from "@store/services/userApi";
+import { Link } from "react-router-dom";
 
 export const FavouritePage = () => {
   const user = useAppSelector(selectUser);
@@ -14,20 +20,28 @@ export const FavouritePage = () => {
     favouriteFilmsIDs,
     { skip: !favouriteFilmsIDs || id === 0 },
   );
+  const [updateFavFilmsIDs] = useUpdateUserFavouriteFilmsMutation();
 
-  const deleteFilmFromFavs = () =>
-    // kinopoiskId: number
-    {
-      // console.log(favouriteFilmsIDs);
-      // console.log(kinopoiskId);
-    };
+  const deleteFilmFromFavs = (kinopoiskId: number) => {
+    updateFavFilmsIDs({
+      id,
+      favouriteFilmsIDs: favouriteFilmsIDs.filter(
+        (filmID) => filmID !== kinopoiskId,
+      ),
+    });
+  };
 
   return (
-    <div>
-      {!favouriteFilmsIDs ? (
-        <>отсутствуют</>
+    <div className="wrapper">
+      {favouriteFilmsIDs?.length === 0 ? (
+        <>
+          <p>Закладки отсутствуют</p>
+          <Link to={PATHS_LINKS.films}>
+            <Button>Перейти в каталог</Button>
+          </Link>
+        </>
       ) : (
-        <div className="wrapper">
+        <>
           {favouriteFilms?.map(
             ({
               nameRu,
@@ -61,7 +75,7 @@ export const FavouritePage = () => {
               </div>
             ),
           )}
-        </div>
+        </>
       )}
     </div>
   );

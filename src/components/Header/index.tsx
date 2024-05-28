@@ -5,7 +5,7 @@ import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
 import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
 import { useGetUserInfoQuery } from "@store/services/userApi";
-import { ACCESS_TOKEN, USER_ID } from "@constants/authorizeApi";
+import { ACCESS_TOKEN, USER_ID } from "@constants/user";
 
 export const Header = () => {
   const randomFilm = useAppSelector(selectRandomFilm);

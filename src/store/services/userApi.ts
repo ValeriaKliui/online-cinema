@@ -1,8 +1,4 @@
-import {
-  AUTHORIZE_URL,
-  FAVOURITE_FILMS_URL,
-  LOGIN_URL,
-} from "@constants/authorizeApi";
+import { AUTHORIZE_URL, FAVOURITE_FILMS_URL, LOGIN_URL } from "@constants/user";
 import { api } from "./api";
 import {
   LoginResponse,
@@ -37,39 +33,45 @@ export const userApi = api.injectEndpoints({
       query: (userID) => ({
         url: `${FAVOURITE_FILMS_URL}/${userID}`,
         method: "GET",
-        providesTags: (result = []) => [
-          ...result.map(
-            ({ id }) => ({ type: "FavouriteFilmsIDs", id }) as const,
-          ),
-          { type: "FavouriteFilmsIDs" as const, id: "LIST" },
-        ],
+        providesTags: ["FavouriteFilmsIDs"],
       }),
     }),
-    updateUserFavouriteFilms: build.mutation<void, RemoveFromFavouriteParams>({
-      async queryFn({ id, favouriteFilmsIDs, userExists }) {
-        const baseData = {
-          headers: {
-            "Content-Type": "application/json;charset=utf-8",
-          },
-          invalidatesTags: [{ type: "FavouriteFilmsIDs", id: "LIST" }],
-        };
+    updateUserFavouriteFilms: build.mutation<string, RemoveFromFavouriteParams>(
+      // {
+      //   query: ({ userExists, id, favouriteFilmsIDs }) => ({
+      //     url: `${FAVOURITE_FILMS_URL}/${id}`,
+      //     method: "PUT",
+      //     body: { favouriteFilmsIDs: [Math.random()] },
+      //     providesTags: ["FavouriteFilmsIDs"],
+      //   }),
+      // }
+      {
+        queryFn: async ({ userExists, id, favouriteFilmsIDs }) => {
+          const baseData = {
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            invalidatesTags: ["FavouriteFilmsIDs"],
+          };
 
-        if (userExists)
-          fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
-            ...baseData,
-            method: "PATCH",
-            body: JSON.stringify({ favouriteFilmsIDs }),
-          });
-        else {
-          fetch(`${FAVOURITE_FILMS_URL}`, {
-            ...baseData,
-            method: "POST",
-            body: JSON.stringify({ id, favouriteFilmsIDs }),
-          });
-        }
+          if (userExists)
+            await fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
+              ...baseData,
+              method: "PATCH",
+              body: JSON.stringify({ favouriteFilmsIDs }),
+            });
+          else {
+            await fetch(`${FAVOURITE_FILMS_URL}`, {
+              ...baseData,
+              method: "POST",
+              body: JSON.stringify({ id, favouriteFilmsIDs }),
+            });
+          }
+          return { data: "" };
+        },
+        invalidatesTags: ["FavouriteFilmsIDs"],
       },
-      invalidatesTags: [{ type: "FavouriteFilmsIDs", id: "LIST" }],
-    }),
+    ),
   }),
 });
 

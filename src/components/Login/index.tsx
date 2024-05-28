@@ -1,5 +1,5 @@
 import { AuthorizeForm } from "@components/AuthorizeForm";
-import { ACCESS_TOKEN, USER_ID } from "@constants/authorizeApi";
+import { ACCESS_TOKEN, USER_ID } from "@constants/user";
 import { PATHS_LINKS } from "@constants/paths";
 import { useError } from "@hooks/useError";
 import { useLoginMutation } from "@store/services/userApi";
