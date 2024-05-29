@@ -1,3 +1,5 @@
-import { Film } from "@store/services/interfaces";
+import { ReviewData } from "@store/services/interfaces";
 
-export type ReviewsProps = Pick<Film, "kinopoiskId">;
+export interface ReviewsProps {
+  reviews: ReviewData[];
+}

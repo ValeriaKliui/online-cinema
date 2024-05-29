@@ -10,6 +10,7 @@ import { SearchPage } from "../pages/SearchPage";
 import { GENRES } from "@store/services/interfaces";
 import HeartIcon from "@assets/icons/heart.svg?react";
 import CartIcon from "@assets/icons/shopping-cart.svg?react";
+import { ReviewsPage } from "../pages/ReviewsPage";
 
 export enum PATHS_LINKS {
   main = "/",
@@ -20,6 +21,7 @@ export enum PATHS_LINKS {
   favourite = "favourite",
   subscriptions = "subscriptions",
   search = "/search",
+  reviews = "/reviews",
 }
 
 export const PATHS = [
@@ -53,6 +55,7 @@ export const PATHS = [
   { element: <FilmsPage />, path: PATHS_LINKS.films },
   { element: <SearchPage />, path: PATHS_LINKS.search },
   { element: <FilmPage />, path: PATHS_LINKS.films + "/:kinopoiskId" },
+  { element: <ReviewsPage />, path: PATHS_LINKS.reviews + "/:kinopoiskId" },
 ];
 export const NAV_LINKS = [
   { title: "Главная", path: PATHS_LINKS.main },

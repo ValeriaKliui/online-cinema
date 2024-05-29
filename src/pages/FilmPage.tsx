@@ -1,6 +1,6 @@
 import { FilmBlock } from "@components/FilmBlock";
 import { Gallery } from "@components/Gallery";
-import { Reviews } from "@components/Reviews";
+import { ReviewsSlider } from "@components/ReviewsSlider";
 import { SimilarFilms } from "@components/SimilarFilms";
 import { Staff } from "@components/Staff";
 import { FilmBg } from "@shared/FilmBg";
@@ -34,12 +34,10 @@ export const FilmPage = () => {
           kinopoiskId={kinopoiskId}
         />
       </FilmBg>
-      <>
-        <Staff kinopoiskId={kinopoiskId} />
-        <Reviews kinopoiskId={kinopoiskId} />
-        <Gallery kinopoiskId={kinopoiskId} />
-        <SimilarFilms kinopoiskId={kinopoiskId} />
-      </>
+      <Staff kinopoiskId={kinopoiskId} />
+      <ReviewsSlider kinopoiskId={kinopoiskId} />
+      <Gallery kinopoiskId={kinopoiskId} />
+      <SimilarFilms kinopoiskId={kinopoiskId} />
     </>
   );
 };

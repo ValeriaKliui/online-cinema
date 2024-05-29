@@ -85,7 +85,12 @@ export enum PROFESSIONS {
   COMPOSER = "Композитор",
   DESIGN = "Художник",
 }
-export interface Review {
+export enum ReviewType {
+  POSITIVE = "POSITIVE",
+  NEGATIVE = "NEGATIVE",
+  NEUTRAL = "NEUTRAL",
+}
+export interface ReviewData {
   kinopoiskId: number;
   date: string;
   positiveRating: number;
@@ -93,6 +98,7 @@ export interface Review {
   author: string;
   title: string;
   description: string;
+  type: ReviewType;
 }
 export interface ReviewsResponse {
   total: number;
@@ -100,7 +106,11 @@ export interface ReviewsResponse {
   totalPositiveReviews: number;
   totalNegativeReviews: number;
   totalNeutralReviews: number;
-  items: Review[];
+  items: ReviewData[];
+}
+export interface ReviewsParams {
+  kinopoiskId: number;
+  page?: number | string;
 }
 export interface ImagesResponse {
   total: number;

@@ -42,6 +42,7 @@ export const FavouritePage = () => {
         </>
       ) : (
         <>
+          <h5>В закладках: {favouriteFilms?.length} фильмов</h5>
           {favouriteFilms?.map(
             ({
               nameRu,

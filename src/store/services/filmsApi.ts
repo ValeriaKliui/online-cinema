@@ -18,6 +18,7 @@ import {
   ImagesResponse,
   Premier,
   PremierParams,
+  ReviewsParams,
   ReviewsResponse,
   SearchParams,
   SearchResponse,
@@ -60,9 +61,9 @@ export const filmsApi = api.injectEndpoints({
     getStaffInfo: builder.query<StaffPerson[], number>({
       query: (filmID: number) => `${STAFF_URL}?filmId=${filmID}`,
     }),
-    getReviews: builder.query<ReviewsResponse, number>({
-      query: (filmID: number) =>
-        `${FILMS_BASE_URL}/${filmID}/reviews?page=1&order=DATE_DESC`,
+    getReviews: builder.query<ReviewsResponse, ReviewsParams>({
+      query: ({ kinopoiskId, page = 1 }) =>
+        `${FILMS_BASE_URL}/${kinopoiskId}/reviews?page=${page}&order=DATE_DESC`,
     }),
     getImages: builder.query<ImagesResponse, number>({
       query: (filmID: number) => `${FILMS_BASE_URL}/${filmID}/images`,
