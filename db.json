@@ -58,7 +58,7 @@
   ],
   "favouriteFilms": [
     {
-      "favouriteFilmsIDs": [],
+      "favouriteFilmsIDs": [null],
       "id": 1
     },
     {

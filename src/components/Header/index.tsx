@@ -4,7 +4,7 @@ import { selectRandomFilm } from "@store/selectors/films";
 import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
 import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
-import { useGetUserInfoQuery } from "@store/services/userApi";
+import { useGetUserInfoQuery } from "@store/services/userApi/userApi";
 import { ACCESS_TOKEN, USER_ID } from "@constants/user";
 
 export const Header = () => {

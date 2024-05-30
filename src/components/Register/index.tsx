@@ -4,7 +4,7 @@ import { AuthorizeForm } from "@components/AuthorizeForm";
 import { NavLink, useNavigate } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useEffect } from "react";
-import { useRegisterMutation } from "@store/services/userApi";
+import { useRegisterMutation } from "@store/services/userApi/userApi";
 import { useError } from "@hooks/useError";
 
 export const Register = () => {

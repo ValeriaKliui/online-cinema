@@ -1,8 +1,8 @@
 import { Films } from "@components/Films";
 import { Pages } from "@components/Pages";
 import { Search } from "@components/Search";
-import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
-import { SearchParams } from "@store/services/interfaces";
+import { useLazySearchByKeywordQuery } from "@store/services/filmsApi/filmsApi";
+import { SearchParams } from "@store/services/filmsApi/interfaces";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 

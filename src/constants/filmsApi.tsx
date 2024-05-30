@@ -1,8 +1,3 @@
-import {
-  CollectionType,
-  GENRES,
-  GENRES_NAMES,
-} from "@store/services/interfaces";
 import AdventureIcon from "@assets/icons/genres/adventure.svg?react";
 import ThrillerIcon from "@assets/icons/genres/thriller.svg?react";
 import DramaIcon from "@assets/icons/genres/drama.svg?react";
@@ -12,6 +7,7 @@ import FantasyIcon from "@assets/icons/genres/fantasy.svg?react";
 import WesternIcon from "@assets/icons/genres/western.svg?react";
 import HorrorIcon from "@assets/icons/genres/horror.svg?react";
 import ComedyIcon from "@assets/icons/genres/comedy.svg?react";
+import { CollectionType, GENRES, GENRES_NAMES } from "@store/services/entities";
 
 export const API_KEY = "311f6ed2-2da0-4a4e-bda9-3c31df66674a";
 

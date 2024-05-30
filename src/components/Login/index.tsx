@@ -2,7 +2,7 @@ import { AuthorizeForm } from "@components/AuthorizeForm";
 import { ACCESS_TOKEN, USER_ID } from "@constants/user";
 import { PATHS_LINKS } from "@constants/paths";
 import { useError } from "@hooks/useError";
-import { useLoginMutation } from "@store/services/userApi";
+import { useLoginMutation } from "@store/services/userApi/userApi";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

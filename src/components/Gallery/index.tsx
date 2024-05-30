@@ -1,4 +1,4 @@
-import { useGetImagesQuery } from "@store/services/filmsApi";
+import { useGetImagesQuery } from "@store/services/filmsApi/filmsApi";
 import { FC } from "react";
 import { GalleryProps } from "./interfaces";
 import { GalleryContainer } from "./styled";

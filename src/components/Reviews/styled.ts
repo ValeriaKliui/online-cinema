@@ -1,4 +1,4 @@
-import { ReviewType } from "@store/services/interfaces";
+import { ReviewType } from "@store/services/entities";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 

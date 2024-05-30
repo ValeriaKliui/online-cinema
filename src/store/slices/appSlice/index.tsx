@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppState } from "./interfaces";
+import { filmsApi } from "@store/services/filmsApi/filmsApi";
 import { getRejectedExtraReducers } from "@utils/getRejectedExtraReducers";
-import { filmsApi } from "@store/services/filmsApi";
+import { errorObserver } from "@utils/Observer/Observer";
 
 const initialState: AppState = {
-  isFilmsError: false,
   searchKeyword: "",
 };
 
@@ -17,13 +17,10 @@ export const appSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    getRejectedExtraReducers(
-      builder,
-      filmsApi,
-      (state: AppState, { payload }: PayloadAction<string>) => {
-        state.isFilmsError = !!payload;
-      },
-    );
+    getRejectedExtraReducers(builder, filmsApi, (_, { payload }) => {
+      const errorText = payload?.data?.message;
+      errorObserver.notify(errorText);
+    });
   },
 });
 

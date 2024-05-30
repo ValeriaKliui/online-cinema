@@ -1,4 +1,4 @@
-import { Film } from "@store/services/interfaces";
+import { Film } from "@store/services/entities";
 import { RefObject } from "react";
 
 export interface SearchBlockProps {

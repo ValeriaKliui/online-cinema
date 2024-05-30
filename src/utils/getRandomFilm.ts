@@ -1,4 +1,4 @@
-import { Premier } from "@store/services/interfaces";
+import { Premier } from "@store/services/entities";
 
 export const getRandomFilm = (films: Premier[]): Premier => {
   const min = 1;

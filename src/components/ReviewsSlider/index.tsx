@@ -1,11 +1,11 @@
-import { useGetReviewsQuery } from "@store/services/filmsApi";
+import { useGetReviewsQuery } from "@store/services/filmsApi/filmsApi";
 import { FC } from "react";
 import { ReviewsProps } from "./interfaces";
 import { Slider } from "@shared/Slider";
 import { ReviewContainer, Description } from "./styled";
-import { Review } from "@store/services/interfaces";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
+import { ReviewData } from "@store/services/entities";
 
 export const ReviewsSlider: FC<ReviewsProps> = ({ kinopoiskId }) => {
   const { data: reviews } = useGetReviewsQuery({ kinopoiskId });
@@ -16,7 +16,7 @@ export const ReviewsSlider: FC<ReviewsProps> = ({ kinopoiskId }) => {
     title,
     description,
     kinopoiskId: reviewId,
-  }: Review) => (
+  }: ReviewData) => (
     <Link to={PATHS_LINKS.reviews + "/" + kinopoiskId}>
       <ReviewContainer key={reviewId}>
         <p className="subtext bold">{author}</p>

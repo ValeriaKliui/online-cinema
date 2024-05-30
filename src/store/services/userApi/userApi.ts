@@ -1,11 +1,12 @@
 import { AUTHORIZE_URL, FAVOURITE_FILMS_URL, LOGIN_URL } from "@constants/user";
-import { api } from "./api";
+import { api } from "../api";
+import { UserData } from "@components/AuthorizeForm/interfaces";
 import {
   LoginResponse,
   RemoveFromFavouriteParams,
   UserInfoResponse,
 } from "./interfaces";
-import { UserData } from "@components/AuthorizeForm/interfaces";
+import { updateFavFilmsFn } from "./updateFavFilmsFn";
 
 export const userApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -38,29 +39,7 @@ export const userApi = api.injectEndpoints({
     }),
     updateUserFavouriteFilms: build.mutation<string, RemoveFromFavouriteParams>(
       {
-        queryFn: async ({ userExists = true, id, favouriteFilmsIDs }) => {
-          const baseData = {
-            headers: {
-              "Content-Type": "application/json;charset=utf-8",
-            },
-            invalidatesTags: ["FavouriteFilmsIDs"],
-          };
-
-          if (userExists)
-            await fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
-              ...baseData,
-              method: "PATCH",
-              body: JSON.stringify({ favouriteFilmsIDs }),
-            });
-          else {
-            await fetch(`${FAVOURITE_FILMS_URL}`, {
-              ...baseData,
-              method: "POST",
-              body: JSON.stringify({ id, favouriteFilmsIDs }),
-            });
-          }
-          return { data: "" };
-        },
+        queryFn: updateFavFilmsFn,
         invalidatesTags: ["FavouriteFilmsIDs"],
       },
     ),

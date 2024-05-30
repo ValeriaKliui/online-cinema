@@ -1,7 +1,7 @@
 import { Input } from "@shared/Input";
 import { Container, SearchContainer } from "./styled";
 import SearchIcon from "@assets/icons/search.svg?react";
-import { useLazySearchByKeywordQuery } from "@store/services/filmsApi";
+import { useLazySearchByKeywordQuery } from "@store/services/filmsApi/filmsApi";
 import {
   ChangeEvent,
   SyntheticEvent,

@@ -1,3 +1,3 @@
-import { Film } from "@store/services/interfaces";
+import { Film } from "@store/services/entities";
 
 export type StaffProps = Pick<Film, "kinopoiskId">;

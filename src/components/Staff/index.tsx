@@ -1,9 +1,9 @@
-import { useGetStaffInfoQuery } from "@store/services/filmsApi";
+import { useGetStaffInfoQuery } from "@store/services/filmsApi/filmsApi";
 import { StaffContainer, StaffItem, StaffImg } from "./styled";
-import { PROFESSIONS, StaffPerson } from "@store/services/interfaces";
 import { FC } from "react";
 import { StaffProps } from "./interfaces";
 import { Slider } from "@shared/Slider";
+import { PROFESSIONS, StaffPerson } from "@store/services/entities";
 
 export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
   const { data: staffInfo = [] } = useGetStaffInfoQuery(kinopoiskId);

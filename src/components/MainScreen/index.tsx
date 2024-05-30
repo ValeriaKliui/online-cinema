@@ -1,7 +1,7 @@
 import {
   useGetInfoAboutFilmQuery,
   useGetPremieresQuery,
-} from "@store/services/filmsApi";
+} from "@store/services/filmsApi/filmsApi";
 import { getRandomFilm } from "@utils/getRandomFilm";
 import { useMemo } from "react";
 import { FilmInfo, FilmContainer, Description, SubText } from "./styled";
@@ -21,7 +21,7 @@ export const MainScreen = () => {
 
   const premier = useMemo(
     () => premieres && getRandomFilm(premieres),
-    [premieres]
+    [premieres],
   );
   const kinopoiskId = Number(premier?.kinopoiskId);
 

@@ -8,7 +8,7 @@ import { Container, Poster, FilmProperties, FilmInfo, Buttons } from "./styled";
 import {
   useGetFavoriteFilmsIDsQuery,
   useUpdateUserFavouriteFilmsMutation,
-} from "@store/services/userApi";
+} from "@store/services/userApi/userApi";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUser } from "@store/selectors/user";
 import { useNavigate } from "react-router-dom";

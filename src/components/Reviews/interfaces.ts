@@ -1,4 +1,4 @@
-import { ReviewData } from "@store/services/interfaces";
+import { ReviewData } from "@store/services/entities";
 
 export interface ReviewsProps {
   reviews: ReviewData[];

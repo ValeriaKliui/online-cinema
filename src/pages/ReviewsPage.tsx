@@ -5,7 +5,7 @@ import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import {
   useGetInfoAboutFilmQuery,
   useGetReviewsQuery,
-} from "@store/services/filmsApi";
+} from "@store/services/filmsApi/filmsApi";
 import { useCallback } from "react";
 import { useParams } from "react-router-dom";
 

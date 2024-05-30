@@ -9,12 +9,13 @@ export const Slider = <T,>({
   shouldBeReset,
   setShouldBeReset,
 }: SliderProps<T>) => {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemMaxWidth, setItemMaxWidth] = useState(0);
 
-  const oneItemWidth =
-    containerRef.current?.getBoundingClientRect()?.width / itemsAmount;
+  const oneItemWidth = containerRef.current
+    ? containerRef.current?.getBoundingClientRect()?.width / itemsAmount
+    : 0;
 
   const onRightClick = () => {
     setCurrentIndex((prev) => prev + itemsAmount);

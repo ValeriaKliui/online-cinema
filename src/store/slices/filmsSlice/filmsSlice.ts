@@ -1,4 +1,4 @@
-import { filmsApi } from "@store/services/filmsApi";
+import { filmsApi } from "@store/services/filmsApi/filmsApi";
 import { createSlice } from "@reduxjs/toolkit";
 import { FilmsState } from "./interfaces";
 

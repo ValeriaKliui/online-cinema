@@ -3,11 +3,11 @@ import { PATHS_LINKS } from "@constants/paths";
 import { Button } from "@shared/Button";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectUser } from "@store/selectors/user";
-import { useGetInfoAboutFilmsQuery } from "@store/services/filmsApi";
+import { useGetInfoAboutFilmsQuery } from "@store/services/filmsApi/filmsApi";
 import {
   useGetFavoriteFilmsIDsQuery,
   useUpdateUserFavouriteFilmsMutation,
-} from "@store/services/userApi";
+} from "@store/services/userApi/userApi";
 import { Link } from "react-router-dom";
 
 export const FavouritePage = () => {

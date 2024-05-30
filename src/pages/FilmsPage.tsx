@@ -2,7 +2,7 @@ import { Films } from "@components/Films";
 import { Pages } from "@components/Pages";
 import { Search } from "@components/Search";
 import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
-import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi";
+import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi/filmsApi";
 import { useCallback, useEffect } from "react";
 
 export const FilmsPage = () => {

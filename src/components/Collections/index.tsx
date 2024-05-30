@@ -1,12 +1,12 @@
 import { FilmCard } from "@components/FilmCard";
 import { collectionTabs } from "@constants/filmsApi";
-import { useLazyGetCollectionByTypeQuery } from "@store/services/filmsApi";
-import { CollectionType, Film } from "@store/services/interfaces";
+import { useLazyGetCollectionByTypeQuery } from "@store/services/filmsApi/filmsApi";
 import { useEffect, useState } from "react";
 import { Container, TabType, Tabs } from "./styled";
 import { Slider } from "@shared/Slider";
 import { PATHS_LINKS } from "@constants/paths";
 import { Link } from "react-router-dom";
+import { CollectionType, Film } from "@store/services/entities";
 
 export const Collections = () => {
   const [shouldBeReset, setShouldBeReset] = useState(false);

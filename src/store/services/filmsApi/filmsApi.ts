@@ -6,25 +6,23 @@ import {
   STAFF_URL,
 } from "@constants/filmsApi";
 import { getFiltersUrl } from "@utils/getFiltersUrl";
-import { api } from "./api";
-import { fetchInfoAboutFilms } from "./apiUtils";
+import { api } from "../api";
+import { fetchInfoAboutFilms } from "../apiUtils";
+
 import {
   CollectionResponse,
-  CollectionType,
-  Film,
-  FilmInfoResponse,
   FilmsByFilterResponse,
+  FilmsInfoResponse,
   FilterParams,
   ImagesResponse,
-  Premier,
   PremierParams,
   ReviewsParams,
   ReviewsResponse,
   SearchParams,
   SearchResponse,
   SimilarFilmsResponse,
-  StaffPerson,
 } from "./interfaces";
+import { CollectionType, Film, Premier, StaffPerson } from "../entities";
 
 export const filmsApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -37,7 +35,7 @@ export const filmsApi = api.injectEndpoints({
     getInfoAboutFilm: builder.query<Film, number>({
       query: (filmID) => `${FILMS_BASE_URL}/${filmID}`,
     }),
-    getInfoAboutFilms: builder.query<FilmInfoResponse, number[]>({
+    getInfoAboutFilms: builder.query<FilmsInfoResponse, number[]>({
       queryFn: (ids) => {
         const promises = ids.map((id) => {
           return fetchInfoAboutFilms(id);

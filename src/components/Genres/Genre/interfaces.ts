@@ -1,4 +1,4 @@
-import { GENRES } from "@store/services/interfaces";
+import { GENRES } from "@store/services/entities";
 import { FC, SVGProps } from "react";
 
 export interface GenreProps {

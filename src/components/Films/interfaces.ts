@@ -1,4 +1,4 @@
-import { Film } from "@store/services/interfaces";
+import { Film } from "@store/services/interfacesApi";
 
 export interface FilmsProps {
   films: Film[];

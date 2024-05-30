@@ -7,10 +7,10 @@ import { FilmsPage } from "../pages/FilmsPage";
 import { FilmPage } from "../pages/FilmPage";
 import { FavouritePage } from "../pages/FavouritePage";
 import { SearchPage } from "../pages/SearchPage";
-import { GENRES } from "@store/services/interfaces";
 import HeartIcon from "@assets/icons/heart.svg?react";
 import CartIcon from "@assets/icons/shopping-cart.svg?react";
 import { ReviewsPage } from "../pages/ReviewsPage";
+import { GENRES } from "@store/services/entities";
 
 export enum PATHS_LINKS {
   main = "/",

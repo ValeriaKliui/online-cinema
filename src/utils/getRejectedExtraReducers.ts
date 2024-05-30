@@ -1,6 +1,5 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { AppState } from "@store/slices/appSlice/interfaces";
-
 export const getRejectedExtraReducers = (
   builder: ActionReducerMapBuilder<AppState>,
   api,
