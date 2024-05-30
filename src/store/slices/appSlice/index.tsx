@@ -17,8 +17,8 @@ export const appSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    getRejectedExtraReducers(builder, filmsApi, (_, { payload }) => {
-      const errorText = payload?.data?.message;
+    getRejectedExtraReducers(builder, filmsApi, (_, action) => {
+      const errorText = action?.payload?.data?.message;
       errorObserver.notify(errorText);
     });
   },
