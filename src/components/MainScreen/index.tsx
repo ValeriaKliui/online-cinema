@@ -11,10 +11,11 @@ import { getDateForPremiers } from "@utils/getDateForPremiers";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { FilmBg } from "@shared/FilmBg";
+import { Spinner } from "@shared/Spinner";
 
 export const MainScreen = () => {
   const { year: premierYear, month } = getDateForPremiers();
-  const { data: premieres } = useGetPremieresQuery({
+  const { data: premieres, isFetching } = useGetPremieresQuery({
     year: premierYear,
     month,
   });
@@ -34,22 +35,28 @@ export const MainScreen = () => {
   const descriptionCut = description?.split(".").slice(0, 2).join(".") + ".";
 
   return (
-    <FilmBg $posterUrl={posterUrl}>
-      <FilmContainer className="wrapper">
-        <FilmInfo>
-          <SubText className="subtext">Выбор Illuminous</SubText>
-          <h2>{nameRu} </h2>
-          {year && <p className="xs">{year}</p>}
-          {description && (
-            <Description className="medium">{descriptionCut}</Description>
-          )}
-        </FilmInfo>
-        <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
-          <Button>
-            Смотреть <YoutubeSvg />
-          </Button>
-        </Link>
-      </FilmContainer>
-    </FilmBg>
+    <>
+      {isFetching ? (
+        <Spinner />
+      ) : (
+        <FilmBg $posterUrl={posterUrl}>
+          <FilmContainer className="wrapper">
+            <FilmInfo>
+              <SubText className="subtext">Выбор Illuminous</SubText>
+              <h2>{nameRu} </h2>
+              {year && <p className="xs">{year}</p>}
+              {description && (
+                <Description className="medium">{descriptionCut}</Description>
+              )}
+            </FilmInfo>
+            <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
+              <Button>
+                Смотреть <YoutubeSvg />
+              </Button>
+            </Link>
+          </FilmContainer>
+        </FilmBg>
+      )}
+    </>
   );
 };

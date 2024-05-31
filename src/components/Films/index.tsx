@@ -8,7 +8,7 @@ import { Spinner } from "@shared/Spinner";
 
 export const Films: FC<FilmsProps> = ({ films, isFetching }) => {
   const isFilmsAvailable = !isFetching && films && films.length > 0;
-
+  console.log(films);
   return (
     <div className="wrapper">
       {isFetching && <Spinner />}
@@ -23,16 +23,17 @@ export const Films: FC<FilmsProps> = ({ films, isFetching }) => {
               year,
               genres,
               countries,
-              kinopoiskId,
               nameEn,
+              filmId,
+              kinopoiskId,
               nameOriginal,
             }) => (
               <Link
-                to={PATHS_LINKS.films + "/" + kinopoiskId}
-                key={kinopoiskId}
+                to={PATHS_LINKS.films + "/" + (filmId || kinopoiskId)}
+                key={filmId || kinopoiskId}
               >
                 <FilmCard
-                  kinopoiskId={kinopoiskId}
+                  kinopoiskId={filmId || kinopoiskId}
                   nameRu={nameRu}
                   posterUrlPreview={posterUrlPreview}
                   ratingImdb={ratingImdb}

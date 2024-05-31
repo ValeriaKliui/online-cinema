@@ -22,7 +22,7 @@ export const STAFF_URL = "https://kinopoiskapiunofficial.tech/api/v1/staff";
 
 export const COLLECTION_URL = FILMS_BASE_URL + "/collections";
 
-export const collectionTabs = [
+export const COLLECTION_TABS = [
   { tab: "Новинки", type: CollectionType.CLOSES_RELEASES },
   { tab: "Популярное", type: CollectionType.TOP_POPULAR_ALL },
   {

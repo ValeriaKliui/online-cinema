@@ -1,30 +1,31 @@
 import { FilmCard } from "@components/FilmCard";
-import { collectionTabs } from "@constants/filmsApi";
+import { COLLECTION_TABS } from "@constants/filmsApi";
 import { useLazyGetCollectionByTypeQuery } from "@store/services/filmsApi/filmsApi";
-import { useEffect, useState } from "react";
-import { Container, TabType, Tabs } from "./styled";
+import { useCallback, useState } from "react";
+import { Container } from "./styled";
 import { Slider } from "@shared/Slider";
 import { PATHS_LINKS } from "@constants/paths";
 import { Link } from "react-router-dom";
 import { CollectionType, Film } from "@store/services/entities";
+import { CollectionTabs } from "@components/CollectionTabs";
+import { Spinner } from "@shared/Spinner";
 
 export const Collections = () => {
   const [shouldBeReset, setShouldBeReset] = useState(false);
-  const [choosenType, setChoosenType] = useState(collectionTabs[0].type);
 
-  const [requestCollectionType, { data }] = useLazyGetCollectionByTypeQuery();
+  const [requestCollectionType, { data, isFetching }] =
+    useLazyGetCollectionByTypeQuery();
 
-  const onTabClick = (type: CollectionType) => {
-    setChoosenType(type);
-    requestCollectionType(type);
-    setShouldBeReset(true);
-  };
+  const onTabChange = useCallback(
+    (type: CollectionType) => {
+      console.log("initial");
+      requestCollectionType(type);
+      setShouldBeReset(true);
+    },
+    [requestCollectionType],
+  );
 
-  useEffect(() => {
-    requestCollectionType(choosenType);
-  }, [choosenType, requestCollectionType]);
-
-  const { items } = data ?? {};
+  const { items = [] } = data ?? {};
 
   const renderFilm = ({
     kinopoiskId,
@@ -50,19 +51,14 @@ export const Collections = () => {
 
   return (
     <>
-      {items && items.length > 0 && (
-        <Container className="wrapper">
-          <Tabs>
-            {collectionTabs.map(({ tab, type }) => (
-              <TabType
-                key={tab}
-                onClick={() => onTabClick(type)}
-                $isChoosen={choosenType === type}
-              >
-                <p>{tab}</p>
-              </TabType>
-            ))}
-          </Tabs>
+      <Container className="wrapper">
+        <CollectionTabs
+          collectionTabs={COLLECTION_TABS}
+          onTabChange={onTabChange}
+        />
+        {isFetching ? (
+          <Spinner />
+        ) : (
           <Slider
             items={items}
             renderItem={renderFilm}
@@ -70,8 +66,8 @@ export const Collections = () => {
             shouldBeReset={shouldBeReset}
             setShouldBeReset={setShouldBeReset}
           />
-        </Container>
-      )}
+        )}
+      </Container>
     </>
   );
 };

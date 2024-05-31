@@ -10,11 +10,6 @@ export const SearchPage = () => {
 
   const [searchByKeyword, { data, isFetching }] = useLazySearchByKeywordQuery();
 
-  // useEffect(() => {
-  //   const initialPageFromUrl = filmsSearchParams.get("page");
-  //   if (initialPageFromUrl) updateSearchParams(Number(initialPageFromUrl));
-  // }, [filmsSearchParams]);
-
   useEffect(() => {
     searchByKeyword(filmsSearchParams);
   }, [searchByKeyword, filmsSearchParams]);
@@ -23,9 +18,9 @@ export const SearchPage = () => {
 
   const onPageChange = useCallback(
     (pageNum: number) => {
-      updateSearchParams({ page: String(pageNum) });
+      updateSearchParams({ ...filmsSearchParams, page: String(pageNum) });
     },
-    [updateSearchParams],
+    [updateSearchParams, filmsSearchParams],
   );
 
   return (

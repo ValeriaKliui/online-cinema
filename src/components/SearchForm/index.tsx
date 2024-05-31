@@ -1,41 +1,31 @@
 import SearchIcon from "@assets/icons/search.svg?react";
-import { PATHS_LINKS } from "@constants/paths";
-import { useDebounce } from "@hooks/useDebounce";
-import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import { Input } from "@shared/Input";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
 import { selectSearchKeyword } from "@store/selectors/app";
 import { setSearchKeyword } from "@store/slices/appSlice";
-import { ChangeEvent, SyntheticEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { ChangeEvent, SyntheticEvent, useEffect } from "react";
 
-export const SearchForm = ({ onKeywordChange }) => {
+export const SearchForm = ({
+  onKeywordChange,
+  initialKeyword = "",
+  onFormSubmit,
+}) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { filmsSearchParams } = useFilmSearchParams();
 
-  const searchKeyword =
-    useAppSelector(selectSearchKeyword) || filmsSearchParams.keyword;
+  const searchKeyword = useAppSelector(selectSearchKeyword) || initialKeyword;
 
-  const debouncedSearch = useDebounce<string>(
-    (searchString: string) =>
-      searchString.length > 0 && onKeywordChange({ keyword: searchString }),
-  );
-  // const debouncedUrl = useDebounce<string>(
-  //     () => updateSearchParams({ keyword: searchKeyword })
-  // );
+  useEffect(() => {
+    dispatch(setSearchKeyword(initialKeyword));
+  }, [initialKeyword, dispatch]);
 
   const onSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
-    navigate(PATHS_LINKS.search + `?keyword=${searchKeyword}&page=1`);
+    onFormSubmit(searchKeyword);
   };
-
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchKeyword(e.target.value));
-    debouncedSearch(e.target.value);
+    onKeywordChange(e.target.value);
   };
-
-  const onClick = () => {};
 
   return (
     <form onSubmit={onSubmit}>
@@ -44,7 +34,6 @@ export const SearchForm = ({ onKeywordChange }) => {
         Icon={SearchIcon}
         onChange={onChange}
         value={searchKeyword}
-        onClick={onClick}
         onIconClick={onSubmit}
       />
     </form>

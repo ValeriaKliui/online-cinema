@@ -8,6 +8,7 @@ import {
   useGetFavoriteFilmsIDsQuery,
   useUpdateUserFavouriteFilmsMutation,
 } from "@store/services/userApi/userApi";
+import { getFilmsStr } from "@utils/getFilmsStr";
 import { Link } from "react-router-dom";
 
 export const FavouritePage = () => {
@@ -31,6 +32,8 @@ export const FavouritePage = () => {
     });
   };
 
+  const filmsStr = getFilmsStr(favouriteFilmsIDs?.length);
+
   return (
     <div className="wrapper">
       {favouriteFilmsIDs?.length === 0 ? (
@@ -42,7 +45,9 @@ export const FavouritePage = () => {
         </>
       ) : (
         <>
-          <h5>В закладках: {favouriteFilms?.length} фильмов</h5>
+          <h5>
+            В закладках: {favouriteFilms?.length} {filmsStr}
+          </h5>
           {favouriteFilms?.map(
             ({
               nameRu,
