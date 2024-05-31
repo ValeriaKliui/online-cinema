@@ -1,7 +1,7 @@
 import { Film } from "@store/services/entities";
 import { RefObject } from "react";
 
-export interface SearchBlockProps {
+export interface FoundFilmsProps {
   films?: Film[];
   searchFilmsCountResult?: number;
   isLoading: boolean;

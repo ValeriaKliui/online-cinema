@@ -1,13 +1,6 @@
-import {
-  ActionReducerMapBuilder,
-  PayloadAction,
-  SerializedError,
-} from "@reduxjs/toolkit";
-import { QueryThunkArg } from "@reduxjs/toolkit/dist/query/core/buildThunks";
+import { ActionReducerMapBuilder, PayloadAction } from "@reduxjs/toolkit";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
-import { api } from "@store/services/api";
 import { filmsApi } from "@store/services/filmsApi/filmsApi";
-import { PremierParams } from "@store/services/filmsApi/interfaces";
 import { AppState } from "@store/slices/appSlice/interfaces";
 
 export const getRejectedExtraReducers = (

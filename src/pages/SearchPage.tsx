@@ -1,45 +1,38 @@
 import { Films } from "@components/Films";
 import { Pages } from "@components/Pages";
 import { Search } from "@components/Search";
+import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi/filmsApi";
-import { SearchParams } from "@store/services/filmsApi/interfaces";
-import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useCallback, useEffect } from "react";
 
 export const SearchPage = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
+
   const [searchByKeyword, { data, isFetching }] = useLazySearchByKeywordQuery();
-  const filmsParams = useMemo(
-    () => Object.fromEntries([...searchParams]),
-    [searchParams],
-  ) as unknown as SearchParams;
+
+  // useEffect(() => {
+  //   const initialPageFromUrl = filmsSearchParams.get("page");
+  //   if (initialPageFromUrl) updateSearchParams(Number(initialPageFromUrl));
+  // }, [filmsSearchParams]);
 
   useEffect(() => {
-    const initialPageFromUrl = searchParams.get("page");
-    if (initialPageFromUrl) setCurrentPage(Number(initialPageFromUrl));
-  }, [searchParams]);
-
-  useEffect(() => {
-    searchByKeyword(filmsParams);
-  }, [searchByKeyword, filmsParams]);
+    searchByKeyword(filmsSearchParams);
+  }, [searchByKeyword, filmsSearchParams]);
 
   const { films, pagesCount = 0 } = data ?? {};
 
-  const choosePage = (pageNum: number) => {
-    setCurrentPage(pageNum);
-    setSearchParams({ ...filmsParams, page: String(pageNum) });
-  };
+  const onPageChange = useCallback(
+    (pageNum: number) => {
+      updateSearchParams({ page: String(pageNum) });
+    },
+    [updateSearchParams],
+  );
 
   return (
     <>
       <Search />
       {films && <Films films={films} isFetching={isFetching} />}
-      <Pages
-        pagesAmount={pagesCount}
-        currentPage={currentPage}
-        choosePage={choosePage}
-      />
+      <Pages pagesAmount={pagesCount} onPageChange={onPageChange} />
     </>
   );
 };

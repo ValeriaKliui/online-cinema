@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Container, Poster, SearchItem, PosterImg, SearchInfo } from "./styled";
-import { SearchBlockProps } from "./interfaces";
+import { FoundFilmsProps } from "./interfaces";
 import { formatArrayToStrings } from "@utils/formatArrayToStrings";
 import { Button } from "@shared/Button";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Spinner } from "@shared/Spinner";
 import { useAppSelector } from "@store/interfaces/hooks";
 import { selectSearchKeyword } from "@store/selectors/app";
 
-export const SearchBlock: FC<SearchBlockProps> = ({
+export const FoundFilms: FC<FoundFilmsProps> = ({
   films,
   searchFilmsCountResult = 0,
   searchRef,
