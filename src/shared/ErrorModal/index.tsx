@@ -1,3 +1,4 @@
+import { Modal } from "@shared/Modal";
 import { errorObserver } from "@utils/Observer/Observer";
 import { useCallback, useEffect, useState } from "react";
 
@@ -18,8 +19,14 @@ export const ErrorModal = () => {
   }, [errorHappened]);
 
   return (
-    <div onClick={unfollowError}>
-      {error ? "Извините, произошла ошибка:" + error : ""}
-    </div>
+    <Modal onClose={unfollowError} isModalOpened={!!error}>
+      <p> Похоже, произошла ошибка: {error} </p>
+    </Modal>
+    // <Overlay $isError={!!error} onClick={unfollowError}>
+    //   <Container>
+    //
+    //     <Button>Закрыть</Button>
+    //   </Container>
+    // </Overlay>
   );
 };

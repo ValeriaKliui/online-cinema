@@ -18,7 +18,6 @@ export const Collections = () => {
 
   const onTabChange = useCallback(
     (type: CollectionType) => {
-      console.log("initial");
       requestCollectionType(type);
       setShouldBeReset(true);
     },
@@ -35,6 +34,7 @@ export const Collections = () => {
     ratingImdb,
     ratingKinopoisk,
     nameEn,
+    nameOriginal,
   }: Film) => (
     <Link to={PATHS_LINKS.films + "/" + kinopoiskId} key={kinopoiskId}>
       <FilmCard
@@ -45,6 +45,7 @@ export const Collections = () => {
         ratingImdb={ratingImdb}
         ratingKinopoisk={ratingKinopoisk}
         nameEn={nameEn}
+        nameOriginal={nameOriginal}
       />
     </Link>
   );

@@ -1,6 +1,6 @@
-import { Film } from "@store/services/interfacesApi";
+import { Film } from "@store/services/entities";
 
 export interface FilmsProps {
-  films: Film[];
+  films?: Film[];
   isFetching: boolean;
 }

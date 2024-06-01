@@ -22,12 +22,17 @@ export const SearchPage = () => {
     },
     [updateSearchParams, filmsSearchParams],
   );
+  console.log(isFetching);
 
   return (
     <>
       <Search />
-      {films && <Films films={films} isFetching={isFetching} />}
-      <Pages pagesAmount={pagesCount} onPageChange={onPageChange} />
+      <Films films={films} isFetching={isFetching} />
+      <Pages
+        pagesAmount={pagesCount}
+        onPageChange={onPageChange}
+        initPage={filmsSearchParams.page}
+      />
     </>
   );
 };

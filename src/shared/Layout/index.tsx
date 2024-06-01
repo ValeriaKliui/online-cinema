@@ -7,12 +7,12 @@ import { ErrorModal } from "@shared/ErrorModal";
 export const Layout = () => {
   return (
     <>
-      <ErrorModal />
       <Header />
       <OutlerWrapper>
         <Outlet />
       </OutlerWrapper>
       <Footer />
+      <ErrorModal />
     </>
   );
 };

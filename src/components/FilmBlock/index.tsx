@@ -60,7 +60,7 @@ export const FilmBlock: FC<FilmBlockProps> = ({
         <h2>{nameRu}</h2>
         <FilmProperties>
           <p>{year}</p>
-          <p>{filmLength}м</p>
+          {filmLength && <p>{filmLength}м</p>}
           <p>{formatArrayToStrings(countries)}</p>
           <p>{formatArrayToStrings(genres)}</p>
         </FilmProperties>

@@ -36,7 +36,7 @@ export const FavouritePage = () => {
 
   return (
     <div className="wrapper">
-      {favouriteFilmsIDs?.length === 0 ? (
+      {favouriteFilmsIDs?.length === 0 || !favouriteFilmsIDs ? (
         <>
           <p>Закладки отсутствуют</p>
           <Link to={PATHS_LINKS.films}>

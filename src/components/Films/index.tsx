@@ -5,10 +5,12 @@ import { FilmCard } from "@components/FilmCard";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { Spinner } from "@shared/Spinner";
+import { Button } from "@shared/Button";
+import { NavLink } from "react-router-dom";
 
-export const Films: FC<FilmsProps> = ({ films, isFetching }) => {
+export const Films: FC<FilmsProps> = ({ films = [], isFetching }) => {
   const isFilmsAvailable = !isFetching && films && films.length > 0;
-  console.log(films);
+
   return (
     <div className="wrapper">
       {isFetching && <Spinner />}
@@ -48,6 +50,15 @@ export const Films: FC<FilmsProps> = ({ films, isFetching }) => {
               </Link>
             ),
           )}
+        {films.length === 0 && !isFetching && (
+          <div>
+            <p>Похоже, такой фильм отсутствует</p>
+            <NavLink to={PATHS_LINKS.films}>
+              {" "}
+              <Button>Перейти в каталог</Button>
+            </NavLink>
+          </div>
+        )}
       </Container>
     </div>
   );

@@ -8,9 +8,11 @@ import { Slider } from "@shared/Slider";
 import { SimilarFilm } from "@store/services/entities";
 
 export const SimilarFilms: FC<SimilarFilmsProps> = ({ kinopoiskId }) => {
-  const { data: similarFilms } = useGetSimilarFilmsQuery(kinopoiskId);
+  const { data: similarFilms, isFetching } =
+    useGetSimilarFilmsQuery(kinopoiskId);
   const { items = [] } = similarFilms ?? {};
 
+  console.log(isFetching);
   const renderFilm = ({
     filmId,
     nameRu,
@@ -22,6 +24,7 @@ export const SimilarFilms: FC<SimilarFilmsProps> = ({ kinopoiskId }) => {
         nameRu={nameRu}
         posterUrlPreview={posterUrlPreview}
         nameEn={nameEn}
+        kinopoiskId={filmId}
       />
     </Link>
   );

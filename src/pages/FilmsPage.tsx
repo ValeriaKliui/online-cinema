@@ -14,9 +14,9 @@ export const FilmsPage = () => {
 
   const onPageChange = useCallback(
     (pageNum: number) => {
-      updateSearchParams({ page: String(pageNum) });
+      updateSearchParams({ ...filmsSearchParams, page: String(pageNum) });
     },
-    [updateSearchParams],
+    [updateSearchParams, filmsSearchParams],
   );
 
   useEffect(() => {
@@ -26,8 +26,12 @@ export const FilmsPage = () => {
   return (
     <>
       <Search />
-      {films && <Films films={films} isFetching={isFetching} />}
-      <Pages pagesAmount={totalPages} onPageChange={onPageChange} />
+      <Films films={films} isFetching={isFetching} />
+      <Pages
+        pagesAmount={totalPages}
+        onPageChange={onPageChange}
+        initPage={filmsSearchParams.page}
+      />
     </>
   );
 };

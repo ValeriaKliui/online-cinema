@@ -2,9 +2,13 @@ import { FC, useEffect, useState } from "react";
 import { PagesProps } from "./interfaces";
 import { Container, Page, TextButton } from "./styled";
 
-export const Pages: FC<PagesProps> = ({ pagesAmount: pages, onPageChange }) => {
+export const Pages: FC<PagesProps> = ({
+  pagesAmount: pages,
+  onPageChange,
+  initPage,
+}) => {
   const pagesAmount = Number(pages);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initPage || 1);
 
   const pagesArray = [...Array(pagesAmount).keys()];
   const leftBoundary = currentPage <= 3 ? 0 : currentPage - 3;
@@ -21,6 +25,7 @@ export const Pages: FC<PagesProps> = ({ pagesAmount: pages, onPageChange }) => {
     onPageChange(currentPage);
   }, [currentPage, onPageChange]);
 
+  if (!pagesAmount) return <></>;
   return (
     <Container className="wrapper">
       <TextButton onClick={choosePrevPage} $isAvailable={isPrevPages}>

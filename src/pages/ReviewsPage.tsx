@@ -13,7 +13,7 @@ export const ReviewsPage = () => {
   const kinopoiskId = Number(useParams().kinopoiskId);
   const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
   const { data } = useGetInfoAboutFilmQuery(kinopoiskId);
-  const { nameRu, nameEn } = data ?? {};
+  const { nameRu, nameEn, nameOriginal } = data ?? {};
 
   const { data: reviews } = useGetReviewsQuery({
     kinopoiskId,
@@ -45,7 +45,7 @@ export const ReviewsPage = () => {
             positive={totalPositiveReviews}
             negative={totalNegativeReviews}
             neutral={totalNeutralReviews}
-            nameRu={nameRu || nameEn || ""}
+            nameRu={nameRu || nameEn || nameOriginal || ""}
           />
           <Reviews reviews={items} />
           <Pages pagesAmount={totalPages} onPageChange={onPageChange} />

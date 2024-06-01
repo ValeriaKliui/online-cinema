@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Container = styled.div<{ $expanded?: boolean }>`
   ${flexColGap(1)};
   position: relative;
-  height: 100%;
+  /* height: 100%; */
   justify-content: ${({ $expanded = false }) =>
     $expanded ? "inherit" : "space-between"};
   flex-direction: ${({ $expanded = false }) => ($expanded ? "row" : "column")};

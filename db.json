@@ -67,6 +67,10 @@
     {
       "id": 8,
       "favouriteFilmsIDs": [5493676, 45319]
+    },
+    {
+      "id": 9,
+      "favouriteFilmsIDs": []
     }
   ]
 }
