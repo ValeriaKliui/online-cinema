@@ -2,6 +2,7 @@ import { AUTHORIZE_URL, FAVOURITE_FILMS_URL, LOGIN_URL } from "@constants/user";
 import { api } from "../api";
 import { UserData } from "@components/AuthorizeForm/interfaces";
 import {
+  FavFilmsResponse,
   LoginResponse,
   RemoveFromFavouriteParams,
   UserInfoResponse,
@@ -30,7 +31,7 @@ export const userApi = api.injectEndpoints({
         method: "GET",
       }),
     }),
-    getFavoriteFilmsIDs: build.query<number[], number>({
+    getFavoriteFilmsIDs: build.query<FavFilmsResponse, number>({
       query: (userID) => ({
         url: `${FAVOURITE_FILMS_URL}/${userID}`,
         method: "GET",

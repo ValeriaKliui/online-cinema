@@ -44,7 +44,7 @@ export const AuthorizeForm: FC<AuthorizeFormProps> = ({
   };
 
   useEffect(() => {
-    const authErrorText = getAuthErrorText(authError?.error);
+    const authErrorText = getAuthErrorText(authError?.error) ?? null;
     if (authError) setError(authErrorText);
   }, [authError]);
 

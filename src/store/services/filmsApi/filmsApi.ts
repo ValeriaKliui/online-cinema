@@ -42,9 +42,11 @@ export const filmsApi = api.injectEndpoints({
         });
 
         return Promise.allSettled(promises)
-
-          .then((results) => results.filter((result) => result.value))
-          .then((results) => results.map((result) => result.value))
+          .then((results) =>
+            results.map(
+              (result) => result.status === "fulfilled" && result.value,
+            ),
+          )
           .then((values) => ({ data: values }));
       },
     }),

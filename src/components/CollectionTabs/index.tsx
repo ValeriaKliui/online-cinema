@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Tabs, TabType } from "./styled";
 import { CollectionType } from "@store/services/entities";
+import { CollectionTabsProps } from "./interfaces";
 
-export const CollectionTabs = ({ collectionTabs, onTabChange }) => {
+export const CollectionTabs: FC<CollectionTabsProps> = ({
+  collectionTabs,
+  onTabChange,
+}) => {
   const [choosenType, setChoosenType] = useState(collectionTabs[0].type);
 
   const onClick = (type: CollectionType) => {

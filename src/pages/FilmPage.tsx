@@ -4,12 +4,13 @@ import { ReviewsSlider } from "@components/ReviewsSlider";
 import { SimilarFilms } from "@components/SimilarFilms";
 import { Staff } from "@components/Staff";
 import { FilmBg } from "@shared/FilmBg";
+import { Spinner } from "@shared/Spinner";
 import { useGetInfoAboutFilmQuery } from "@store/services/filmsApi/filmsApi";
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
   const kinopoiskId = Number(useParams().kinopoiskId);
-  const { data: filmInfo } = useGetInfoAboutFilmQuery(kinopoiskId);
+  const { data: filmInfo, isFetching } = useGetInfoAboutFilmQuery(kinopoiskId);
   const {
     nameRu,
     year,
@@ -18,13 +19,16 @@ export const FilmPage = () => {
     genres,
     description,
     posterUrl,
+    nameEn,
+    nameOriginal,
   } = filmInfo ?? {};
+  if (isFetching) return <Spinner />;
 
   return (
     <>
       <FilmBg $posterUrl={posterUrl}>
         <FilmBlock
-          nameRu={nameRu}
+          nameRu={nameRu || nameEn || nameOriginal || ""}
           year={year}
           filmLength={filmLength}
           countries={countries}

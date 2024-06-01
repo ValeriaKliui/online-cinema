@@ -9,7 +9,8 @@ export const Container = styled.div`
   padding: 5em 0;
 `;
 export const Poster = styled.div`
-  flex-basis: 160%;
+  min-width: 25em;
+  width: 25em;
 `;
 export const FilmInfo = styled.div`
   ${flexColGap(2)}

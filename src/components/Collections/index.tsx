@@ -4,8 +4,6 @@ import { useLazyGetCollectionByTypeQuery } from "@store/services/filmsApi/filmsA
 import { useCallback, useState } from "react";
 import { Container } from "./styled";
 import { Slider } from "@shared/Slider";
-import { PATHS_LINKS } from "@constants/paths";
-import { Link } from "react-router-dom";
 import { CollectionType, Film } from "@store/services/entities";
 import { CollectionTabs } from "@components/CollectionTabs";
 import { Spinner } from "@shared/Spinner";
@@ -36,18 +34,16 @@ export const Collections = () => {
     nameEn,
     nameOriginal,
   }: Film) => (
-    <Link to={PATHS_LINKS.films + "/" + kinopoiskId} key={kinopoiskId}>
-      <FilmCard
-        kinopoiskId={kinopoiskId}
-        nameRu={nameRu}
-        posterUrlPreview={posterUrlPreview}
-        year={year}
-        ratingImdb={ratingImdb}
-        ratingKinopoisk={ratingKinopoisk}
-        nameEn={nameEn}
-        nameOriginal={nameOriginal}
-      />
-    </Link>
+    <FilmCard
+      kinopoiskId={kinopoiskId}
+      nameRu={nameRu}
+      posterUrlPreview={posterUrlPreview}
+      year={year}
+      ratingImdb={ratingImdb}
+      ratingKinopoisk={ratingKinopoisk}
+      nameEn={nameEn}
+      nameOriginal={nameOriginal}
+    />
   );
 
   return (

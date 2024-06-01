@@ -26,7 +26,7 @@ export const FilmBlock: FC<FilmBlockProps> = ({
 }) => {
   const navigate = useNavigate();
   const user = useAppSelector(selectUser);
-  const { id } = user ?? {};
+  const { id = 0 } = user ?? {};
   const { data, error } = useGetFavoriteFilmsIDsQuery(id, { skip: !id });
   const { favouriteFilmsIDs = [] } = data ?? {};
 

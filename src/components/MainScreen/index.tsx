@@ -8,7 +8,6 @@ import { FilmInfo, FilmContainer, Description, SubText } from "./styled";
 import { Button } from "@shared/Button";
 import YoutubeSvg from "@assets/icons/youtube.svg?react";
 import { getDateForPremiers } from "@utils/getDateForPremiers";
-import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { FilmBg } from "@shared/FilmBg";
 import { Spinner } from "@shared/Spinner";
@@ -30,7 +29,8 @@ export const MainScreen = () => {
     skip: !kinopoiskId,
   });
 
-  const { posterUrl, year, nameRu, description } = premierInfo ?? {};
+  const { posterUrl, year, nameRu, description, nameEn, nameOriginal } =
+    premierInfo ?? {};
 
   const descriptionCut = description?.split(".").slice(0, 2).join(".") + ".";
 
@@ -43,17 +43,15 @@ export const MainScreen = () => {
           <FilmContainer className="wrapper">
             <FilmInfo>
               <SubText className="subtext">Выбор Illuminous</SubText>
-              <h2>{nameRu} </h2>
+              <h2>{nameRu || nameEn || nameOriginal} </h2>
               {year && <p className="xs">{year}</p>}
               {description && (
                 <Description className="medium">{descriptionCut}</Description>
               )}
             </FilmInfo>
-            <Link to={PATHS_LINKS.films + "/" + kinopoiskId}>
-              <Button>
-                Смотреть <YoutubeSvg />
-              </Button>
-            </Link>
+            <Button link={PATHS_LINKS.films + "/" + kinopoiskId}>
+              Смотреть <YoutubeSvg />
+            </Button>
           </FilmContainer>
         </FilmBg>
       )}

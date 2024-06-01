@@ -8,4 +8,5 @@ export const FilmBg = styled.div<{ $posterUrl?: string }>`
   background-size: cover;
   min-height: 50vh;
   background-position: top center;
+  margin-top: -4em;
 `;

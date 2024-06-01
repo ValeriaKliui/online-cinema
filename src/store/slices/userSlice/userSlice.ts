@@ -38,12 +38,9 @@ export const UserSlice = createSlice({
           state.user = payload;
         },
       )
-      .addMatcher(
-        userApi.endpoints.getUserInfo.matchRejected,
-        (state, action) => {
-          console.log(action);
-        },
-      );
+      .addMatcher(userApi.endpoints.getUserInfo.matchRejected, () => {
+        console.log("user info rejected");
+      });
     builder.addMatcher(
       userApi.endpoints.updateUserFavouriteFilms.matchRejected,
       () => {

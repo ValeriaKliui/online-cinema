@@ -13,6 +13,7 @@ export interface Film {
   countries?: { country: string }[];
   genres?: { country: string }[];
   filmLength?: number;
+  filmId?: number;
 }
 
 export type Premier = Pick<
@@ -25,6 +26,7 @@ export type Premier = Pick<
   | "posterUrlPreview"
   | "countries"
   | "genres"
+  | "filmId"
 >;
 
 export type FilmByFilter = Pick<
@@ -83,10 +85,11 @@ export type SimilarFilm = Premier;
 
 export interface StaffPerson {
   staffId: number;
-  nameRu: string;
+  nameRu: string | null;
   description: string;
   posterUrl: string;
   professionKey: PROFESSIONS;
+  nameEn: string;
 }
 export enum PROFESSIONS {
   DIRECTOR = "Режиссер",
@@ -96,6 +99,11 @@ export enum PROFESSIONS {
   OPERATOR = "Оператор",
   COMPOSER = "Композитор",
   DESIGN = "Художник",
+  EDITOR = "Монтажер",
+  PRODUCER_USSR = "Продюсер ",
+  TRANSLATOR = "Переводчик",
+  VOICE_DIRECTOR = "Озвучка",
+  UNKNOWN = "",
 }
 
 export enum GENRES {

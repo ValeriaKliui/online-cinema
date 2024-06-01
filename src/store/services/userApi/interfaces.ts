@@ -10,3 +10,7 @@ export type RemoveFromFavouriteParams = Pick<User, "id"> & {
   favouriteFilmsIDs: number[];
   userExists?: boolean;
 };
+
+export type FavFilmsResponse = Pick<User, "id"> & {
+  favouriteFilmsIDs: number[];
+};

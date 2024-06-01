@@ -1,4 +1,5 @@
 import { Film } from "@store/services/entities";
+import { ReactElement } from "react";
 
 export type FilmCardProps = Pick<
   Film,
@@ -12,4 +13,4 @@ export type FilmCardProps = Pick<
   | "countries"
   | "nameEn"
   | "nameOriginal"
-> & { expanded?: boolean };
+> & { expanded?: boolean; children?: ReactElement };

@@ -1,7 +1,7 @@
 import { Button } from "@shared/Button";
 import { Media, Container, AuthorizeScreen } from "./styled";
 import { AuthorizeForm } from "@components/AuthorizeForm";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { useEffect } from "react";
 import { useRegisterMutation } from "@store/services/userApi/userApi";
@@ -25,9 +25,7 @@ export const Register = () => {
           Зарегистрируйтесь, чтобы получить доступ ко всем преимуществам нашей
           платформы. Уже есть аккаунт?
         </p>
-        <NavLink to={PATHS_LINKS.login}>
-          <Button>Войти</Button>
-        </NavLink>
+        <Button link={PATHS_LINKS.login}>Войти</Button>
       </Media>
       <AuthorizeScreen>
         <AuthorizeForm

@@ -30,7 +30,7 @@ export const FilmsPage = () => {
       <Pages
         pagesAmount={totalPages}
         onPageChange={onPageChange}
-        initPage={filmsSearchParams.page}
+        initPage={Number(filmsSearchParams.page)}
       />
     </>
   );

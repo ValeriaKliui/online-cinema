@@ -32,3 +32,9 @@ export const Rating = styled.div`
   left: 1em;
   padding: 0.5em;
 `;
+export const ContentContainer = styled.div<{ $hasChildren: boolean }>`
+  justify-content: ${({ $hasChildren }) =>
+    $hasChildren ? "space-around" : "unset"};
+
+  ${flexColGap(1)}
+`;

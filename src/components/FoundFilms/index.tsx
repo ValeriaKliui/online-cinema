@@ -54,12 +54,13 @@ export const FoundFilms: FC<FoundFilmsProps> = ({
         </SearchInfo>
       )}
       {isMoreFilms && (
-        <Link
-          to={PATHS_LINKS.search + `?keyword=${searchKeyword}&page=1`}
+        <Button
+          onClick={handleClose}
+          link={PATHS_LINKS.search + `?keyword=${searchKeyword}&page=1`}
           className="centered-flex"
         >
-          <Button onClick={handleClose}>Показать все</Button>
-        </Link>
+          Показать все
+        </Button>
       )}
     </Container>
   );

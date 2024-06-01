@@ -13,10 +13,11 @@ export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
     professionKey,
     nameRu,
     staffId,
+    nameEn,
   }: StaffPerson) => (
     <StaffItem key={staffId + professionKey}>
       <StaffImg src={posterUrl} />
-      <h6>{nameRu}</h6>
+      <h6>{nameRu || nameEn}</h6>
       <p>{PROFESSIONS[professionKey as unknown as keyof typeof PROFESSIONS]}</p>
     </StaffItem>
   );

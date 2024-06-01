@@ -1,7 +1,7 @@
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
-export const Overlay = styled.div`
+export const Overlay = styled.div<{ $isOpened: boolean }>`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
