@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const UserOptions = () => (
   <Container className="wrapper">
     {USER_OPTIONS.map(({ Icon, option, link }) => (
-      <Link to={link}>
+      <Link to={link} key={option}>
         <Option>
           <Icon />
           <p className="m">{option}</p>

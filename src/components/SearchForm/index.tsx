@@ -3,9 +3,10 @@ import { Input } from "@shared/Input";
 import { useAppDispatch, useAppSelector } from "@store/interfaces/hooks";
 import { selectSearchKeyword } from "@store/selectors/app";
 import { setSearchKeyword } from "@store/slices/appSlice";
-import { ChangeEvent, SyntheticEvent, useEffect } from "react";
+import { ChangeEvent, FC, SyntheticEvent, useEffect } from "react";
+import { SearchFormProps } from "./interfaces";
 
-export const SearchForm = ({
+export const SearchForm: FC<SearchFormProps> = ({
   onKeywordChange,
   initialKeyword = "",
   onFormSubmit,

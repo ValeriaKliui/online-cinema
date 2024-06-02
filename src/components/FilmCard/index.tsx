@@ -39,7 +39,6 @@ export const FilmCard: FC<FilmCardProps> = ({
       <ContentContainer $hasChildren={!!children}>
         <Description>
           <Link to={link}>
-            {" "}
             <p className="m">{nameRu || nameEn || nameOriginal}</p>
           </Link>
           {year && <p>{year}</p>}

@@ -39,7 +39,6 @@ export const FilmBlock: FC<FilmBlockProps> = ({
 
     const isInFav =
       favouriteFilmsIDs && favouriteFilmsIDs.includes(kinopoiskId);
-    const noFavFilmsYet = !error && error?.status !== 404;
     const updatedFavFilmsIDs = !isInFav
       ? [...favouriteFilmsIDs, kinopoiskId]
       : favouriteFilmsIDs.filter((filmID) => filmID !== kinopoiskId);
@@ -47,7 +46,7 @@ export const FilmBlock: FC<FilmBlockProps> = ({
     updateFavFilmsIDs({
       id,
       favouriteFilmsIDs: updatedFavFilmsIDs,
-      userExists: noFavFilmsYet,
+      userExists: error ? false : true,
     });
   };
 

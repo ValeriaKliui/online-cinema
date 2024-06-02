@@ -12,6 +12,7 @@ export const getRejectedExtraReducers = (
   const endpointsArray = Object.entries(endpoints);
 
   return endpointsArray.map((endpoint) =>
+    // @ts-expect-error troubles with custome func
     builder.addMatcher(endpoint[1].matchRejected, applyFunc),
   );
 };

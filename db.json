@@ -54,6 +54,26 @@
       "email": "valeria14003@list.ruasd",
       "password": "$2a$10$LHAXk/8xWjPvj/DaN2TvB.UjX678NjqNkvVXrnW5PS/YYRFXVziHm",
       "id": 11
+    },
+    {
+      "email": "sdfldsf@gmal.com",
+      "password": "$2a$10$l.ZYpQMSNOuSu.2UtiS.qO0AMMoMae1uWmPgSl8vnFDJGIGC/Yk4.",
+      "id": 12
+    },
+    {
+      "email": "sdfdsf@dfgdfg.com",
+      "password": "$2a$10$92fxEIC9.AXu0Brip2EUV.JBeJIrXgweJNz7El7mlqd1WV8lRBfuy",
+      "id": 13
+    },
+    {
+      "email": "valeria14002@yandex.by3",
+      "password": "$2a$10$lsxVw1qEsMRUCM9UdXZTx.aKPCI2IZwcVaxETvYBSNT.V5BrTRlJK",
+      "id": 14
+    },
+    {
+      "email": "valeriakliui@gmail.com2",
+      "password": "$2a$10$F7oSLSXS6H75c4PAKuun9uMgoPZUAi41Zpr3R7LH7SUtlg7n9XLLy",
+      "id": 15
     }
   ],
   "favouriteFilms": [
@@ -70,6 +90,22 @@
     },
     {
       "id": 9,
+      "favouriteFilmsIDs": []
+    },
+    {
+      "id": 12,
+      "favouriteFilmsIDs": [5493676]
+    },
+    {
+      "id": 13,
+      "favouriteFilmsIDs": [5260016]
+    },
+    {
+      "id": 14,
+      "favouriteFilmsIDs": []
+    },
+    {
+      "id": 15,
       "favouriteFilmsIDs": []
     }
   ]

@@ -18,6 +18,7 @@ export const appSlice = createSlice({
   },
   extraReducers(builder) {
     getRejectedExtraReducers(builder, filmsApi, (_, { payload }) => {
+      // @ts-expect-error troubles with custome func
       const errorText = payload?.data?.message || payload?.error;
       errorObserver.notify(errorText);
     });

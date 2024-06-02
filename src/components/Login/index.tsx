@@ -4,12 +4,16 @@ import { PATHS_LINKS } from "@constants/paths";
 import { useError } from "@hooks/useError";
 import { useLoginMutation } from "@store/services/userApi/userApi";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAppSelector } from "@store/interfaces/hooks";
+import { selectUser } from "@store/selectors/user";
 
 export const Login = () => {
   const navigate = useNavigate();
   const [login, { isSuccess, data, error }] = useLoginMutation();
   const authError = useError(error);
+
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     if (isSuccess) {
@@ -22,6 +26,8 @@ export const Login = () => {
       localStorage.setItem(USER_ID, String(id));
     }
   }, [data, navigate, isSuccess]);
+
+  if (user) return <Navigate to={PATHS_LINKS.account} />;
 
   return (
     <>

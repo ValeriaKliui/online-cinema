@@ -3,14 +3,19 @@ import { ReactElement } from "react";
 
 export type FilmCardProps = Pick<
   Film,
-  | "kinopoiskId"
-  | "posterUrlPreview"
-  | "nameRu"
-  | "year"
-  | "ratingImdb"
-  | "ratingKinopoisk"
-  | "genres"
-  | "countries"
-  | "nameEn"
-  | "nameOriginal"
-> & { expanded?: boolean; children?: ReactElement };
+  "kinopoiskId" | "posterUrlPreview" | "nameRu" | "nameEn" | "nameOriginal"
+> &
+  Partial<
+    Pick<
+      Film,
+      | "nameOriginal"
+      | "year"
+      | "ratingImdb"
+      | "ratingKinopoisk"
+      | "genres"
+      | "countries"
+    >
+  > & {
+    expanded?: boolean;
+    children?: ReactElement;
+  };

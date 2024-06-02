@@ -11,7 +11,6 @@ export const updateFavFilmsFn = async ({
       "Content-Type": "application/json;charset=utf-8",
     },
   };
-
   if (userExists)
     await fetch(`${FAVOURITE_FILMS_URL}/${id}`, {
       ...baseData,
