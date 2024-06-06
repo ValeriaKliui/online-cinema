@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { FilmsProps } from "./interfaces";
 import { Container } from "./styled";
 import { FilmCard } from "@components/FilmCard";
@@ -6,7 +6,7 @@ import { PATHS_LINKS } from "@constants/paths";
 import { Spinner } from "@shared/Spinner";
 import { Button } from "@shared/Button";
 
-export const Films: FC<FilmsProps> = ({ films = [], isFetching }) => {
+export const Films: FC<FilmsProps> = memo(({ films = [], isFetching }) => {
   const isFilmsAvailable = !isFetching && films && films.length > 0;
 
   return (
@@ -40,6 +40,7 @@ export const Films: FC<FilmsProps> = ({ films = [], isFetching }) => {
                 nameEn={nameEn}
                 nameOriginal={nameOriginal}
                 expanded
+                key={filmId || kinopoiskId}
               />
             ),
           )}
@@ -52,4 +53,4 @@ export const Films: FC<FilmsProps> = ({ films = [], isFetching }) => {
       </Container>
     </div>
   );
-};
+});

@@ -4,6 +4,11 @@ import styled from "styled-components";
 export const FilmContainer = styled.div`
   ${flexColGap(2)}
   padding: 8em 0;
+  color: ${({ theme: { colors } }) => colors.white};
+  .xs,
+  p {
+    color: ${({ theme: { colors } }) => colors.white};
+  }
 `;
 
 export const FilmInfo = styled.div`
@@ -12,7 +17,7 @@ export const FilmInfo = styled.div`
 export const Description = styled.p`
   max-width: 70%;
 `;
-export const SubText = styled.p`
+export const SubText = styled.span`
   display: flex;
   align-items: center;
   gap: 1em;

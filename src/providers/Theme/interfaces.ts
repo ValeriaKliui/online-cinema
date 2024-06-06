@@ -5,6 +5,15 @@ export enum ThemeType {
   dark = "dark",
 }
 
+export enum Breakpoints {
+  xs = 400,
+  sm = 600,
+  md = 900,
+  lg = 1280,
+  xl = 1440,
+  xxl = 1920,
+}
+
 export interface BaseTheme {
   colors: {
     text: string;
@@ -14,6 +23,7 @@ export interface BaseTheme {
     background: string;
     darkBlock: string;
     brightBlock: string;
+    white: string;
   };
   fonts: {
     medium: string;

@@ -1,13 +1,14 @@
 import { useGetReviewsQuery } from "@store/services/filmsApi/filmsApi";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { ReviewsProps } from "./interfaces";
 import { Slider } from "@shared/Slider";
 import { ReviewContainer, Description } from "./styled";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { ReviewData } from "@store/services/entities";
+import { Breakpoints } from "@providers/Theme/interfaces";
 
-export const ReviewsSlider: FC<ReviewsProps> = ({ kinopoiskId }) => {
+export const ReviewsSlider: FC<ReviewsProps> = memo(({ kinopoiskId }) => {
   const { data: reviews } = useGetReviewsQuery({ kinopoiskId });
   const { items = [] } = reviews ?? {};
 
@@ -30,9 +31,13 @@ export const ReviewsSlider: FC<ReviewsProps> = ({ kinopoiskId }) => {
     <>
       {items.length > 0 && (
         <div className="wrapper">
-          <Slider items={items} itemsAmount={3} renderItem={renderReviews} />
+          <Slider
+            items={items}
+            itemsAmount={{ [Breakpoints.xxl]: 3, [Breakpoints.lg]: 2 }}
+            renderItem={renderReviews}
+          />
         </div>
       )}
     </>
   );
-};
+});

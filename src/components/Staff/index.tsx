@@ -1,11 +1,12 @@
 import { useGetStaffInfoQuery } from "@store/services/filmsApi/filmsApi";
 import { StaffContainer, StaffItem, StaffImg } from "./styled";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { StaffProps } from "./interfaces";
 import { Slider } from "@shared/Slider";
 import { PROFESSIONS, StaffPerson } from "@store/services/entities";
+import { Breakpoints } from "@providers/Theme/interfaces";
 
-export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
+export const Staff: FC<StaffProps> = memo(({ kinopoiskId }) => {
   const { data: staffInfo = [] } = useGetStaffInfoQuery(kinopoiskId);
 
   const renderStaff = ({
@@ -26,8 +27,12 @@ export const Staff: FC<StaffProps> = ({ kinopoiskId }) => {
     <div className="wrapper">
       <h5>Актеры и создатели</h5>
       <StaffContainer>
-        <Slider itemsAmount={4} items={staffInfo} renderItem={renderStaff} />
+        <Slider
+          itemsAmount={{ [Breakpoints.xxl]: 4, [Breakpoints.lg]: 3 }}
+          items={staffInfo}
+          renderItem={renderStaff}
+        />
       </StaffContainer>
     </div>
   );
-};
+});

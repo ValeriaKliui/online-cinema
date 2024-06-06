@@ -3,6 +3,7 @@ import MontserratMediumWoff from "@assets/fonts/Montserrat-Medium.woff";
 import MontserratRegularWoff from "@assets/fonts/Montserrat-Regular.woff";
 import MontserratBoldWoff from "@assets/fonts/Montserrat-SemiBold.woff";
 import PoppinsWoff from "@assets/fonts/Poppins-Regular.woff";
+import { devices } from "@providers/Theme/constants";
 
 const styled = { createGlobalStyle };
 
@@ -77,6 +78,15 @@ export const GlobalStyles = styled.createGlobalStyle`
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
+    ${devices.lg} {
+      max-width: 850px;
+    }
+    ${devices.md} {
+      max-width: 530px;
+    }
+    ${devices.sm} {
+      max-width: 380px;
+    }
   }
   p,
   body,

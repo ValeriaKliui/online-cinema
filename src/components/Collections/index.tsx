@@ -7,6 +7,7 @@ import { Slider } from "@shared/Slider";
 import { CollectionType, Film } from "@store/services/entities";
 import { CollectionTabs } from "@components/CollectionTabs";
 import { Spinner } from "@shared/Spinner";
+import { Breakpoints } from "@providers/Theme/interfaces";
 
 export const Collections = () => {
   const [shouldBeReset, setShouldBeReset] = useState(false);
@@ -59,7 +60,12 @@ export const Collections = () => {
           <Slider
             items={items}
             renderItem={renderFilm}
-            itemsAmount={5}
+            itemsAmount={{
+              [Breakpoints.xxl]: 5,
+              [Breakpoints.lg]: 3,
+              [Breakpoints.md]: 2,
+              [Breakpoints.sm]: 1,
+            }}
             shouldBeReset={shouldBeReset}
             setShouldBeReset={setShouldBeReset}
           />

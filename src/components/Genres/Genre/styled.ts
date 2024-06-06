@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import { devices } from "@providers/Theme/constants";
+import { flexColGap } from "@utils/mixins/mixins";
+import styled from "styled-components";
 
 export const Container = styled.div`
   path {
@@ -14,6 +16,10 @@ export const Container = styled.div`
   justify-content: center;
   cursor: pointer;
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
+  ${devices.lg} {
+    text-align: center;
+    ${flexColGap(1)}
+  }
 `;
 export const IconContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.background};

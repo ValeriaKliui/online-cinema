@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
@@ -7,20 +8,30 @@ export const Container = styled.div`
   gap: 8em;
   align-items: center;
   padding: 5em 0;
+  ${devices.lg} {
+    gap: 3em;
+  }
 `;
 export const Poster = styled.div`
   min-width: 25em;
   width: 25em;
 `;
 export const FilmInfo = styled.div`
-  ${flexColGap(2)}
+  ${flexColGap(2)};
+  color: white;
 `;
 export const FilmProperties = styled.div`
   display: flex;
   gap: 0.5em 1.5em;
   flex-wrap: wrap;
+  p {
+    color: ${({ theme: { colors } }) => colors.white};
+  }
 `;
 export const Buttons = styled.div`
   display: flex;
   gap: 2em;
+  ${devices.lg} {
+    ${flexColGap(1)}
+  }
 `;

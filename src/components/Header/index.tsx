@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
 import { useGetUserInfoQuery } from "@store/services/userApi/userApi";
 import { ACCESS_TOKEN, USER_ID } from "@constants/user";
+import { ThemeToggler } from "@components/ThemeToggler";
 
 export const Header = () => {
   const randomFilm = useAppSelector(selectRandomFilm);
@@ -28,6 +29,7 @@ export const Header = () => {
           </NavLink>
         </h1>
         <Nav />
+        <ThemeToggler />
         <NavLink to={PATHS_LINKS.account}>
           <User height="2em" width="2em" />
         </NavLink>

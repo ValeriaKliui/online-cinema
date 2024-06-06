@@ -1,11 +1,11 @@
 import { useGetSimilarFilmsQuery } from "@store/services/filmsApi/filmsApi";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { SimilarFilmsProps } from "./interfaces";
 import { FilmCard } from "@components/FilmCard";
 import { Slider } from "@shared/Slider";
 import { SimilarFilm } from "@store/services/entities";
 
-export const SimilarFilms: FC<SimilarFilmsProps> = ({ kinopoiskId }) => {
+export const SimilarFilms: FC<SimilarFilmsProps> = memo(({ kinopoiskId }) => {
   const { data: similarFilms } = useGetSimilarFilmsQuery(kinopoiskId);
   const { items = [] } = similarFilms ?? {};
 
@@ -33,4 +33,4 @@ export const SimilarFilms: FC<SimilarFilmsProps> = ({ kinopoiskId }) => {
       )}
     </>
   );
-};
+});

@@ -12,4 +12,6 @@ export const ButtonStyled = styled.button`
   align-items: center;
   gap: 0.7em;
   cursor: pointer;
+  color: ${({ theme: { colors } }) => colors.white};
+  white-space: nowrap;
 `;

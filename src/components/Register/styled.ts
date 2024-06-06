@@ -1,8 +1,13 @@
+import { devices } from "@providers/Theme/constants";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
+  ${devices.md} {
+    flex-direction: column-reverse;
+    gap: 2em;
+  }
 `;
 export const Media = styled.div`
   flex: 1 1 0;
@@ -19,6 +24,9 @@ export const AuthorizeScreen = styled.div`
   ${flexColGap(1)};
   align-items: center;
   justify-content: center;
+  ${devices.md} {
+    padding: 2em 0;
+  }
 `;
 export const Networks = styled.div`
   display: flex;

@@ -16,7 +16,7 @@ export const Page = styled.div<{ $choosen: boolean }>`
   align-items: center;
   border-radius: ${({ theme: { radiuses } }) => radiuses.xs};
   color: ${({ theme: { colors }, $choosen }) =>
-    $choosen ? colors.primary : "inherit"};
+    $choosen ? colors.primary : colors.white};
   cursor: pointer;
   &:hover {
     background-color: ${({ theme: { colors } }) => colors.hoverText};

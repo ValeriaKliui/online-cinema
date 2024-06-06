@@ -3,7 +3,7 @@ import { Pages } from "@components/Pages";
 import { Search } from "@components/Search";
 import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi/filmsApi";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 
 export const FilmsPage = () => {
   const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
@@ -23,10 +23,12 @@ export const FilmsPage = () => {
     getFilmsByParams(filmsSearchParams);
   }, [getFilmsByParams, filmsSearchParams]);
 
+  const filmsMemoised = useMemo(() => films, [films]);
+
   return (
     <>
       <Search />
-      <Films films={films} isFetching={isFetching} />
+      <Films films={filmsMemoised} isFetching={isFetching} />
       <Pages
         pagesAmount={totalPages}
         onPageChange={onPageChange}

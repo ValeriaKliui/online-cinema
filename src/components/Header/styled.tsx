@@ -15,6 +15,8 @@ export const HeaderContainer = styled.header<{ $posterUrl?: string }>`
   background-size: cover;
   background-attachment: fixed;
   background-position: top center;
+  color: ${({ $posterUrl, theme: { colors } }) =>
+    $posterUrl ? colors.white : colors.text};
 `;
 export const ContentContainer = styled.div`
   max-width: 1340px;

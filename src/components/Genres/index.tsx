@@ -7,16 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { Slider } from "@shared/Slider";
 import { GENRES } from "@store/services/entities";
+import { useCallback } from "react";
+import { Breakpoints } from "@providers/Theme/interfaces";
 
 export const Genres = () => {
   const [getByGenre] = useLazyGetFilmsByFiltersQuery();
   const navigate = useNavigate();
 
-  const onGenreClick = (genres: GENRES) => {
-    getByGenre({ genres });
-    navigate(PATHS_LINKS.films + `?genres=${genres}&page=1`);
-  };
-
+  const onGenreClick = useCallback(
+    (genres: GENRES) => {
+      getByGenre({ genres });
+      navigate(PATHS_LINKS.films + `?genres=${genres}&page=1`);
+    },
+    [getByGenre, navigate],
+  );
   return (
     <Container className="wrapper">
       <TextContainer>
@@ -26,7 +30,11 @@ export const Genres = () => {
         </Text>
       </TextContainer>
       <Slider
-        itemsAmount={3}
+        itemsAmount={{
+          [Breakpoints.xl]: 3,
+          [Breakpoints.md]: 2,
+          [Breakpoints.sm]: 1,
+        }}
         items={GENRES_ALL}
         renderItem={({ genreName, Icon, amount, genre }) => (
           <Genre

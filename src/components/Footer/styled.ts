@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
@@ -7,9 +8,11 @@ export const FooterConainer = styled.div`
 export const FooterLinks = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 800px;
   margin: 0 auto;
   padding: 3em 0;
+  ${devices.md} {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 export const LinksContainer = styled.div`
   ${flexColGap(1.25)}

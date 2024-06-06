@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import ArrowSvg from "@assets/icons/arrow.svg?react";
+import { flexColGap } from "@utils/mixins/mixins";
+import { devices } from "@providers/Theme/constants";
 
 export const Arrow = styled(ArrowSvg)`
   min-width: 2em;
@@ -16,6 +18,9 @@ export const LeftArrow = styled(Arrow)`
 export const Container = styled.div`
   display: flex;
   gap: 1em;
+  ${devices.md} {
+    ${flexColGap(1)};
+  }
 `;
 export const Item = styled.div<{ $maxWidth: number }>`
   flex: 0 1 100%;

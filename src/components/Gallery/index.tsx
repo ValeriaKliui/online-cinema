@@ -1,9 +1,9 @@
 import { useGetImagesQuery } from "@store/services/filmsApi/filmsApi";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { GalleryProps } from "./interfaces";
 import { GalleryContainer } from "./styled";
 
-export const Gallery: FC<GalleryProps> = ({ kinopoiskId }) => {
+export const Gallery: FC<GalleryProps> = memo(({ kinopoiskId }) => {
   const { data: images } = useGetImagesQuery(kinopoiskId);
   const { items = [] } = images ?? {};
 
@@ -18,4 +18,4 @@ export const Gallery: FC<GalleryProps> = ({ kinopoiskId }) => {
       )}
     </>
   );
-};
+});

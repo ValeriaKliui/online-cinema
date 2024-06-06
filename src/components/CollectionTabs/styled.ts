@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import styled from "styled-components";
 
 export const Tabs = styled.div`
@@ -5,6 +6,10 @@ export const Tabs = styled.div`
   justify-content: space-around;
   background-color: ${({ theme: { colors } }) => colors.darkBlock};
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
+  ${devices.lg} {
+    flex-wrap: wrap;
+    gap: 0 1em;
+  }
 `;
 export const TabType = styled.div<{ $isChoosen: boolean }>`
   cursor: pointer;
