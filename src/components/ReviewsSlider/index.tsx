@@ -33,7 +33,11 @@ export const ReviewsSlider: FC<ReviewsProps> = memo(({ kinopoiskId }) => {
         <div className="wrapper">
           <Slider
             items={items}
-            itemsAmount={{ [Breakpoints.xxl]: 3, [Breakpoints.lg]: 2 }}
+            itemsAmount={{
+              [Breakpoints.xxl]: 3,
+              [Breakpoints.lg]: 2,
+              [Breakpoints.md]: 1,
+            }}
             renderItem={renderReviews}
           />
         </div>

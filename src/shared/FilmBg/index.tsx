@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import styled from "styled-components";
 
 export const FilmBg = styled.div<{ $posterUrl?: string }>`
@@ -9,4 +10,7 @@ export const FilmBg = styled.div<{ $posterUrl?: string }>`
   min-height: 50vh;
   background-position: top center;
   margin-top: -4em;
+  ${devices.md} {
+    min-height: unset;
+  }
 `;

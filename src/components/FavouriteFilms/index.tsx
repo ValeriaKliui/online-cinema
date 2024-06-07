@@ -52,8 +52,9 @@ export const FavouriteFilms: FC<FavouriteFilmsProps> = memo(
               kinopoiskId,
               nameEn,
               nameOriginal,
+              nameRu,
             }) => (
-              <FavFilm>
+              <FavFilm key={kinopoiskId}>
                 <FilmCard
                   kinopoiskId={kinopoiskId}
                   nameRu={nameRu}

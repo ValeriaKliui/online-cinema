@@ -7,9 +7,11 @@ export const Container = styled.div`
   justify-content: space-between;
   gap: 8em;
   align-items: center;
-  padding: 5em 0;
   ${devices.lg} {
     gap: 3em;
+  }
+  ${devices.md} {
+    ${flexColGap(2)}
   }
 `;
 export const Poster = styled.div`
@@ -33,5 +35,8 @@ export const Buttons = styled.div`
   gap: 2em;
   ${devices.lg} {
     ${flexColGap(1)}
+  }
+  ${devices.md} {
+    margin-bottom: 4em;
   }
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { svgStyles } from "@shared/Icon";
 import LogoIcon from "@assets/icons/logo.svg?react";
 import UserIcon from "@assets/icons/user.svg?react";
+import { devices } from "@providers/Theme/constants";
 
 export const HeaderContainer = styled.header<{ $posterUrl?: string }>`
   background: ${({ $posterUrl }) =>
@@ -31,4 +32,15 @@ export const Logo = styled(LogoIcon)`
 `;
 export const User = styled(UserIcon)`
   ${(props) => svgStyles(props)}
+`;
+export const BurgerWrapper = styled.div`
+  display: none;
+  ${devices.md} {
+    display: block;
+  }
+`;
+export const NavWrapper = styled.div`
+  ${devices.md} {
+    display: none;
+  }
 `;

@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
@@ -8,6 +9,9 @@ export const FilmContainer = styled.div`
   .xs,
   p {
     color: ${({ theme: { colors } }) => colors.white};
+  }
+  ${devices.md} {
+    padding: 2em 0;
   }
 `;
 

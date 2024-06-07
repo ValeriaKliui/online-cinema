@@ -38,6 +38,7 @@ export const GlobalStyles = styled.createGlobalStyle`
   }
   ul {
     list-style-type: none;
+    padding: 0;
   }
   body {
     margin: 0;
@@ -94,6 +95,12 @@ export const GlobalStyles = styled.createGlobalStyle`
     font-family: ${({ theme: { fonts } }) => fonts.regular};
     font-size: 16px;
     color: ${({ theme: { colors } }) => colors.text};
+    ${devices.md} {
+      font-size: 14px;
+    }
+    ${devices.sm} {
+      font-size: 12px;
+    }
   }
   .xl,
   .l,

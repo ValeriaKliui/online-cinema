@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
@@ -13,6 +14,9 @@ export const StaffItem = styled.div`
   padding: 1em;
   text-align: center;
   border-radius: ${({ theme: { radiuses } }) => radiuses.small};
+  ${devices.md} {
+    margin-bottom: 3em;
+  }
 `;
 export const StaffImg = styled.img`
   height: 10em;

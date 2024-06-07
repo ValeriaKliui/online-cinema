@@ -1,3 +1,4 @@
+import { devices } from "@providers/Theme/constants";
 import styled from "styled-components";
 
 export const GalleryContainer = styled.div`
@@ -15,5 +16,8 @@ export const GalleryContainer = styled.div`
     grid-row: 1 / 3;
     height: 100%;
     max-height: unset;
+  }
+  ${devices.md} {
+    grid-template-columns: repeat(2, 1fr);
   }
 `;

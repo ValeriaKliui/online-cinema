@@ -3,13 +3,24 @@ import { useAppSelector } from "@store/interfaces/hooks";
 import { selectRandomFilm } from "@store/selectors/films";
 import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
-import { ContentContainer, HeaderContainer, Logo, User } from "./styled";
+import {
+  BurgerWrapper,
+  ContentContainer,
+  HeaderContainer,
+  Logo,
+  NavWrapper,
+  User,
+} from "./styled";
 import { useGetUserInfoQuery } from "@store/services/userApi/userApi";
 import { ACCESS_TOKEN, USER_ID } from "@constants/user";
 import { ThemeToggler } from "@components/ThemeToggler";
+import { Burger } from "@shared/Burger";
+import { MobileMenu } from "@components/MobileMenu";
+import { useRef } from "react";
 
 export const Header = () => {
   const randomFilm = useAppSelector(selectRandomFilm);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const { posterUrl } = randomFilm ?? {};
 
   const savedAccessToken = localStorage.getItem(ACCESS_TOKEN);
@@ -20,6 +31,10 @@ export const Header = () => {
     pollingInterval: 900000,
   });
 
+  const openMenu = () => {
+    dialogRef?.current?.showModal();
+  };
+
   return (
     <HeaderContainer $posterUrl={posterUrl}>
       <ContentContainer className="wrapper">
@@ -28,12 +43,16 @@ export const Header = () => {
             <Logo height="4em" />
           </NavLink>
         </h1>
-        <Nav />
+        <NavWrapper>
+          <Nav />
+        </NavWrapper>
         <ThemeToggler />
         <NavLink to={PATHS_LINKS.account}>
           <User height="2em" width="2em" />
         </NavLink>
+        <BurgerWrapper>{<Burger onClick={openMenu} />}</BurgerWrapper>
       </ContentContainer>
+      <MobileMenu ref={dialogRef} />
     </HeaderContainer>
   );
 };
