@@ -22,16 +22,14 @@ export const Slider = <T,>({
       const sortedBreakpoints = Object.entries(itemsAmount)
         .sort((a, b) => Number(b[0]) - Number(a[0]))
         .map((breakpoint) => [Number(breakpoint[0]), breakpoint[1]]);
-      const maximumItemsAmount = sortedBreakpoints[0][1];
 
       sortedBreakpoints.map((breakpointObj) => {
         const breakpoint = breakpointObj[0];
         const itemsAmount = breakpointObj[1];
 
         if (screenSize < breakpoint) setMediaItemsAmount(itemsAmount);
-        else setMediaItemsAmount(maximumItemsAmount);
       });
-    } else setMediaItemsAmount(itemsAmount);
+    }
   }, [itemsAmount, screenSize]);
 
   const oneItemWidth = containerRef.current
