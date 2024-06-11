@@ -1,13 +1,14 @@
-import { flexColGap } from "@utils/mixins/mixins";
+import { flexColGap, scaleAnimation } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
 export const Container = styled.div<{ $expanded?: boolean }>`
   ${flexColGap(1)};
   position: relative;
-  /* height: 100%; */
   justify-content: ${({ $expanded = false }) =>
     $expanded ? "inherit" : "space-between"};
   flex-direction: ${({ $expanded = false }) => ($expanded ? "row" : "column")};
+
+  ${scaleAnimation}
 `;
 export const ImgContainer = styled.div`
   height: 300px;
@@ -31,6 +32,7 @@ export const Rating = styled.div`
   top: 0;
   left: 1em;
   padding: 0.5em;
+  color: ${({ theme: { colors } }) => colors.white};
 `;
 export const ContentContainer = styled.div<{ $hasChildren: boolean }>`
   justify-content: ${({ $hasChildren }) =>

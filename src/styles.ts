@@ -35,6 +35,10 @@ export const GlobalStyles = styled.createGlobalStyle`
   a {
     color: inherit;
     text-decoration: unset;
+
+    &:hover {
+      color: ${({ theme: { colors } }) => colors.primary};
+    }
   }
   ul {
     list-style-type: none;
@@ -87,6 +91,9 @@ export const GlobalStyles = styled.createGlobalStyle`
     }
     ${devices.sm} {
       max-width: 380px;
+    }
+    ${devices.xs} {
+      max-width: 300px;
     }
   }
   p,

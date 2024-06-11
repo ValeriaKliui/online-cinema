@@ -1,17 +1,14 @@
-import { RefObject, useCallback, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 
 export const useClickOutside = (
   ref: RefObject<HTMLDivElement>,
-  handleClickOutside: () => void
+  handleClickOutside: () => void,
 ) => {
-  const onClick = useCallback(
-    (e: Event) => {
-      if (!ref?.current?.contains(e.target as Node)) handleClickOutside();
-    },
-    [handleClickOutside, ref]
-  );
-
   useEffect(() => {
+    const onClick = (e: Event) => {
+      if (!ref?.current?.contains(e.target as Node)) handleClickOutside();
+    };
+
     document.addEventListener("click", onClick);
-  }, [onClick]);
+  }, [handleClickOutside, ref]);
 };

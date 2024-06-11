@@ -38,7 +38,7 @@ export const lightTheme: BaseTheme = {
     ...darkTheme.colors,
     background: "#ffffff",
     text: "#000000",
-    darkBlock: "#b7b7b7",
-    brightBlock: "#b2b2b2",
+    darkBlock: "#f0f0f0",
+    brightBlock: "#efefef",
   },
 };

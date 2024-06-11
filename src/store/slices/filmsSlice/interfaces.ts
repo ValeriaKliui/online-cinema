@@ -1,6 +1,6 @@
-import { Film } from "@store/services/entities";
+import { Film, Premier } from "@store/services/entities";
 
 export interface FilmsState {
-  premier: Film | null;
+  filmBg: Film | Premier | null;
   searchedFilms: Film[];
 }

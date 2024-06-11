@@ -1,0 +1,17 @@
+.searched_films-enter {
+  opacity: 0;
+}
+
+.searched_films-enter-active {
+  opacity: 1;
+  transition: opacity 2s;
+}
+
+.searched_films-exit {
+  opacity: 1;
+}
+
+.searched_films-exit-active {
+  opacity: 0;
+  transition: opacity 2s;
+}

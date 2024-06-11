@@ -18,6 +18,7 @@ export const Page = styled.div<{ $choosen: boolean }>`
   color: ${({ theme: { colors }, $choosen }) =>
     $choosen ? colors.primary : colors.white};
   cursor: pointer;
+  transition: all 0.12s ease;
   &:hover {
     background-color: ${({ theme: { colors } }) => colors.hoverText};
     color: ${({ theme: { colors } }) => colors.primary};
@@ -27,4 +28,9 @@ export const TextButton = styled.p<{ $isAvailable: boolean }>`
   cursor: ${({ $isAvailable }) => ($isAvailable ? "pointer" : "inherit")};
   color: ${({ $isAvailable, theme: { colors } }) =>
     $isAvailable ? colors.text : colors.subtext};
+  transition: all 0.12s ease;
+  &:hover {
+    color: ${({ theme: { colors }, $isAvailable }) =>
+      $isAvailable && colors.primary};
+  }
 `;

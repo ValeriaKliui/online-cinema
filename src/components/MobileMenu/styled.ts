@@ -15,6 +15,9 @@ export const Dialog = styled.dialog`
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
   }
+  p {
+    color: ${({ theme: { colors } }) => colors.text};
+  }
 `;
 export const Form = styled.form`
   ${flexColGap(1)};

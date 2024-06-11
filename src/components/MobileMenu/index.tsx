@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, MouseEvent, useCallback } from "react";
+import { forwardRef, useEffect, MouseEvent } from "react";
 import { Dialog, Form, Cross } from "./styled";
 import { Nav } from "@components/Nav";
 
@@ -22,16 +22,14 @@ export const MobileMenu = forwardRef<HTMLDialogElement>((_, dialogRef) => {
     }
   };
 
-  const closeOnLinkClick = useCallback(
-    (e: globalThis.MouseEvent) => {
+  useEffect(() => {
+    const closeOnLinkClick = (e: globalThis.MouseEvent) => {
       const target = e.target as Element;
       const clickIsOnLink = e.target && target.closest("a");
+      console.log(clickIsOnLink);
       if (clickIsOnLink && dialogElement) dialogElement.close();
-    },
-    [dialogElement],
-  );
+    };
 
-  useEffect(() => {
     if (dialogElement) {
       dialogElement.addEventListener("click", closeOnLinkClick);
     }
@@ -39,12 +37,12 @@ export const MobileMenu = forwardRef<HTMLDialogElement>((_, dialogRef) => {
       if (dialogElement)
         dialogElement.removeEventListener("click", closeOnLinkClick);
     };
-  }, [dialogElement, closeOnLinkClick]);
+  }, [dialogElement]);
 
   return (
     <Dialog aria-label="mobile_menu" ref={dialogRef} onClick={onOutsideClose}>
       <Form className="wrapper" method="dialog">
-        <Cross onClick={onClose} color="white" height="1.5em" width="1.5em" />
+        <Cross onClick={onClose} height="1.5em" width="1.5em" />
         <Nav isColumn={true} />
       </Form>
     </Dialog>

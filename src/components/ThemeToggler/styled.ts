@@ -16,7 +16,7 @@ export const Circle = styled.input`
   border: 2px solid ${({ theme: { colors } }) => colors.primary};
   border-radius: ${({ theme: { radiuses } }) => radiuses.regular};
   margin: 0;
-  transition: 0.2s ease-in;
+  transition: all 0.2s ease-in;
   background-color: ${({ theme: { colors } }) => colors.primary};
   cursor: pointer;
   &:checked {

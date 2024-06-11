@@ -15,6 +15,8 @@ export const Slider = <T,>({
   const [mediaItemsAmount, setMediaItemsAmount] = useState(0);
   const screenSize = document.documentElement.clientWidth;
 
+  const isPreviousItems = currentIndex != 0;
+
   useEffect(() => {
     const isBreakpointsObjects = Number.isNaN(Number(itemsAmount));
 
@@ -23,13 +25,12 @@ export const Slider = <T,>({
         .sort((a, b) => Number(b[0]) - Number(a[0]))
         .map((breakpoint) => [Number(breakpoint[0]), breakpoint[1]]);
 
-      sortedBreakpoints.map((breakpointObj) => {
-        const breakpoint = breakpointObj[0];
-        const itemsAmount = breakpointObj[1];
+      sortedBreakpoints.map((breakpointArr) => {
+        const [breakpoint, itemsAmount] = breakpointArr;
 
         if (screenSize < breakpoint) setMediaItemsAmount(itemsAmount);
       });
-    }
+    } else setMediaItemsAmount(itemsAmount as number);
   }, [itemsAmount, screenSize]);
 
   const oneItemWidth = containerRef.current
@@ -37,12 +38,16 @@ export const Slider = <T,>({
     : 0;
 
   const onRightClick = () => {
-    setCurrentIndex((prev) => prev + mediaItemsAmount);
-    setShouldBeReset?.(false);
+    if (!isEnd) {
+      setCurrentIndex((prev) => prev + mediaItemsAmount);
+      setShouldBeReset?.(false);
+    }
   };
   const onLeftClick = () => {
-    setCurrentIndex((prev) => prev - mediaItemsAmount);
-    setShouldBeReset?.(false);
+    if (isPreviousItems) {
+      setCurrentIndex((prev) => prev - mediaItemsAmount);
+      setShouldBeReset?.(false);
+    }
   };
 
   const isEnd = currentIndex + mediaItemsAmount >= items.length;
@@ -61,7 +66,7 @@ export const Slider = <T,>({
 
   return (
     <Container ref={containerRef}>
-      {currentIndex != 0 && <LeftArrow onClick={onLeftClick} />}
+      <LeftArrow onClick={onLeftClick} $isDisabled={!isPreviousItems} />
       {items
         .slice(currentIndex, currentIndex + mediaItemsAmount)
         .map((item, index) => (
@@ -69,7 +74,7 @@ export const Slider = <T,>({
             {renderItem(item)}
           </Item>
         ))}
-      {!isEnd && <Arrow onClick={onRightClick} />}
+      <Arrow onClick={onRightClick} $isDisabled={isEnd} />
     </Container>
   );
 };

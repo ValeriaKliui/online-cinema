@@ -70,7 +70,7 @@ export const FilmBlock: FC<FilmBlockProps> = memo(
             <Button>
               Смотреть по подписке <YoutubeSvg />
             </Button>
-            <Button onClick={updateFavIDs}>
+            <Button onClick={updateFavIDs} isChoosen={isInFav}>
               {isInFav ? " В избранном" : "В избранное"}
               <SaveSvg />
             </Button>

@@ -5,12 +5,25 @@ import { SimilarFilms } from "@components/SimilarFilms";
 import { Staff } from "@components/Staff";
 import { FilmBg } from "@shared/FilmBg";
 import { Spinner } from "@shared/Spinner";
+import { useAppDispatch } from "@store/interfaces/hooks";
 import { useGetInfoAboutFilmQuery } from "@store/services/filmsApi/filmsApi";
+import { setFilmBg, unsetFilmBg } from "@store/slices/filmsSlice/filmsSlice";
+
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export const FilmPage = () => {
   const kinopoiskId = Number(useParams().kinopoiskId);
   const { data: filmInfo, isFetching } = useGetInfoAboutFilmQuery(kinopoiskId);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (filmInfo) dispatch(setFilmBg(filmInfo));
+    return () => {
+      dispatch(unsetFilmBg());
+    };
+  }, [filmInfo, dispatch]);
+
   const {
     nameRu,
     year,

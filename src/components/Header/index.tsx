@@ -1,6 +1,6 @@
 import { PATHS_LINKS } from "@constants/paths";
 import { useAppSelector } from "@store/interfaces/hooks";
-import { selectRandomFilm } from "@store/selectors/films";
+import { selectFilmBg } from "@store/selectors/films";
 import { Nav } from "@components/Nav";
 import { NavLink } from "react-router-dom";
 import {
@@ -19,7 +19,7 @@ import { MobileMenu } from "@components/MobileMenu";
 import { useRef } from "react";
 
 export const Header = () => {
-  const randomFilm = useAppSelector(selectRandomFilm);
+  const randomFilm = useAppSelector(selectFilmBg);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const { posterUrl } = randomFilm ?? {};
 
@@ -40,7 +40,7 @@ export const Header = () => {
       <ContentContainer className="wrapper">
         <h1>
           <NavLink to={PATHS_LINKS.main}>
-            <Logo height="4em" />
+            <Logo height="4em" color={posterUrl && "white"} />
           </NavLink>
         </h1>
         <NavWrapper>
@@ -48,7 +48,7 @@ export const Header = () => {
         </NavWrapper>
         <ThemeToggler />
         <NavLink to={PATHS_LINKS.account}>
-          <User height="2em" width="2em" />
+          <User height="2em" width="2em" color={posterUrl && "white"} />
         </NavLink>
         <BurgerWrapper>{<Burger onClick={openMenu} />}</BurgerWrapper>
       </ContentContainer>

@@ -23,12 +23,19 @@ export const Staff: FC<StaffProps> = memo(({ kinopoiskId }) => {
     </StaffItem>
   );
 
+  if (staffInfo.length === 0) return <></>;
+
   return (
     <div className="wrapper">
       <h5>Актеры и создатели</h5>
       <StaffContainer>
         <Slider
-          itemsAmount={{ [Breakpoints.xxl]: 4, [Breakpoints.lg]: 3 }}
+          itemsAmount={{
+            [Breakpoints.xxl]: 4,
+            [Breakpoints.lg]: 3,
+            [Breakpoints.md]: 2,
+            [Breakpoints.sm]: 1,
+          }}
           items={staffInfo}
           renderItem={renderStaff}
         />

@@ -24,4 +24,9 @@ export const TabType = styled.div<{ $isChoosen: boolean }>`
   align-items: center;
   border-bottom: ${({ $isChoosen, theme: { colors } }) =>
     $isChoosen ? ` 2px solid ${colors.primary}` : "none"};
+  transition: all 1.9s ease;
+
+  &:hover {
+    border-bottom: 2px solid ${({ theme: { colors } }) => colors.primary};
+  }
 `;

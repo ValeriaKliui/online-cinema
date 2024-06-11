@@ -3,7 +3,7 @@ import {
   useGetPremieresQuery,
 } from "@store/services/filmsApi/filmsApi";
 import { getRandomFilm } from "@utils/getRandomFilm";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { FilmInfo, FilmContainer, Description, SubText } from "./styled";
 import { Button } from "@shared/Button";
 import YoutubeSvg from "@assets/icons/youtube.svg?react";
@@ -11,8 +11,11 @@ import { getDateForPremiers } from "@utils/getDateForPremiers";
 import { PATHS_LINKS } from "@constants/paths";
 import { FilmBg } from "@shared/FilmBg";
 import { Spinner } from "@shared/Spinner";
+import { useDispatch } from "react-redux";
+import { setFilmBg, unsetFilmBg } from "@store/slices/filmsSlice/filmsSlice";
 
 export const MainScreen = () => {
+  const dispatch = useDispatch();
   const { year: premierYear, month } = getDateForPremiers();
   const { data: premieres, isFetching } = useGetPremieresQuery({
     year: premierYear,
@@ -23,6 +26,7 @@ export const MainScreen = () => {
     () => premieres && getRandomFilm(premieres),
     [premieres],
   );
+
   const kinopoiskId = Number(premier?.kinopoiskId);
 
   const { data: premierInfo } = useGetInfoAboutFilmQuery(kinopoiskId, {
@@ -33,6 +37,13 @@ export const MainScreen = () => {
     premierInfo ?? {};
 
   const descriptionCut = description?.split(".").slice(0, 2).join(".") + ".";
+
+  useEffect(() => {
+    if (premier) dispatch(setFilmBg(premier));
+    return () => {
+      dispatch(unsetFilmBg());
+    };
+  }, [premier, dispatch]);
 
   return (
     <>

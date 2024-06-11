@@ -1,5 +1,5 @@
 import { devices } from "@providers/Theme/constants";
-import { flexColGap } from "@utils/mixins/mixins";
+import { flexColGap, scaleAnimation } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -20,6 +20,8 @@ export const Container = styled.div`
     text-align: center;
     ${flexColGap(1)}
   }
+
+  ${scaleAnimation}
 `;
 export const IconContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.background};
