@@ -1,4 +1,4 @@
-import { useClickOutside } from "@hooks/useClickOutside";
+import { useOnClickOutside } from "usehooks-ts";
 import { FC, useRef } from "react";
 import { ModalProps } from "./interfaces";
 import { Container, Overlay } from "./styled";
@@ -9,7 +9,8 @@ export const Modal: FC<ModalProps> = ({
   isModalOpened = false,
 }) => {
   const modalContainer = useRef(null);
-  useClickOutside(modalContainer, onClose);
+  // useClickOutside(modalContainer, onClose);
+  useOnClickOutside(modalContainer, onClose);
 
   return (
     <Overlay $isOpened={isModalOpened}>

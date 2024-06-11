@@ -21,6 +21,7 @@ import {
   SearchParams,
   SearchResponse,
   SimilarFilmsResponse,
+  VideosResponse,
 } from "./interfaces";
 import { CollectionType, Film, Premier, StaffPerson } from "../entities";
 
@@ -75,6 +76,9 @@ export const filmsApi = api.injectEndpoints({
       query: (options: FilterParams) =>
         `${FILMS_BASE_URL}${getFiltersUrl(options)}`,
     }),
+    getVideos: builder.query<VideosResponse, number>({
+      query: (filmID: number) => `${FILMS_BASE_URL}/${filmID}/videos`,
+    }),
   }),
 });
 
@@ -90,4 +94,5 @@ export const {
   useGetInfoAboutFilmsQuery,
   useLazyGetFilmsByFiltersQuery,
   useSearchByKeywordQuery,
+  useLazyGetVideosQuery,
 } = filmsApi;

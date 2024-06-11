@@ -22,11 +22,5 @@ export const ErrorModal = () => {
     <Modal onClose={unfollowError} isModalOpened={!!error}>
       <p> Похоже, произошла ошибка: {error} </p>
     </Modal>
-    // <Overlay $isError={!!error} onClick={unfollowError}>
-    //   <Container>
-    //
-    //     <Button>Закрыть</Button>
-    //   </Container>
-    // </Overlay>
   );
 };

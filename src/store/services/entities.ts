@@ -131,3 +131,15 @@ export enum GENRES_NAMES {
   COMEDY = "комедия",
   HORROR = "ужасы",
 }
+
+export enum VideoSite {
+  YOUTUBE = "YOUTUBE",
+  YANDEX_DISK = "YANDEX_DISK",
+  KINOPOISK_WIDGET = "KINOPOISK_WIDGET",
+}
+
+export interface Video {
+  name: string;
+  site: VideoSite;
+  url: string;
+}

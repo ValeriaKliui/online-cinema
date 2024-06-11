@@ -3,6 +3,7 @@ import { Gallery } from "@components/Gallery";
 import { ReviewsSlider } from "@components/ReviewsSlider";
 import { SimilarFilms } from "@components/SimilarFilms";
 import { Staff } from "@components/Staff";
+import { Videos } from "@components/Videos";
 import { FilmBg } from "@shared/FilmBg";
 import { Spinner } from "@shared/Spinner";
 import { useAppDispatch } from "@store/interfaces/hooks";
@@ -52,6 +53,7 @@ export const FilmPage = () => {
         />
       </FilmBg>
       <Staff kinopoiskId={kinopoiskId} />
+      <Videos kinopoiskId={kinopoiskId} />
       <ReviewsSlider kinopoiskId={kinopoiskId} />
       <Gallery kinopoiskId={kinopoiskId} />
       <SimilarFilms kinopoiskId={kinopoiskId} />

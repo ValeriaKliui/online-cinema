@@ -4,7 +4,7 @@ import { FoundFilmsProps } from "./interfaces";
 import { formatArrayToStrings } from "@utils/formatArrayToStrings";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
-import { useClickOutside } from "@hooks/useClickOutside";
+// import { useClickOutside } from "@hooks/useClickOutside";
 import { Spinner } from "@shared/Spinner";
 import { FoundFilmsHeader } from "./FoundFilmsHeader";
 
@@ -12,7 +12,7 @@ export const FoundFilms: FC<FoundFilmsProps> = memo(
   ({
     films,
     searchFilmsCountResult = 0,
-    searchRef,
+    // searchRef,
     isOpened,
     setIsOpened,
     isLoading,
@@ -22,7 +22,7 @@ export const FoundFilms: FC<FoundFilmsProps> = memo(
     const handleClose = useCallback(() => {
       setIsOpened(false);
     }, [setIsOpened]);
-    useClickOutside(searchRef, handleClose);
+    // useClickOutside(searchRef, handleClose);
 
     return (
       <Container $isOpened={isOpened}>

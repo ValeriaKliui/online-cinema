@@ -6,6 +6,7 @@ import {
   Premier,
   ReviewData,
   SimilarFilm,
+  Video,
 } from "../entities";
 
 export interface SearchParams {
@@ -69,3 +70,8 @@ export interface SimilarFilmsResponse {
 }
 
 export type FilmsInfoResponse = Film[];
+
+export interface VideosResponse {
+  total: number;
+  items: Video[];
+}
