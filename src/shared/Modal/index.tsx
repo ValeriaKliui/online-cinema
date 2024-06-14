@@ -1,7 +1,6 @@
-import { useOnClickOutside } from "usehooks-ts";
 import { FC, useRef } from "react";
 import { ModalProps } from "./interfaces";
-import { Container, Overlay } from "./styled";
+import { Close, Container, Content, Overlay } from "./styled";
 
 export const Modal: FC<ModalProps> = ({
   children,
@@ -9,14 +8,12 @@ export const Modal: FC<ModalProps> = ({
   isModalOpened = false,
 }) => {
   const modalContainer = useRef(null);
-  // useClickOutside(modalContainer, onClose);
-  useOnClickOutside(modalContainer, onClose);
 
   return (
-    <Overlay $isOpened={isModalOpened}>
-      <Container ref={modalContainer}>
-        <p onClick={onClose}> x</p>
-        {children}
+    <Overlay $isOpened={isModalOpened} onClick={onClose}>
+      <Container ref={modalContainer} onClick={(e) => e.stopPropagation()}>
+        <Close onClick={onClose} width={"1em"} />
+        <Content> {children}</Content>
       </Container>
     </Overlay>
   );

@@ -26,7 +26,6 @@ export const MobileMenu = forwardRef<HTMLDialogElement>((_, dialogRef) => {
     const closeOnLinkClick = (e: globalThis.MouseEvent) => {
       const target = e.target as Element;
       const clickIsOnLink = e.target && target.closest("a");
-      console.log(clickIsOnLink);
       if (clickIsOnLink && dialogElement) dialogElement.close();
     };
 

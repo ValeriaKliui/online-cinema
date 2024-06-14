@@ -30,7 +30,7 @@ export const Search = () => {
           isOpened={isOpened}
           isLoading={isLoading || isUninitialized}
           setIsOpened={setIsOpened}
-          searchRef={searchRef}
+          ref={searchRef}
         />
       </SearchContainer>
     </Container>

@@ -9,6 +9,7 @@ export const GalleryContainer = styled.div`
   img {
     border-radius: ${({ theme: { radiuses } }) => radiuses.small};
     max-height: 13em;
+    height: 100%;
     object-fit: cover;
   }
 

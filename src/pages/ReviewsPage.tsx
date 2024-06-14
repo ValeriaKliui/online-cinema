@@ -51,7 +51,7 @@ export const ReviewsPage = () => {
           <Pages pagesAmount={totalPages} onPageChange={onPageChange} />
         </>
       ) : (
-        <p>Отзывы отсутствуют</p>
+        <p className="wrapper">Отзывы отсутствуют</p>
       )}
     </>
   );

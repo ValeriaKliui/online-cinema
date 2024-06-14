@@ -14,6 +14,7 @@ export const Slider = <T,>({
   const [itemMaxWidth, setItemMaxWidth] = useState(0);
   const [mediaItemsAmount, setMediaItemsAmount] = useState(0);
   const screenSize = document.documentElement.clientWidth;
+  const isSmallAmountOfItems = items.length <= mediaItemsAmount;
 
   const isPreviousItems = currentIndex != 0;
 
@@ -62,11 +63,15 @@ export const Slider = <T,>({
   useEffect(() => {
     setItemMaxWidth(oneItemWidth);
     window.addEventListener("resize", () => setItemMaxWidth(oneItemWidth));
+    return () =>
+      window.removeEventListener("resize", () => setItemMaxWidth(oneItemWidth));
   }, [oneItemWidth]);
 
   return (
     <Container ref={containerRef}>
-      <LeftArrow onClick={onLeftClick} $isDisabled={!isPreviousItems} />
+      {!isSmallAmountOfItems && (
+        <LeftArrow onClick={onLeftClick} $isDisabled={!isPreviousItems} />
+      )}
       {items
         .slice(currentIndex, currentIndex + mediaItemsAmount)
         .map((item, index) => (
@@ -74,7 +79,9 @@ export const Slider = <T,>({
             {renderItem(item)}
           </Item>
         ))}
-      <Arrow onClick={onRightClick} $isDisabled={isEnd} />
+      {!isSmallAmountOfItems && (
+        <Arrow onClick={onRightClick} $isDisabled={isEnd} />
+      )}
     </Container>
   );
 };

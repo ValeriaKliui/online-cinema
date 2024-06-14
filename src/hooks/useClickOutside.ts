@@ -1,14 +1,23 @@
-import { RefObject, useEffect } from "react";
+import { ForwardedRef, RefObject, useEffect } from "react";
 
 export const useClickOutside = (
-  ref: RefObject<HTMLDivElement>,
+  ref: RefObject<HTMLDivElement> | ForwardedRef<HTMLDivElement> | null,
   handleClickOutside: () => void,
 ) => {
   useEffect(() => {
     const onClick = (e: Event) => {
-      if (!ref?.current?.contains(e.target as Node)) handleClickOutside();
+      const target = e.target as Node;
+      if (typeof ref !== "function") {
+        const trackableElement = ref?.current;
+        const clickIsOutside =
+          trackableElement && !trackableElement?.contains(target);
+
+        if (clickIsOutside) handleClickOutside();
+      }
     };
 
     document.addEventListener("click", onClick);
+
+    return () => document.removeEventListener("click", onClick);
   }, [handleClickOutside, ref]);
 };
