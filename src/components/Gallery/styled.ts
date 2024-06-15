@@ -1,6 +1,10 @@
 import { devices } from "@providers/Theme/constants";
+import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  ${flexColGap(2)}
+`;
 export const GalleryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -11,6 +15,7 @@ export const GalleryContainer = styled.div`
     max-height: 13em;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
   }
 
   img:first-child {
@@ -22,3 +27,4 @@ export const GalleryContainer = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
 `;
+export const ModalImg = styled.img``;

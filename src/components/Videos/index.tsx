@@ -42,8 +42,11 @@ export const Videos: FC<VideosProps> = ({ kinopoiskId }) => {
     );
   };
 
+  if (onlyYTVideos.length === 0) return <></>;
+
   return (
     <div className="wrapper">
+      <h5>Трейлеры</h5>
       <Slider items={onlyYTVideos} renderItem={renderVideo} itemsAmount={3} />
       <Modal isModalOpened={!!openedVideoUrl} onClose={closeVideoModal}>
         <Video url={openedVideoUrl} />

@@ -31,5 +31,5 @@ export const Close = styled(CrossIcon)`
   ${(props) => svgStyles(props)}
 `;
 export const Content = styled.div`
-  width: fit-content;
+  width: 50vw;
 `;

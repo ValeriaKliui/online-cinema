@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: space-between;
   gap: 8em;
   align-items: center;
+  margin-bottom: 2em;
   ${devices.lg} {
     gap: 3em;
   }

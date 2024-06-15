@@ -1,6 +1,9 @@
 import { flexColGap } from "@utils/mixins/mixins";
 import styled from "styled-components";
 
+export const Container = styled.div`
+  ${flexColGap(2)};
+`;
 export const ReviewContainer = styled.div`
   background-color: ${({ theme: { colors } }) => colors.darkBlock};
   padding: 2em;

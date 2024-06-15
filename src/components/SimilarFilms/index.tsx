@@ -4,6 +4,7 @@ import { SimilarFilmsProps } from "./interfaces";
 import { FilmCard } from "@components/FilmCard";
 import { Slider } from "@shared/Slider";
 import { SimilarFilm } from "@store/services/entities";
+import { Container } from "./styled";
 
 export const SimilarFilms: FC<SimilarFilmsProps> = memo(({ kinopoiskId }) => {
   const { data: similarFilms } = useGetSimilarFilmsQuery(kinopoiskId);
@@ -24,13 +25,12 @@ export const SimilarFilms: FC<SimilarFilmsProps> = memo(({ kinopoiskId }) => {
     />
   );
 
+  if (items.length === 0) return <></>;
+
   return (
-    <>
-      {items.length > 0 && (
-        <div className="wrapper">
-          <Slider items={items} renderItem={renderFilm} itemsAmount={4} />
-        </div>
-      )}
-    </>
+    <Container className="wrapper">
+      <h5>Похожие фильмы</h5>
+      <Slider items={items} renderItem={renderFilm} itemsAmount={4} />
+    </Container>
   );
 });

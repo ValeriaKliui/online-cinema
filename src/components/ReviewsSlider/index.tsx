@@ -2,7 +2,7 @@ import { useGetReviewsQuery } from "@store/services/filmsApi/filmsApi";
 import { FC, memo } from "react";
 import { ReviewsProps } from "./interfaces";
 import { Slider } from "@shared/Slider";
-import { ReviewContainer, Description } from "./styled";
+import { ReviewContainer, Description, Container } from "./styled";
 import { Link } from "react-router-dom";
 import { PATHS_LINKS } from "@constants/paths";
 import { ReviewData } from "@store/services/entities";
@@ -27,21 +27,20 @@ export const ReviewsSlider: FC<ReviewsProps> = memo(({ kinopoiskId }) => {
     </Link>
   );
 
+  if (items.length === 0) return <></>;
+
   return (
-    <>
-      {items.length > 0 && (
-        <div className="wrapper">
-          <Slider
-            items={items}
-            itemsAmount={{
-              [Breakpoints.xxl]: 3,
-              [Breakpoints.lg]: 2,
-              [Breakpoints.md]: 1,
-            }}
-            renderItem={renderReviews}
-          />
-        </div>
-      )}
-    </>
+    <Container className="wrapper">
+      <h5>Отзывы</h5>
+      <Slider
+        items={items}
+        itemsAmount={{
+          [Breakpoints.xxl]: 3,
+          [Breakpoints.lg]: 2,
+          [Breakpoints.md]: 1,
+        }}
+        renderItem={renderReviews}
+      />
+    </Container>
   );
 });
