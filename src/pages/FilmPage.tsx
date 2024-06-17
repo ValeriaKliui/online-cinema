@@ -13,7 +13,7 @@ import { setFilmBg, unsetFilmBg } from "@store/slices/filmsSlice/filmsSlice";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export const FilmPage = () => {
+const FilmPage = () => {
   const kinopoiskId = Number(useParams().kinopoiskId);
   const { data: filmInfo, isFetching } = useGetInfoAboutFilmQuery(kinopoiskId);
   const dispatch = useAppDispatch();
@@ -60,3 +60,5 @@ export const FilmPage = () => {
     </>
   );
 };
+
+export default FilmPage;

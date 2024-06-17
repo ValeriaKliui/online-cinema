@@ -4,12 +4,19 @@
       "email": "valeria14003@list.ru",
       "password": "$2a$10$tslrAFw5fK3IBei14oN47eZKPRnd2Udf8C.RWlFojyl94DabNaoBy",
       "id": 1
+    },
+    {
+      "email": "kliui@gmail.com",
+      "password": "$2a$10$N9YCnKB74qq1kXsiphu5UO4qB0KpuEbWNvGvR06LKLFd8U2c0Fmhq",
+      "id": 2
     }
   ],
   "favouriteFilms": [
     {
       "id": 1,
-      "favouriteFilmsIDs": []
+      "favouriteFilmsIDs": [
+        5260016
+      ]
     }
   ]
 }

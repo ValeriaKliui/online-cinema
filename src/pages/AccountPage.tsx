@@ -1,7 +1,7 @@
 import { UserInfo } from "@components/UserInfo";
 import { UserOptions } from "@components/UserOptions";
 
-export const AccountPage = () => {
+const AccountPage = () => {
   return (
     <>
       <UserInfo />
@@ -9,3 +9,5 @@ export const AccountPage = () => {
     </>
   );
 };
+
+export default AccountPage;

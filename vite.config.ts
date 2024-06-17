@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       "@assets": resolve(__dirname, "./src/assets"),
       "@components": resolve(__dirname, "./src/components"),
+      "@pages": resolve(__dirname, "./src/pages"),
       "@constants": resolve(__dirname, "./src/constants"),
       "@providers": resolve(__dirname, "./src/providers"),
       "@shared": resolve(__dirname, "./src/shared"),

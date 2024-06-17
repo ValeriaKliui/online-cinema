@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import ArrowSvg from "@assets/icons/arrow.svg?react";
-import { scaleAnimation } from "@utils/mixins/mixins";
 
 export const Arrow = styled(ArrowSvg)<{ $isDisabled: boolean }>`
   min-width: 2em;
@@ -11,7 +10,6 @@ export const Arrow = styled(ArrowSvg)<{ $isDisabled: boolean }>`
   border-radius: ${({ theme: { radiuses } }) => radiuses.regular};
   cursor: ${({ $isDisabled }) => ($isDisabled ? "auto" : "pointer")};
   align-self: center;
-  ${scaleAnimation}
 `;
 export const LeftArrow = styled(Arrow)`
   transform: rotate(180deg);

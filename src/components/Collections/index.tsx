@@ -1,7 +1,7 @@
 import { FilmCard } from "@components/FilmCard";
 import { COLLECTION_TABS } from "@constants/filmsApi";
 import { useLazyGetCollectionByTypeQuery } from "@store/services/filmsApi/filmsApi";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Container } from "./styled";
 import { Slider } from "@shared/Slider";
 import { CollectionType, Film } from "@store/services/entities";
@@ -10,17 +10,14 @@ import { Spinner } from "@shared/Spinner";
 import { Breakpoints } from "@providers/Theme/interfaces";
 
 export const Collections = () => {
-  const [shouldBeReset, setShouldBeReset] = useState(false);
-
   const [requestCollectionType, { data, isFetching }] =
     useLazyGetCollectionByTypeQuery();
 
   const onTabChange = useCallback(
     (type: CollectionType) => {
       requestCollectionType(type);
-      setShouldBeReset(true);
     },
-    [requestCollectionType],
+    [requestCollectionType]
   );
 
   const { items = [] } = data ?? {};
@@ -66,8 +63,6 @@ export const Collections = () => {
               [Breakpoints.md]: 2,
               [Breakpoints.sm]: 1,
             }}
-            shouldBeReset={shouldBeReset}
-            setShouldBeReset={setShouldBeReset}
           />
         )}
       </Container>

@@ -6,7 +6,7 @@ import { useGetInfoAboutFilmsQuery } from "@store/services/filmsApi/filmsApi";
 import { useGetFavoriteFilmsIDsQuery } from "@store/services/userApi/userApi";
 import { useMemo } from "react";
 
-export const FavouritePage = () => {
+const FavouritePage = () => {
   const user = useAppSelector(selectUser);
   const { id = 0 } = user ?? {};
   const { data, isFetching } = useGetFavoriteFilmsIDsQuery(id);
@@ -30,3 +30,5 @@ export const FavouritePage = () => {
     </div>
   );
 };
+
+export default FavouritePage;

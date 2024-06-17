@@ -1,17 +1,19 @@
-import { MainPage } from "../pages/MainPage";
-import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage";
-import { AccountPage } from "../pages/AccountPage";
 import { PrivateRoute } from "@shared/PrivateRoute";
-import { FilmsPage } from "../pages/FilmsPage";
-import { FilmPage } from "../pages/FilmPage";
-import { FavouritePage } from "../pages/FavouritePage";
-import { SearchPage } from "../pages/SearchPage";
 import HeartIcon from "@assets/icons/heart.svg?react";
 import CartIcon from "@assets/icons/shopping-cart.svg?react";
-import { ReviewsPage } from "../pages/ReviewsPage";
 import { GENRES } from "@store/services/entities";
-import { NoPage } from "../pages/NoPage";
+import { lazy } from "react";
+
+const MainPage = lazy(() => import("@pages/MainPage"));
+const LoginPage = lazy(() => import("@pages/LoginPage"));
+const RegisterPage = lazy(() => import("@pages/RegisterPage"));
+const FilmsPage = lazy(() => import("@pages/FilmsPage"));
+const FilmPage = lazy(() => import("@pages/FilmPage"));
+const FavouritePage = lazy(() => import("@pages/FavouritePage"));
+const AccountPage = lazy(() => import("@pages/AccountPage"));
+const SearchPage = lazy(() => import("@pages/SearchPage"));
+const ReviewsPage = lazy(() => import("@pages/ReviewsPage"));
+const NoPage = lazy(() => import("@pages/NoPage"));
 
 export enum PATHS_LINKS {
   main = "/",

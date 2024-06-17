@@ -5,7 +5,7 @@ import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import { useLazySearchByKeywordQuery } from "@store/services/filmsApi/filmsApi";
 import { useCallback, useEffect } from "react";
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
 
   const [searchByKeyword, { data, isFetching }] = useLazySearchByKeywordQuery();
@@ -21,7 +21,7 @@ export const SearchPage = () => {
     (pageNum: number) => {
       updateSearchParams({ ...filmsSearchParams, page: String(pageNum) });
     },
-    [updateSearchParams, filmsSearchParams],
+    [updateSearchParams, filmsSearchParams]
   );
 
   return (
@@ -36,3 +36,5 @@ export const SearchPage = () => {
     </>
   );
 };
+
+export default SearchPage;

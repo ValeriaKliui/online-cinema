@@ -9,7 +9,7 @@ import {
 import { useCallback } from "react";
 import { useParams } from "react-router-dom";
 
-export const ReviewsPage = () => {
+const ReviewsPage = () => {
   const kinopoiskId = Number(useParams().kinopoiskId);
   const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
   const { data } = useGetInfoAboutFilmQuery(kinopoiskId);
@@ -33,7 +33,7 @@ export const ReviewsPage = () => {
     (pageNum: number) => {
       updateSearchParams({ page: String(pageNum) });
     },
-    [updateSearchParams],
+    [updateSearchParams]
   );
 
   return (
@@ -56,3 +56,5 @@ export const ReviewsPage = () => {
     </>
   );
 };
+
+export default ReviewsPage;

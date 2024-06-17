@@ -5,7 +5,7 @@ import { useFilmSearchParams } from "@hooks/useFilmSearchParams";
 import { useLazyGetFilmsByFiltersQuery } from "@store/services/filmsApi/filmsApi";
 import { useCallback, useEffect, useMemo } from "react";
 
-export const FilmsPage = () => {
+const FilmsPage = () => {
   const { filmsSearchParams, updateSearchParams } = useFilmSearchParams();
   const [getFilmsByParams, { data, isFetching }] =
     useLazyGetFilmsByFiltersQuery();
@@ -16,7 +16,7 @@ export const FilmsPage = () => {
     (pageNum: number) => {
       updateSearchParams({ ...filmsSearchParams, page: String(pageNum) });
     },
-    [updateSearchParams, filmsSearchParams],
+    [updateSearchParams, filmsSearchParams]
   );
 
   useEffect(() => {
@@ -37,3 +37,5 @@ export const FilmsPage = () => {
     </>
   );
 };
+
+export default FilmsPage;

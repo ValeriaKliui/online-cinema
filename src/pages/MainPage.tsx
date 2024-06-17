@@ -3,7 +3,7 @@ import { Collections } from "@components/Collections";
 import { SearchSection } from "@components/SearchSection";
 import { Genres } from "@components/Genres";
 
-export const MainPage = () => (
+const MainPage = () => (
   <>
     <MainScreen />
     <SearchSection />
@@ -11,3 +11,5 @@ export const MainPage = () => (
     <Collections />
   </>
 );
+
+export default MainPage;
