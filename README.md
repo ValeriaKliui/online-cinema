@@ -1,30 +1,15 @@
-# React + TypeScript + Vite
+# Online Cinema Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to Online Cinema website! Here you can enjoy a wide selection of movies and TV shows from the comfort of your own home.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse: Explore our vast library of movies and TV shows.
+- Search: Easily find your favorite movies or discover new ones.
+- Watchlist: Create a watchlist to keep track of movies you want to watch later.
+- Recommendations: Get personalized recommendations based on your viewing history.
+- User Profiles: Create your own profile to customize your experience.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To get started, simply create an account on our website and start browsing our collection of movies and TV shows. You can search for specific titles or genres, add movies to your watchlist, and start watching right away.
