@@ -11,15 +11,10 @@
             }
         }
     ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "server.cjs"
-        }
-    ],
     "headers": [
         {
-            "source": "*",
+            "source": "/(.*)",
+            "destination": "server.cjs",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Credentials",
