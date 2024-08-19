@@ -19,7 +19,7 @@ const baseQuery = fetchBaseQuery({
     );
     headers.set(
       "Access-Control-Allow-Headers",
-      "Access-Control-Allow-Headers, Origin, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+      "Access-Control-Allow-Headers, Origin, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
     );
     return headers;
   },
