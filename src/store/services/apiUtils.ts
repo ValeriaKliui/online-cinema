@@ -8,7 +8,7 @@ export const fetchInfoAboutFilms = async (filmID: number) => {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "HEAD,GET,OPTIONS,PATCH,DELETE,POST,PUT",
       "Access-Control-Allow-Headers":
-        "Access-Control-Allow-Headers, Origin, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+        "Access-Control-Allow-Headers, Origin, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
     },
   })
     .then((res) => (res.ok ? res : Promise.reject(res)))
