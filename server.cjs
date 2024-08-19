@@ -1,8 +1,14 @@
 import jsonServer from "json-server";
 import authMiddleware from "json-server-auth";
+import fs from "fs";
+import path from "path";
 
 const server = jsonServer.create();
-const router = jsonServer.router("db.json");
+
+const filePath = path.join("db.json");
+const data = fs.readFileSync(filePath, "utf-8");
+const db = JSON.parse(data);
+const router = jsonServer.router(db);
 
 server.db = router.db;
 
