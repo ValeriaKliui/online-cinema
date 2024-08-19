@@ -11,6 +11,12 @@
             }
         }
     ],
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "server.cjs"
+        }
+    ],
     "headers": [
         {
             "source": "/(.*)",
