@@ -35,7 +35,7 @@
                 },
                 {
                     "key": "Access-Control-Allow-Headers",
-                    "value": "x-api-key, access-control-allow-credentials, access-control-allow-origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Origin, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+                    "value": "authentication, x-api-key, access-control-allow-credentials, access-control-allow-origin, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Origin, Authorization, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
                 }
             ]
         }
