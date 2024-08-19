@@ -2,6 +2,7 @@
   "name": "online-cinema",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "start-server": "json-server-auth db.json",
     "dev": "vite",
