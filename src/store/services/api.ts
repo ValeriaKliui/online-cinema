@@ -11,6 +11,16 @@ const baseQuery = fetchBaseQuery({
       headers.set("authentication", `Bearer ${token}`);
     }
     headers.set("x-api-key", API_KEY);
+    headers.set("Access-Control-Allow-Credentials", "true");
+    headers.set("Access-Control-Allow-Origin", "*");
+    headers.set(
+      "Access-Control-Allow-Methods",
+      "HEAD,GET,OPTIONS,PATCH,DELETE,POST,PUT"
+    );
+    headers.set(
+      "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Headers, Origin, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+    );
     return headers;
   },
 });
