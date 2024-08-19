@@ -1,5 +1,5 @@
 // JSON Server module
-import jsonServer from "json-server";
+import jsonServer from "json-server-auth";
 
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
